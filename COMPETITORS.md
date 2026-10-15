@@ -247,25 +247,36 @@ Pages: homepage (Oct 2026)
 - **For Veria:** "burden to advantage" is the incumbent's version of a vision: safe and forgettable. The AI Trust Center appears again (ArisGlobal, MasterControl): the bigger vendors now treat a stated AI-governance page as standard.
 
 ## Synthesis
+Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
 
 ### What everyone promises
-- **"Inspection-ready, always."** Qinecsa, PSMF Manager, Veeva and ProPharma all say it. It's the category's baseline claim, so it can't be Veria's headline. It can be the result we back up.
-- **"Effortless" and "efficiency."** Extedo, IQVIA and Veeva. Worn out.
-- **"AI-first", "agentic", "touchless", "autopilot."** ArisGlobal and Drata. Loud, abstract, and it removes the human. Wrong register for a QPPV who signs personally.
+- **"Inspection-ready, always" / "constant audit readiness."** Qinecsa, PSMF Manager, Veeva, ProPharma, Qualio, Greenlight Guru. The category's baseline claim, so it can't be Veria's headline. It can be the result we back up.
+- **"Effortless", "efficiency", "burden to advantage."** Extedo, IQVIA, Veeva, MasterControl. Worn out.
+- **"AI-first", "agentic", "touchless", "autopilot."** ArisGlobal, Drata, Qualio, Freyr, Tepsivo. "Agentic" is now in nearly every headline, from PV to QMS. Loud, abstract, and it removes the human. Wrong register for a QPPV who signs personally.
+- **"One platform, no silos."** Ennov, ArisGlobal, Freyr, Veeva. Every suite claims the whole lifecycle.
 
 ### What nobody promises
 - **That the file is true.** Everyone sells storage, assembly, staff or readiness. No one says the PSMF matches reality: no contradictions, nothing missing, nothing stale. That's Veria's enemy (mistakes reaching the inspector), and no one else has claimed it.
-- **That the work disappears.** Vendors speed the work up. Service providers move it to their team ("Move local compliance from your team to ours"). Nobody says people just do their jobs and the file follows.
+- **That the work disappears.** Vendors speed the work up. Service providers move it to their team ("Move local compliance from your team to ours"). Nobody in PV says people just do their jobs and the file follows. Greenlight Guru comes closest, in medtech ("without your team manually holding it together").
 - **That the person who signs can see everything.** No one speaks to the QPPV's own accountability or visibility.
+- **Who approves the AI's work.** Biologit says "no black boxes", others have AI trust centers, but nobody states plainly that a person approves every change. Veria can.
+
+### The feeling everyone is after
+"Sleep at night" turns up three times (PrimeVigilance, Qualio, and Vanta's "Cool, calm"), always in a customer's mouth, never the vendor's. It's the emotional core of the market. Veria can say it in its own voice if it's backed up right next to it: nothing gets signed while a check is still open.
 
 ### How they prove it
 - Big players use scale: logos, decades, customer counts, regulators as users. Not available to us.
-- Smaller and service players use people and openness: named experts, published compliance rates, read-only client access, concrete service commitments.
-- Adjacent SaaS uses real-looking product UI with specific numbers, plus a public trust center.
-- Veria can use: the people who built it, the controls (Annex 11 / Part 11), the 0-of-45 test run, the PSMF shown as it was on any date, and a trust center page.
+- Smaller and service players use people and openness: named experts, published compliance rates, public pricing (Tepsivo), read-only client access, concrete service commitments.
+- Adjacent SaaS uses real-looking product UI with specific numbers, a public trust center, and a section on how validation works.
+- AI trust centers are becoming standard (ArisGlobal, MasterControl).
+- Warning: four sites (PrimeVigilance, Biologit, MasterControl, and Ennov's image tiles) ship stat bars with missing or placeholder numbers. A broken proof is worse than none. Veria has no customer numbers yet, so it shouldn't build a stat bar.
+- Veria can use: domain identity ("built by people who've done the job", in the confident form of Greenlight Guru's "Nobody knows medtech like…"), the controls (Annex 11 / Part 11), how validation works, the 0-of-45 test run, the PSMF shown as it was on any date, a trust center page with a plain AI statement.
 
 ### Register
-Between IQVIA's "expertise plus AI" and Vanta's "Cool, calm, and audit-ready". Human first, calm, concrete. No jokes, no space metaphors, no "autonomous".
+Between IQVIA's "expertise plus AI" and Greenlight Guru and Vanta's calm confidence. Human first, concrete, quiet. No jokes, no space metaphors, no "agentic", no "revolution" (Tepsivo shows how the maverick register reads). Biologit is the closest to our own copy rules: short fragments, narrow focus said with pride.
+
+### Narrow focus is a strength
+Biologit ("Literature Monitoring Is All We Do") and Greenlight Guru ("Nobody knows medtech like…") make a single focus sound strong, not small, while the suites blur together. Veria should own the PSMF completely and let "bigger than one document" show as growth outward from it, not as a lifecycle-platform claim.
 
 ### Direction statement: candidates
 The open question in `PRODUCT.md`. Each one claims ground nobody holds and is backed by the engine Veria already has (one fact stored once, every change checked, every mention updated, redline, sign).
@@ -274,5 +285,6 @@ The open question in `PRODUCT.md`. Each one claims ground nobody holds and is ba
 2. **"People do their jobs. The PSMF follows."** The connectors vision in six words. Human, and the opposite of "touchless".
 3. **"Nothing reaches the inspector that you haven't seen."** Built around the enemy and the QPPV's signature. Strongest on trust, weakest on scale.
 4. **"Compliance that keeps itself current. Starting with the PSMF."** Carries "bigger than one document" without overcompensating. The widest of the four.
+5. **"Spend less time on the PSMF and more on safety."** Adapted from Greenlight Guru. Warm, aimed at the QPPV, but borrowed in shape.
 
-Recommendation: 2 as the direction, 1 as the page-level promise, and 3 for the signing and trust section. That keeps one promise per section.
+Recommendation: unchanged after round two. 2 as the direction, 1 as the page-level promise, 3 for the signing and trust section. Round two backed this up: "agentic" and "always ready" got more crowded, while "the file is true" and "people, not autopilot" are still unclaimed.
