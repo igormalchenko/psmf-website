@@ -37,7 +37,7 @@ Round three (deep dives: several pages per site, the product's own words for the
 - [x] Cloudbyz (cloudbyz.com): Salesforce-based safety suite, check for PSMF
 - [x] PSMF services with tooling: Arriello, Drug-card, Tepsivo's PSMF page
 - [x] AI regulatory writing: Certara CoAuthor, Yseop, Celegence, Docuvera
-- [ ] How compliance SaaS sells integrations (Vanta, Drata, one more): precedent for the connectors vision
+- [x] How compliance SaaS sells integrations (Vanta, Drata, one more): precedent for the connectors vision
 - [ ] Regulatory-change monitoring: Cortellis, Redica, RegDesk
 - [ ] Market voice: inspection findings, how practitioners describe PSMF pain
 
@@ -322,6 +322,17 @@ Not PSMF tools. They show how life-sciences buyers are already being sold AI tha
 - **Docuvera:** "Governance-First Structured Content Authoring". Content "created once and reused across teams, document types, and global markets." "Remove the pain of cut and paste." Customer-attributed reuse rates (80%, and 65% in year one for Lilly).
 - **Pattern:** the serious players have moved the AI pitch from "it writes for you" to "it's safe to approve": grounded in sources, traceable, a person decides. Structured content ("write once, reuse everywhere") is the established name for what Veria calls "a fact is stored once and shown wherever it appears".
 - **For Veria:** Yseop's "AI executes. Humans decide." is the model for Veria's AI line (`PRODUCT.md`: "AI helps; it never decides for you"); don't copy it, but match its shape: short, two halves, the human gets the verb that matters. "Every claim accounted for" maps to Veria showing which owner and which answer each fact came from. Docuvera shows that "stored once, shown everywhere" is a known, valued idea in pharma. Veria can use it without explaining it, then go one step further: the PSMF also finds the sentences that still say the old thing.
+
+### How compliance SaaS sells integrations: Vanta, Drata, Secureframe
+The precedent for Veria's second stage (facts pulled from HR, Legal and QMS instead of asked for). Pages: Vanta `/integrations`, `/products/personnel-access`, help-center and HRIS partner pages via search; Drata `/integrations`; Secureframe homepage (Oct 2026)
+
+- **What they connect:** Vanta says it pulls data "from 400+ tools" (the body copy shows an unfilled `[integrations_count]` placeholder). Categories: identity provider, cloud, code, HR system. HR syncs are read-only and typically daily (the Justworks partner page lists hire, start and end dates, status, groups, manager).
+- **What the data is for: checks across sources.** Vanta's personnel page: "Detect newly created accounts in your systems and flag them when they're not connected to personnel in your organization." Partner pages describe tests that people are onboarded and offboarded on time and that access is revoked when someone leaves. That's two systems compared, and the mismatch flagged.
+- **Setup order:** Vanta's help center recommends connecting identity and cloud first, HR "in a later phase", because HR "completes your user data foundation."
+- **How it's shown:** a filterable logo library of integrations; per-feature product UI; one dashboard. Drata's integrations page says only "hundreds of tools" and "Continuous Trust Management", with no mechanism.
+- **What happens when something's wrong:** surprisingly vague on all three sites. "Sending reminders when needed", "within your company's SLAs". No one shows who gets told, or how.
+- **Secureframe's people angle:** "automation backed by world-class experts", "Our automated platform built by experts takes the guess work and grunt work out", "more than 30 in-house compliance experts and former auditors".
+- **For Veria:** the second-stage vision isn't a leap of faith. It's the proven model of a neighbouring market (connect the systems of record, compare them, flag the mismatch), applied to the PSMF where nobody has done it. Vanta's account-vs-personnel test is the same shape as Veria's own example ("the CVs don't match the org chart"). Veria can go further than all three on the step they leave vague: say who gets told (the owner of the source, by email, no login) and show it. Secureframe's "former auditors" is the template for the trust line: built by people who've been QPPVs, and know what inspectors look for. When connectors exist, a small logo strip of systems (HR, contracts, QMS, safety database) does the explaining; until then, keep it to "coming" and the existing "If it exports to a spreadsheet, it goes in."
 
 ## Synthesis
 Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
