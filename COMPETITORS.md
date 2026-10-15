@@ -361,36 +361,65 @@ Not a competitor. The "before" picture, in the market's own words, so the copy n
 - "PSMF latency" is a useful term to know but too jargony for a headline. The plain version is the promise: the file changes when the system does.
 
 ## Synthesis
-Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
+Covers all three rounds: 18 homepage entries, plus deep dives on the direct PSMF tools (Veeva, PSMF Manager, Quartica, Compier), PSMF service providers, AI regulatory writing, integrations in compliance SaaS, regulatory-change monitoring, and market voice.
+
+### The one-line finding
+**Everyone works at the level of the document. Veria works at the level of the fact.** Veeva links and assembles documents and reminds their owners. PSMF Manager, Quartica and Compier edit sections, run workflows and sync files. Service providers have people re-read the file. None of them knows what a single answer changes elsewhere in the file, checks it against the rest, or finds the sentences that still say the old thing. That's the gap, and it's the one thing the diagnosis everyone now shares ("the file falls behind the system") actually needs.
 
 ### What everyone promises
-- **"Inspection-ready, always" / "constant audit readiness."** Qinecsa, PSMF Manager, Veeva, ProPharma, Qualio, Greenlight Guru. The category's baseline claim, so it can't be Veria's headline. It can be the result we back up.
+- **"Inspection-ready, always" / "constant audit readiness."** Qinecsa, PSMF Manager, Compier, Veeva, ProPharma, DrugCard, Qualio, Greenlight Guru. The baseline claim, so it can't be Veria's headline. It can be the result we back up.
 - **"Effortless", "efficiency", "burden to advantage."** Extedo, IQVIA, Veeva, MasterControl. Worn out.
 - **"AI-first", "agentic", "touchless", "autopilot."** ArisGlobal, Drata, Qualio, Freyr, Tepsivo. "Agentic" is now in nearly every headline, from PV to QMS. Loud, abstract, and it removes the human. Wrong register for a QPPV who signs personally.
 - **"One platform, no silos."** Ennov, ArisGlobal, Freyr, Veeva. Every suite claims the whole lifecycle.
 
+### What's already on competitors' feature lists (so not a differentiator on its own)
+- **Reminding owners on a schedule, automated emails, QPPV dashboards.** Veeva's white paper describes this as its ideal state.
+- **An automatic logbook.** Veeva (from logbook entries), PSMF Manager ("Auto-Annex I Generator"), Quartica.
+- **Syncing from source systems.** PSMF Manager ("External Data Sources", every 24 hours), Compier (safety database, document management, QMS), Quartica (Word, PDF, Excel). All move files or data points in; none checks what arrives.
+- **Global and local PSMFs, one-click PDF, Part 11 signatures.** Everyone.
+
+Veria should still show these, but the claim has to sit one level up: what happens between "data arrived" and "the PSMF changed".
+
 ### What nobody promises
-- **That the file is true.** Everyone sells storage, assembly, staff or readiness. No one says the PSMF matches reality: no contradictions, nothing missing, nothing stale. That's Veria's enemy (mistakes reaching the inspector), and no one else has claimed it.
-- **That the work disappears.** Vendors speed the work up. Service providers move it to their team ("Move local compliance from your team to ours"). Nobody in PV says people just do their jobs and the file follows. Greenlight Guru comes closest, in medtech ("without your team manually holding it together").
-- **That the person who signs can see everything.** No one speaks to the QPPV's own accountability or visibility.
-- **Who approves the AI's work.** Biologit says "no black boxes", others have AI trust centers, but nobody states plainly that a person approves every change. Veria can.
+- **That the file is true.** No contradictions, nothing missing, nothing stale, checked on every change. Everyone sells storage, assembly, staff or readiness. Veria's enemy (mistakes reaching the inspector) is unclaimed as a promise, even though Quartica and Compier name it as a problem.
+- **That one change lands everywhere it belongs.** Docuvera sells "write once, reuse everywhere" for regulatory content; no PSMF tool does, and no one finds the prose that still mentions the old value.
+- **That the work disappears.** Vendors speed it up; service providers move it to their staff ("Move local compliance from your team to ours"). Nobody in PV says people just do their jobs and the file follows. Greenlight Guru comes closest, in medtech ("without your team manually holding it together").
+- **That a rule change arrives in the file itself.** Regulatory-intelligence tools (Redica, ClaRITA) stop at an alert and a task. Veria's "never miss a change in the rules" can mean the change shows up in your draft.
+- **That the owner of a mismatch hears about it.** Vanta and Drata compare sources but are vague about who's told. Veria can say: the person who owns the source, by email, no login.
+- **The QPPV's own confidence.** Veeva speaks to QPPV *oversight* (dashboards to show inspectors). Nobody speaks to the QPPV signing a file they know is right.
+- **Who approves the AI's work, in PV.** Yseop does it best in regulatory writing ("AI executes. Humans decide."). PSMF Manager says it only in a blog post. On a PSMF product page, nobody.
+
+### The diagnosis is going mainstream
+Qinecsa (which now owns Insife) publishes Veria's thesis almost word for word: "PSMF latency", "a process that was designed for a static system being applied to one that moves continuously", "a visibility problem". Veeva's paper names the same causes. Expect more products aimed here. So Veria's copy shouldn't spend its best space on the problem, which buyers and rivals already agree on. Spend it on the mechanism, shown, not explained.
 
 ### The feeling everyone is after
-"Sleep at night" turns up three times (PrimeVigilance, Qualio, and Vanta's "Cool, calm"), always in a customer's mouth, never the vendor's. It's the emotional core of the market. Veria can say it in its own voice if it's backed up right next to it: nothing gets signed while a check is still open.
+"Sleep at night" turns up three times (PrimeVigilance, Qualio, and Vanta's "Cool, calm"), always in a customer's mouth, never the vendor's. Redica adds "leave the noise behind". It's the emotional core of the market. Veria can say it in its own voice if it's backed up right next to it: nothing gets signed while a check is still open.
 
 ### How they prove it
 - Big players use scale: logos, decades, customer counts, regulators as users. Not available to us.
-- Smaller and service players use people and openness: named experts, published compliance rates, public pricing (Tepsivo), read-only client access, concrete service commitments.
-- Adjacent SaaS uses real-looking product UI with specific numbers, a public trust center, and a section on how validation works.
-- AI trust centers are becoming standard (ArisGlobal, MasterControl).
-- Warning: four sites (PrimeVigilance, Biologit, MasterControl, and Ennov's image tiles) ship stat bars with missing or placeholder numbers. A broken proof is worse than none. Veria has no customer numbers yet, so it shouldn't build a stat bar.
-- Veria can use: domain identity ("built by people who've done the job", in the confident form of Greenlight Guru's "Nobody knows medtech like…"), the controls (Annex 11 / Part 11), how validation works, the 0-of-45 test run, the PSMF shown as it was on any date, a trust center page with a plain AI statement.
+- Smaller and service players use people and openness: named experts, published compliance rates, public pricing (Tepsivo), read-only client access, concrete service commitments (PSMF Manager).
+- Adjacent SaaS uses real-looking product UI with specific numbers, a public trust center, a section on how validation works (Qualio), and experts on staff ("former auditors", Secureframe).
+- AI trust centers are becoming standard (ArisGlobal, MasterControl, Certara).
+- Warning: five sites (PrimeVigilance, Biologit, MasterControl, Vanta's integrations page, and Ennov's image tiles) ship missing or placeholder numbers. A broken proof is worse than none. Veria has no customer numbers yet, so it shouldn't build a stat bar.
+- One official number exists and is usable with its citation: in EMA's 2024 inspectors' report, the PSMF is one of the three most common areas of findings in CHMP-requested inspections.
+- Veria can use: domain identity ("built by people who've done the job", in the confident form of "Nobody knows medtech like…" or "former auditors"), the controls (Annex 11 / Part 11), how validation works, the 0-of-45 test run, the PSMF shown as it was on any date, a trust center page with a plain AI statement.
 
 ### Register
-Between IQVIA's "expertise plus AI" and Greenlight Guru and Vanta's calm confidence. Human first, concrete, quiet. No jokes, no space metaphors, no "agentic", no "revolution" (Tepsivo shows how the maverick register reads). Biologit is the closest to our own copy rules: short fragments, narrow focus said with pride.
+Between IQVIA's "expertise plus AI" and Greenlight Guru and Vanta's calm confidence. Human first, concrete, quiet. No jokes, no space metaphors, no "agentic", no "revolution" (Tepsivo shows how the maverick register reads), no "0% risk" (Celegence). Biologit and Yseop are the closest to our own copy rules: short lines, two halves, the claim and its proof side by side.
 
 ### Narrow focus is a strength
-Biologit ("Literature Monitoring Is All We Do") and Greenlight Guru ("Nobody knows medtech like…") make a single focus sound strong, not small, while the suites blur together. Veria should own the PSMF completely and let "bigger than one document" show as growth outward from it, not as a lifecycle-platform claim.
+Biologit ("Literature Monitoring Is All We Do") and Greenlight Guru make a single focus sound strong, not small, while the suites blur together. Veria should own the PSMF completely and let "bigger than one document" show as growth outward from it, not as a lifecycle-platform claim.
+
+### Two buyers, two pitches
+- **MAH and its QPPV:** you won't be in trouble for the file you hand over.
+- **PV service providers** keeping PSMFs for several MAHs: they're competitors in the market and buyers of Veria. PSMF Manager has a separate vendor plan. The pitch isn't "replace your service" but "keep every client's file true with the team you have". Arriello's fear of switching providers is the objection; an import that loses nothing answers it.
+
+### Visual ideas the research suggests
+- **The "before", in the market's words:** a PSMF page with the usual findings marked on it (former QPPV still listed, vendor moved months ago, annex untouched since last year). Labels taken from how inspectors and practitioners describe it.
+- **One change, every place:** Nordvia AB added once; Section 2, Annex B and the logbook light up; one sentence redrafted. The fact-level difference in one picture.
+- **Signal → draft → signature:** EMA publishes new guidance → Veria maps it to the sections it touches → the QPPV sees a redline. Redica's "signal to decision to action" shape, ending in the file instead of a task.
+- **Every fact traced:** click a value, see its owner, their answer and the date. Yseop's "every claim accounted for", applied to the PSMF.
+- **Later, for the connectors story:** a small strip of the systems the facts come from (HR, contracts, QMS, safety database), and the email the owner gets when two of them disagree.
 
 ### Direction statement: candidates
 The open question in `PRODUCT.md`. Each one claims ground nobody holds and is backed by the engine Veria already has (one fact stored once, every change checked, every mention updated, redline, sign).
@@ -400,5 +429,6 @@ The open question in `PRODUCT.md`. Each one claims ground nobody holds and is ba
 3. **"Nothing reaches the inspector that you haven't seen."** Built around the enemy and the QPPV's signature. Strongest on trust, weakest on scale.
 4. **"Compliance that keeps itself current. Starting with the PSMF."** Carries "bigger than one document" without overcompensating. The widest of the four.
 5. **"Spend less time on the PSMF and more on safety."** Adapted from Greenlight Guru. Warm, aimed at the QPPV, but borrowed in shape.
+6. **"The PSMF changes when your company does."** New in round three: "PSMF latency" said plainly. It names the gap everyone now agrees on and promises it closes. Works today (owners asked, every change checked) and grows into the connectors stage.
 
-Recommendation: unchanged after round two. 2 as the direction, 1 as the page-level promise, 3 for the signing and trust section. Round two backed this up: "agentic" and "always ready" got more crowded, while "the file is true" and "people, not autopilot" are still unclaimed.
+Recommendation after round three: 2 stays the direction. For the page-level promise, 6 is now stronger than 1: it answers the shared diagnosis directly, and the fact-level mechanism backs it up nearby. 3 for the signing and trust section. Round three confirmed that "always ready", "agentic" and "syncs with your systems" are crowded, and that "the file is true" and "one change, everywhere" are still unclaimed.
