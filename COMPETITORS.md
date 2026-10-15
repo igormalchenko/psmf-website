@@ -13,7 +13,7 @@ Work top to bottom. Tick each one when its entry is committed.
 - [x] IQVIA Vigilance (iqvia.com): safety platform plus services
 - [x] Qinecsa (qinecsa.com): PV services plus tech, sells PSMF maintenance
 - [x] ProPharma (propharmagroup.com): PV service provider, PSMF as a service
-- [ ] Vanta (vanta.com): adjacent, "continuous compliance" promise
+- [x] Vanta (vanta.com): adjacent, "continuous compliance" promise
 - [ ] Drata (drata.com): adjacent, same category as Vanta
 - [ ] PSMF Manager (psmfmanager.com): direct but weak per owner, quick look only
 
@@ -90,6 +90,18 @@ Pages: `/pharmacovigilance-services/psmf-development-maintenance` (redirects to 
 - **Tone:** warm, conversational, "we're here to help".
 - **Trust devices:** industry awards, named experts with years of experience, monthly compliance metrics shared with clients, read-only client access.
 - **For Veria:** they name the same root problem we do (many owners, one file) and answer it with people. The openness devices are worth noting: a published compliance rate and client read-only access. Veria's version is structural: every change is visible, and the PSMF can be shown as it was on any date. Once real figures exist, a live, honest metric is the most credible proof format in this market.
+
+### Vanta (adjacent)
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "Get your compliance together". Human, a little cheeky, and about the buyer's state, not the product.
+- **Vision:** compliance shifts from a periodic project to a continuous state: "Get and stay compliant", "continuously monitored". Then trust as something you show ("Showcase your security posture in real time").
+- **The "after":** "Cool, calm, and audit-ready". Compliance moves out of "spreadsheets and in people's heads". More done with the same team.
+- **Results claimed:** customer-attributed numbers (2,000 hours saved a year, 93% of questionnaires automated, 20% faster deal cycles, 16,000+ customers).
+- **Tone:** confident and light. Humor softens a dull topic without making it unserious.
+- **How it's made concrete:** real-looking product UI with specific data (a progress bar at 87%, a count of tests, a risk grid). Their visuals do the explaining, which is our own rule.
+- **Trust devices:** logo wall, analyst placement, their own compliance badges, a public trust center.
+- **For Veria:** this is the direction story we're missing, from a market that's further along. Periodic crunch becomes a continuous state. "Get and stay" is exactly our arc (import, then the file keeps itself current). "Cool, calm, and audit-ready" names a feeling a QPPV wants. The pharma version must be quieter: keep the calm, drop the jokes. A public trust center is a cheap, credible device we could ship.
 
 ## Synthesis
 Not written yet. Comes after the entries.
