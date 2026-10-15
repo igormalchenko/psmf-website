@@ -27,7 +27,7 @@ Round two:
 - [x] Biologit (biologit.com): AI literature monitoring, startup
 - [x] Qualio (qualio.com): adjacent, life-sciences QMS SaaS
 - [x] Greenlight Guru (greenlight.guru): adjacent, medtech QMS
-- [ ] MasterControl (mastercontrol.com): adjacent, incumbent QMS
+- [x] MasterControl (mastercontrol.com): adjacent, incumbent QMS
 
 ## Entries
 
@@ -234,6 +234,17 @@ Pages: homepage (Oct 2026)
 - **Tone:** confident, plain, industry-fluent but explained.
 - **Trust devices:** domain-expert identity, logos, G2, named experts, trust and status pages.
 - **For Veria:** "without your team manually holding it together" names the PSMF pain exactly (emails, trackers, merging Word copies). The PV version: "Spend less time on the PSMF and more on safety." "Nobody knows X like us" is the confident form of "built by people who've done the job". It works because it's about the domain, not about the founders. Showing links to sources is a good visual idea: each fact in the PSMF traced to its owner and answer.
+
+### MasterControl (adjacent)
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "Software That Eliminates Trade-Offs". Abstract, but a real idea: you don't have to pick between quality and cost.
+- **Vision:** "Transform compliance from a burden to a business advantage."
+- **The "after":** real-time visibility, routine quality work automated, fewer manual errors.
+- **Results claimed:** none. A section titled "Results You Can Measure" with template placeholders where the case-study figures should be. The third broken stat block in the set.
+- **Tone:** incumbent, technical, calm.
+- **Trust devices:** "patented validation tools", an AI Trust Center, FedRAMP-ready, HQ address and phone.
+- **For Veria:** "burden to advantage" is the incumbent's version of a vision: safe and forgettable. The AI Trust Center appears again (ArisGlobal, MasterControl): the bigger vendors now treat a stated AI-governance page as standard.
 
 ## Synthesis
 
