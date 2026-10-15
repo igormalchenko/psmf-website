@@ -11,7 +11,7 @@ Work top to bottom. Tick each one when its entry is committed.
 - [x] Extedo (extedo.com): RIM and safety suite (turned out to have no PSMF product)
 - [x] ArisGlobal LifeSphere (arisglobal.com): safety platform, loud about AI
 - [x] IQVIA Vigilance (iqvia.com): safety platform plus services
-- [ ] Qinecsa (qinecsa.com): PV services plus tech, sells PSMF maintenance
+- [x] Qinecsa (qinecsa.com): PV services plus tech, sells PSMF maintenance
 - [ ] ProPharma (propharmagroup.com): PV service provider, PSMF as a service
 - [ ] Vanta (vanta.com): adjacent, "continuous compliance" promise
 - [ ] Drata (drata.com): adjacent, same category as Vanta
@@ -66,6 +66,18 @@ Pages: `/solutions/safety-regulatory-compliance/safety-and-pharmacovigilance` (O
 - **Tone:** pragmatic, cost-minded. Speaks to a budget owner.
 - **Trust devices:** longevity, global footprint, audited data centers, named exec, thought leadership.
 - **For Veria:** the human-plus-machine pairing is the accepted frame in PV, and it matches our "AI helps; it never decides". "Move it from your team to ours" is the service providers' core pitch. Veria's answer: the work doesn't move to anyone, it stops existing. People do their jobs and the file follows.
+
+### Qinecsa
+Pages: homepage, `/our-services/quality-compliance/psmf-setup-and-maintenance` (Oct 2026)
+
+- **Headline promise:** "Your specialist partner for technology-enabled drug safety". A partner, not a product.
+- **Vision:** long-term partner, "help protect patients worldwide". Patient safety as the moral frame.
+- **The "after":** control, consistency, inspection-ready, and less vendor and platform sprawl to manage yourself.
+- **Results claimed:** none quantified. Relationship tenure (clients since 2009 and 2011) stands in for results.
+- **PSMF framing:** the closest to ours. Headline "Ensure Your PSMF Is Always Inspection-Ready and Fully Compliant". They take "ownership of the document's accuracy". Feelings: "regulatory confidence, operational clarity".
+- **Tone:** steady, expert, partnership. UK company details on the page.
+- **Trust devices:** named client testimonials, years-long relationships, ISO 27001 and Cyber Essentials Plus badges, 24/7 call center.
+- **For Veria:** the service providers sell the same outcome we do ("always inspection-ready"), delivered by people you pay to own the accuracy. That makes "always current" a standard claim, not a differentiator. What's different is how: the file stays accurate because every fact comes from its owner and every change is checked, not because a consultant re-reads it. Tenure as proof is unavailable to us. "Built by people who've done the job" is the closest substitute.
 
 ## Synthesis
 Not written yet. Comes after the entries.
