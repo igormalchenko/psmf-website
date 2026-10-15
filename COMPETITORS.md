@@ -364,7 +364,30 @@ Not a competitor. The "before" picture, in the market's own words, so the copy n
 Covers all three rounds: 18 homepage entries, plus deep dives on the direct PSMF tools (Veeva, PSMF Manager, Quartica, Compier), PSMF service providers, AI regulatory writing, integrations in compliance SaaS, regulatory-change monitoring, and market voice.
 
 ### The one-line finding
-**Everyone works at the level of the document. Veria works at the level of the fact.** Veeva links and assembles documents and reminds their owners. PSMF Manager, Quartica and Compier edit sections, run workflows and sync files. Service providers have people re-read the file. None of them knows what a single answer changes elsewhere in the file, checks it against the rest, or finds the sentences that still say the old thing. That's the gap, and it's the one thing the diagnosis everyone now shares ("the file falls behind the system") actually needs.
+**Everyone works at the level of the document. Veria works at the level of the fact.** Veeva links and assembles documents and reminds their owners. PSMF Manager, Quartica and Compier edit sections, run workflows and sync files. Service providers have people re-read the file. None of them knows what a single answer changes elsewhere in the file, checks it against the rest, or finds the sentences that still say the old thing. That's the gap, and it's the one thing the diagnosis everyone now shares ("the file falls behind the system") actually needs. And each fact comes from its source of truth, which is what holds both stages of Veria together (next section).
+
+### The bridge: real data from sources of truth (owner's emphasis)
+**Every fact in the PSMF comes from where it's actually true, not from someone's retelling of it.** This is the one idea that covers both stages of Veria with the same promise:
+
+- **Today, the source of truth is a person.** Legal owns the partners, HR the key people, Quality the SOPs. Veria asks each owner only their own questions, keeps their values exactly as written, shows the difference before anything is sent, and records who said what and when. Nobody in the middle re-types it.
+- **Tomorrow, the source of truth is the system that person already keeps.** The HR system, the contract repository, the QMS. Same facts, same owners, same checks; the asking just stops being necessary.
+- **The promise doesn't change between the two.** That's why it matters: Veria can say it plainly now, it's true now, and the connectors vision reads as the next step of the same thing instead of a new product. No "coming soon" caveat is needed on the core claim, only on the systems.
+
+**Why it's strong against this market:**
+- **Service providers retell.** A consultant or outsourced QPPV gathers facts by email, interprets them and writes them into the file. Their pages promise accuracy as a guarantee (Qinecsa takes "ownership of the document's accuracy"), never as provenance.
+- **Document tools take whatever is typed.** Veeva has owners update their own documents; PSMF Manager, Quartica and Compier move files and sections. A wrong value typed in is stored as faithfully as a right one.
+- **"Source" is in the vocabulary, but nobody makes it the PSMF promise.** PSMF Manager has "External Data Sources" (files synced in), Compier pulls annex data from source systems, Yseop sells "Accuracy — Grounded in Source Data" for regulatory writing, Clarivate says "Single source of regulatory truth" for rule tracking. None says: every fact in your PSMF came from its owner, and you can see which one.
+- **It answers the market's own diagnosis.** Inspectors find files that "no longer reflect reality" (see Market voice). A file fed from where reality is recorded is the direct answer, in the buyer's own terms.
+- **It's the human version of the connectors story.** Compliance SaaS sells the same model as automation ("400+ tools"). Veria's framing starts with the people who own the facts, which keeps it away from "touchless" and "autopilot".
+
+**How to say it:** avoid "single source of truth"; it's a SaaS cliché and Clarivate already uses it. Say it concretely, in a few words:
+- "Straight from the source."
+- "Every fact from the person who owns it." (today) → "…and then from the system they keep it in." (direction)
+- "Real data, from the people and systems that own it."
+
+**What backs it up nearby (already true, per `PRODUCT.md`):** one email per owner with only their questions; values kept exactly as written; the difference shown before anything is sent; a conflict between two people set aside, never silently overwritten; every change recorded (who, when, old and new value); "If it exports to a spreadsheet, it goes in."
+
+**Visual:** the "Every fact traced" idea below becomes the main one. Click a value in the PSMF → its owner, their answer, the date. A second state of the same picture shows the owner swapped for a system logo (HR system, contract repository, QMS), with the same fact and the same trail. One picture, both stages.
 
 ### What everyone promises
 - **"Inspection-ready, always" / "constant audit readiness."** Qinecsa, PSMF Manager, Compier, Veeva, ProPharma, DrugCard, Qualio, Greenlight Guru. The baseline claim, so it can't be Veria's headline. It can be the result we back up.
@@ -418,7 +441,7 @@ Biologit ("Literature Monitoring Is All We Do") and Greenlight Guru make a singl
 - **The "before", in the market's words:** a PSMF page with the usual findings marked on it (former QPPV still listed, vendor moved months ago, annex untouched since last year). Labels taken from how inspectors and practitioners describe it.
 - **One change, every place:** Nordvia AB added once; Section 2, Annex B and the logbook light up; one sentence redrafted. The fact-level difference in one picture.
 - **Signal → draft → signature:** EMA publishes new guidance → Veria maps it to the sections it touches → the QPPV sees a redline. Redica's "signal to decision to action" shape, ending in the file instead of a task.
-- **Every fact traced:** click a value, see its owner, their answer and the date. Yseop's "every claim accounted for", applied to the PSMF.
+- **Every fact traced:** click a value, see its owner, their answer and the date. Yseop's "every claim accounted for", applied to the PSMF. The main visual for "sources of truth" (see the bridge section): the same picture works for today (a person) and tomorrow (a system).
 - **Later, for the connectors story:** a small strip of the systems the facts come from (HR, contracts, QMS, safety database), and the email the owner gets when two of them disagree.
 
 ### Direction statement: candidates
@@ -430,5 +453,6 @@ The open question in `PRODUCT.md`. Each one claims ground nobody holds and is ba
 4. **"Compliance that keeps itself current. Starting with the PSMF."** Carries "bigger than one document" without overcompensating. The widest of the four.
 5. **"Spend less time on the PSMF and more on safety."** Adapted from Greenlight Guru. Warm, aimed at the QPPV, but borrowed in shape.
 6. **"The PSMF changes when your company does."** New in round three: "PSMF latency" said plainly. It names the gap everyone now agrees on and promises it closes. Works today (owners asked, every change checked) and grows into the connectors stage.
+7. **"Every fact, straight from its source."** The sources-of-truth idea as a line. True today (the owner answers) and tomorrow (the owner's system answers), with no change of promise. Less emotional than 2 or 6, but the most provable claim on the list.
 
-Recommendation after round three: 2 stays the direction. For the page-level promise, 6 is now stronger than 1: it answers the shared diagnosis directly, and the fact-level mechanism backs it up nearby. 3 for the signing and trust section. Round three confirmed that "always ready", "agentic" and "syncs with your systems" are crowded, and that "the file is true" and "one change, everywhere" are still unclaimed.
+Recommendation after round three, with the owner's emphasis on sources of truth: 2 stays the direction. 6 for the page-level promise. 7 isn't a third headline; it's the line that recurs as the proof under them: the reason "the PSMF follows" and "the PSMF changes when your company does" can be trusted is that every fact comes straight from its source, a person today and a system tomorrow. 3 for the signing and trust section. Round three confirmed that "always ready", "agentic" and "syncs with your systems" are crowded, and that "the file is true", "one change, everywhere" and "every fact from its owner" are still unclaimed.
