@@ -22,7 +22,7 @@ Round two:
 - [x] Tepsivo (tepsivo.com): tech-enabled PV service, startup
 - [x] Oracle Argus / Safety One (oracle.com): the incumbent safety database
 - [ ] Ennov (ennov.com): PV and regulatory suite
-- [ ] PrimeVigilance (primevigilance.com): large PV service provider
+- [x] PrimeVigilance (primevigilance.com): large PV service provider
 - [ ] Freyr (freyrsolutions.com): regulatory services plus software
 - [ ] Biologit (biologit.com): AI literature monitoring, startup
 - [ ] Qualio (qualio.com): adjacent, life-sciences QMS SaaS
@@ -162,6 +162,18 @@ Pages: oracle.com blocked direct fetching (403), so this comes from search snipp
 - **Tone:** infrastructure vendor. Features and accuracy figures.
 - **Trust devices:** being the default safety database, and the ecosystem of consultancies that build on it.
 - **For Veria:** Argus is where the case data lives. It's a likely future source for Annex figures, not a competitor for the PSMF promise. "We work with the system you already have" fits the connectors vision.
+
+### PrimeVigilance
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "Unlock the potential of pharmacovigilance". It frames the future as rising volume ("data explosion") that they'll absorb.
+- **Vision:** quality partner, AI investment, "improve the lives of patients around the world".
+- **The "after":** smooth transitions, standardized processes, stronger standing with regulators. Best line is a client's: "Knowing I have you as partners helps me sleep soundly at night."
+- **Results claimed:** a case study consolidating about 70 local vendors into one partner. The stat bar renders with its numbers missing ("k+", "%"), a live example of how a broken proof looks.
+- **PSMF framing:** a service line next to QPPV outsourcing. Not explained.
+- **Tone:** steady B2B, reassuring.
+- **Trust devices:** anonymized testimonials (job title only), quality statements, group affiliation, UK office.
+- **For Veria:** "sleep soundly at night" is the emotional core of this whole market, and nobody puts it in their own voice. Consolidating many vendors into one is a real buyer pain. Veria's version: many owners, one file, one place to see it. The broken stat bar is a reminder that a weak number does more harm than having none.
 
 ## Synthesis
 
