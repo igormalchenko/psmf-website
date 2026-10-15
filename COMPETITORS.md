@@ -126,4 +126,32 @@ Pages: homepage (Oct 2026)
 - **For Veria:** the only direct PSMF product found. Its pitch is the same "always inspection-ready" one, which confirms that claim alone won't set us apart. Named humans and concrete service commitments are cheap trust in a small-vendor market.
 
 ## Synthesis
-Not written yet. Comes after the entries.
+
+### What everyone promises
+- **"Inspection-ready, always."** Qinecsa, PSMF Manager, Veeva and ProPharma all say it. It's the category's baseline claim, so it can't be Veria's headline. It can be the result we back up.
+- **"Effortless" and "efficiency."** Extedo, IQVIA and Veeva. Worn out.
+- **"AI-first", "agentic", "touchless", "autopilot."** ArisGlobal and Drata. Loud, abstract, and it removes the human. Wrong register for a QPPV who signs personally.
+
+### What nobody promises
+- **That the file is true.** Everyone sells storage, assembly, staff or readiness. No one says the PSMF matches reality: no contradictions, nothing missing, nothing stale. That's Veria's enemy (mistakes reaching the inspector), and no one else has claimed it.
+- **That the work disappears.** Vendors speed the work up. Service providers move it to their team ("Move local compliance from your team to ours"). Nobody says people just do their jobs and the file follows.
+- **That the person who signs can see everything.** No one speaks to the QPPV's own accountability or visibility.
+
+### How they prove it
+- Big players use scale: logos, decades, customer counts, regulators as users. Not available to us.
+- Smaller and service players use people and openness: named experts, published compliance rates, read-only client access, concrete service commitments.
+- Adjacent SaaS uses real-looking product UI with specific numbers, plus a public trust center.
+- Veria can use: the people who built it, the controls (Annex 11 / Part 11), the 0-of-45 test run, the PSMF shown as it was on any date, and a trust center page.
+
+### Register
+Between IQVIA's "expertise plus AI" and Vanta's "Cool, calm, and audit-ready". Human first, calm, concrete. No jokes, no space metaphors, no "autonomous".
+
+### Direction statement: candidates
+The open question in `PRODUCT.md`. Each one claims ground nobody holds and is backed by the engine Veria already has (one fact stored once, every change checked, every mention updated, redline, sign).
+
+1. **"A PSMF that's true every day, not just inspection day."** Takes the "every day, not once a year" arc from compliance SaaS and points it at truth, not readiness.
+2. **"People do their jobs. The PSMF follows."** The connectors vision in six words. Human, and the opposite of "touchless".
+3. **"Nothing reaches the inspector that you haven't seen."** Built around the enemy and the QPPV's signature. Strongest on trust, weakest on scale.
+4. **"Compliance that keeps itself current. Starting with the PSMF."** Carries "bigger than one document" without overcompensating. The widest of the four.
+
+Recommendation: 2 as the direction, 1 as the page-level promise, and 3 for the signing and trust section. That keeps one promise per section.
