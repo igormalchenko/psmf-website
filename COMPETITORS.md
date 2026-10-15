@@ -10,7 +10,7 @@ Work top to bottom. Tick each one when its entry is committed.
 - [x] Veeva Vault SafetyDocs (veeva.com): PSMF tool inside the biggest life-sciences platform
 - [x] Extedo (extedo.com): RIM and safety suite (turned out to have no PSMF product)
 - [x] ArisGlobal LifeSphere (arisglobal.com): safety platform, loud about AI
-- [ ] IQVIA Vigilance (iqvia.com): safety platform plus services
+- [x] IQVIA Vigilance (iqvia.com): safety platform plus services
 - [ ] Qinecsa (qinecsa.com): PV services plus tech, sells PSMF maintenance
 - [ ] ProPharma (propharmagroup.com): PV service provider, PSMF as a service
 - [ ] Vanta (vanta.com): adjacent, "continuous compliance" promise
@@ -54,6 +54,18 @@ Pages: homepage (Oct 2026)
 - **Tone:** big, jargon-heavy, urgent ("A new era of Life Sciences has arrived"). The loudest voice in the category.
 - **Trust devices:** pharma logos, regulators (FDA, Health Canada, NMPA), analyst award, an AI Trust Center page.
 - **For Veria:** proof that a bold future is acceptable in this market, even at enterprise level. Also the warning: "touchless" and "decision-intelligent" read as hype and remove the human, which `PRODUCT.md` says to avoid. Their real-time regulatory-change agents are the same promise as our "never miss a change in the rules". We should say it more concretely and about one document. The AI Trust Center is worth copying in spirit: a clear AI-governance statement belongs in our trust section.
+
+### IQVIA Vigilance
+Pages: `/solutions/safety-regulatory-compliance/safety-and-pharmacovigilance` (Oct 2026)
+
+- **Headline promise:** "Safety expertise. AI‑enabled efficiency." People first, machine second.
+- **Vision:** human expertise plus automation, "transforming today's resource-intensive pharmacovigilance workloads".
+- **The "after":** predictable, cost-effective, "with confidence". Best line: "Move local compliance from your team to ours", which hands off the burden.
+- **Results claimed:** scale only (70+ years, words translated a year, validated data centers). No outcome numbers.
+- **PSMF framing:** not mentioned. Local QPPV services are the closest thing.
+- **Tone:** pragmatic, cost-minded. Speaks to a budget owner.
+- **Trust devices:** longevity, global footprint, audited data centers, named exec, thought leadership.
+- **For Veria:** the human-plus-machine pairing is the accepted frame in PV, and it matches our "AI helps; it never decides". "Move it from your team to ours" is the service providers' core pitch. Veria's answer: the work doesn't move to anyone, it stops existing. People do their jobs and the file follows.
 
 ## Synthesis
 Not written yet. Comes after the entries.
