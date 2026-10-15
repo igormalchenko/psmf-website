@@ -28,25 +28,23 @@
 
 <main id="top">
 
-  <!-- 1. The promise -->
+  <!-- 1. Promise -->
   <section class="hero">
-    <div class="wrap hero-grid">
+    <div class="wrap split">
       <div>
         <h1>Hand over your PSMF<br><em>knowing it's right.</em></h1>
-        <p class="lead">Veria keeps the file current, consistent and ready to sign all year. Mistakes get caught long before an inspector reads it, and your team stops spending weeks on paperwork that never needed them.</p>
+        <p class="lead">Current, consistent and signed before anyone asks.</p>
         <a class="btn" href="#demo">Book a demo</a>
       </div>
-      <div class="letters reveal">
+      <div class="letters">
         <article class="letter">
-          <p class="from">Pharmacovigilance Inspectorate</p>
-          <p class="subj">Request for the Pharmacovigilance System Master File</p>
-          <p>Please provide the PSMF for Halvorsen Pharma A/S within <b>7 calendar days</b> of this request.</p>
+          <p class="from">Inspectorate</p>
+          <p class="subj">Send us your PSMF within <b>7 days</b></p>
         </article>
         <article class="letter reply">
-          <p class="from">QPPV office, Halvorsen Pharma A/S</p>
-          <p>Please find attached version 4.3, signed 8 October 2026.</p>
-          <div class="file"><span class="pdf">PDF</span><span>PSMF-HAL-001 v4.3.pdf<small>64 pages · signed</small></span></div>
-          <p class="sent">Sent 09:14, same morning</p>
+          <p class="from">Halvorsen Pharma · 09:14</p>
+          <div class="file"><span class="pdf">PDF</span><span>PSMF-HAL-001 v4.3<small>64 pages · signed</small></span></div>
+          <p class="sent"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>Sent the same morning</p>
         </article>
       </div>
     </div>
@@ -56,66 +54,71 @@
   <section class="enemy">
     <div class="wrap">
       <h2>Inspectors find<br><em>what slipped through.</em></h2>
-      <p class="lead">A PSMF rarely fails on one big error. It fails on small ones nobody had time to see.</p>
       <div class="mistakes">
         <div class="mistake reveal">
-          <span class="kind">Contradicts itself</span>
-          <p class="as"><s>Medical information: Medica Nord AS</s></p>
-          <p class="why">Annex B.2 renamed this partner to Nordmed AS. Section 3.2 never heard.</p>
+          <span class="kind"><svg viewBox="0 0 24 24"><path d="M7 7h10M7 17h10M12 3v18"/></svg>Contradicts itself</span>
+          <p class="old">Medica Nord AS</p><p class="new">Nordmed AS</p>
         </div>
         <div class="mistake reveal">
-          <span class="kind">Out of date</span>
-          <p class="as"><s>Screening follows VP-SOP-031</s></p>
-          <p class="why">That procedure was replaced by VP-SOP-029 months ago.</p>
+          <span class="kind"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Out of date</span>
+          <p class="old">VP-SOP-031</p><p class="new">VP-SOP-029</p>
         </div>
         <div class="mistake reveal">
-          <span class="kind">Missing</span>
-          <p class="as"><s>Deputy EU QPPV: Lars Nygaard</s></p>
-          <p class="why">Ingrid Solberg took over in spring. Nobody told the file.</p>
+          <span class="kind"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg>Missing</span>
+          <p class="old">Lars Nygaard</p><p class="new">Ingrid Solberg</p>
         </div>
         <div class="mistake reveal">
-          <span class="kind">Doesn't add up</span>
-          <p class="as"><s>50 reports · 2 late · 47 on time</s></p>
-          <p class="why">2 + 47 is 49. Somebody's spreadsheet lost a row.</p>
+          <span class="kind"><svg viewBox="0 0 24 24"><path d="M5 9h14M5 15h14M9 4l-2 16M17 4l-2 16"/></svg>Doesn't add up</span>
+          <p class="old">2 + 47 = 50</p><p class="new">2 + 47 = 49</p>
         </div>
       </div>
-      <p class="backup">Veria checks every change before it goes in, and the whole file when you bring it in. Anything doubtful waits for a person, with the reason written down. In our test run, <b>0 of 45</b> deliberately broken updates got in on their own.</p>
+      <div class="stat reveal"><b>0<span>/45</span></b><p>deliberately broken updates got in without a person</p></div>
     </div>
   </section>
 
   <!-- 3. Rule changes -->
   <section class="rules">
-    <div class="wrap rules-grid">
+    <div class="wrap split">
       <div>
         <span class="soon">Coming soon</span>
-        <h2>When the rules change,<br><em>you'll know that day.</em></h2>
-        <p class="lead">A new PSMF template or guidance from the EMA usually reaches a file weeks late, if someone spots it at all. Veria picks it up as it's published and shows you exactly what it means for your PSMF: which sections, which annexes, what to change.</p>
+        <h2>When the rules change,<br><em>you know that day.</em></h2>
+        <p class="lead">Not weeks later.</p>
       </div>
       <div class="notice reveal">
-        <p class="n-head"><span class="dot"></span>Published by the EMA this morning</p>
-        <p class="n-title">Revised guidance on the PSMF annexes</p>
-        <p class="n-sub">What it means for PSMF-HAL-001</p>
+        <p class="n-head"><span class="dot"></span>EMA · published this morning</p>
+        <p class="n-title">Revised PSMF annex guidance</p>
         <ul>
-          <li><b>Annex B.3</b> needs one new column for oversight of each provider</li>
-          <li><b>Annex F</b> table layout changes; your figures carry over</li>
-          <li><b>Section 7</b> one paragraph to review</li>
+          <li><b>Annex B.3</b>one new column</li>
+          <li><b>Annex F</b>new layout, figures carry over</li>
+          <li><b>Section 7</b>one paragraph to review</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- 4. How it works today -->
+  <!-- 4. How it works -->
   <section class="how" id="how">
-    <div class="wrap">
-      <h2>Change a fact once.<br><em>It lands everywhere.</em></h2>
-      <p class="lead">Every fact in your PSMF belongs to someone else: Legal, HR, Quality, a vendor. Veria works with the people who own them, so the file stays right without anyone chasing.</p>
-      <ol class="loop">
-        <li class="reveal"><b>Ask</b><span>Each owner gets only their questions, with what the PSMF says now. "No change" is one tap, from any phone.</span></li>
-        <li class="reveal"><b>Check</b><span>Rules first, then AI. Clean updates go into the draft. Anything unclear waits for a person.</span></li>
-        <li class="reveal"><b>Update everywhere</b><span>A new distributor touches Section 2.3, Annex B.2 and the logbook. Veria finds every mention and drafts the new wording.</span></li>
-        <li class="reveal"><b>Sign</b><span>The QPPV reads the redline against the last version, with the logbook already written, and signs with a fresh code.</span></li>
-      </ol>
-      <p class="aside">Already have a PSMF in Word, with Excel annexes? Bring it. Veria maps it into a standard structure and lists anything it couldn't carry over. Nothing disappears quietly.</p>
+    <div class="wrap split">
+      <div>
+        <h2>Change a fact once.<br><em>It lands everywhere.</em></h2>
+        <ol class="steps">
+          <li><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>Owners confirm their part</li>
+          <li><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Every change is checked</li>
+          <li><svg viewBox="0 0 24 24"><path d="M6 4v16M6 12h12M6 6h12M6 18h12"/></svg>Every mention updates</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 19c3 0 4-8 6-8s1 6 3 6 2-4 4-4 2 2 3 2"/></svg>The QPPV signs</li>
+        </ol>
+      </div>
+      <svg class="fanout reveal" viewBox="0 0 460 300" role="img" aria-label="One new distributor updates Section 2.3, Annex B.2 and the logbook">
+        <rect class="fact" x="10" y="122" width="150" height="56" rx="12"/>
+        <text class="t-small" x="26" y="145">New distributor</text>
+        <text class="t-big" x="26" y="166">Nordvia AB</text>
+        <path class="wire" d="M160 150 C 230 150, 230 50, 290 50"/>
+        <path class="wire" d="M160 150 L 290 150"/>
+        <path class="wire" d="M160 150 C 230 150, 230 250, 290 250"/>
+        <g class="page"><rect x="290" y="22" width="160" height="56" rx="10"/><text class="t-small" x="306" y="45">Section 2.3</text><text class="t-ok" x="306" y="64">updated</text></g>
+        <g class="page"><rect x="290" y="122" width="160" height="56" rx="10"/><text class="t-small" x="306" y="145">Annex B.2</text><text class="t-ok" x="306" y="164">updated</text></g>
+        <g class="page"><rect x="290" y="222" width="160" height="56" rx="10"/><text class="t-small" x="306" y="245">Logbook</text><text class="t-ok" x="306" y="264">written</text></g>
+      </svg>
     </div>
   </section>
 
@@ -124,14 +127,11 @@
     <div class="wrap sides-grid">
       <div class="side reveal">
         <span class="who">For the company</span>
-        <h3>No trouble over the document you hand in.</h3>
-        <p>Current, consistent, and signed before anyone asks. When the inspector writes, you send it the same morning.</p>
+        <h3>No trouble over<br>what you hand in.</h3>
       </div>
       <div class="side reveal">
         <span class="who">For the QPPV</span>
-        <h3>See everything. Do far less.</h3>
-        <p>Every change, who made it and why, in one place. You stop writing request emails, keeping trackers and merging Word copies.</p>
-        <p class="left">What's left: read what changed, decide what was held, <em>sign.</em></p>
+        <h3>See everything.<br><em>Do far less.</em></h3>
       </div>
     </div>
   </section>
@@ -139,34 +139,24 @@
   <!-- 6. Where it's going -->
   <section class="next" id="next">
     <div class="wrap">
-      <span class="soon">Where we're heading</span>
-      <h2>Your people do their jobs.<br><em>The PSMF follows.</em></h2>
-      <p class="lead">HR keeps HR records. Legal keeps contracts. Quality keeps the SOPs. Veria reads the systems they already use, so nobody stops their day to update a document they never open.</p>
-
-      <div class="flow reveal" aria-label="Changes flow from the systems where facts live, through Veria, to the QPPV who signs">
-        <div class="sources">
-          <span>HR system</span><span>Contract repository</span><span>Quality system</span><span>Vendor exports</span><span>EMA updates</span>
-        </div>
-        <div class="pipe"><i></i></div>
-        <div class="engine">Veria<small>checks, finds every mention, drafts the change</small></div>
-        <div class="pipe"><i></i></div>
-        <div class="qppv">QPPV<small>reviews the changes, signs</small></div>
-      </div>
-
-      <div class="next-grid">
+      <div class="next-head">
         <div>
-          <h3>Systems don't forget.</h3>
-          <p>A person might not mention the intern who joined in March and left in May. The HR system recorded both. So will your PSMF.</p>
-          <h3>Contradictions go to whoever owns them.</h3>
-          <p>When two sources disagree, Veria writes to the person responsible straight away. No login, no chasing. The QPPV doesn't have to see the back-and-forth, but it's all in the audit trail.</p>
+          <span class="soon">Where we're heading</span>
+          <h2>Your people do their jobs.<br><em>The PSMF follows.</em></h2>
         </div>
         <article class="mail reveal">
-          <p class="m-meta">To: Sofie Lind, HR, Halvorsen Pharma</p>
-          <p class="m-subj">One thing doesn't match</p>
-          <p>Hi Sofie, I've gathered everything for this PSMF cycle. The org chart still shows Lars Nygaard as deputy EU QPPV, but the CVs on file say Ingrid Solberg took over in April.</p>
-          <p>Could one of them be out of date? Update whichever is wrong and I'll check again.</p>
-          <p class="m-sign">Veria</p>
+          <p class="m-meta">Veria → Sofie Lind, HR</p>
+          <p class="m-body">The org chart and the CVs disagree on the deputy QPPV. Which one is current?</p>
         </article>
+      </div>
+      <div class="flow reveal" aria-label="Facts flow from the systems people already use, through Veria, to the QPPV">
+        <div class="sources">
+          <span>HR</span><span>Contracts</span><span>Quality</span><span>Vendors</span><span>EMA</span>
+        </div>
+        <div class="pipe"><i></i></div>
+        <div class="engine">Veria</div>
+        <div class="pipe"><i></i></div>
+        <div class="qppv">QPPV signs</div>
       </div>
     </div>
   </section>
@@ -174,48 +164,38 @@
   <!-- 7. Trust -->
   <section class="trust" id="trust">
     <div class="wrap">
-      <h2>Built for the people<br><em>who get inspected.</em></h2>
-      <div class="annex reveal">
-        <div class="annex-head">
-          <span class="std">EU GMP Annex 11</span><span class="std">FDA 21 CFR Part 11</span>
-          <p>Built in full compliance with both, and ready for your audit. You validate; we hand you the controls and the evidence.</p>
-        </div>
-        <ul class="controls">
-          <li><b>An audit trail nobody can edit</b><span>Every change, with who, when, the old value and the new. Stored append-only.</span></li>
-          <li><b>Signed versions, frozen</b><span>Kept exactly as signed. Show what the PSMF said on any past date.</span></li>
-          <li><b>Signatures that mean something</b><span>A fresh code for every signature, plus an authenticator app if you require one.</span></li>
-          <li><b>Access by invitation</b><span>No passwords. An email code for every sign-in.</span></li>
-          <li><b>Nothing signed with issues open</b><span>A version can't be signed while anything the checks caught is still unresolved.</span></li>
-        </ul>
+      <div class="trust-head">
+        <h2>Ready for<br><em>your audit.</em></h2>
+        <div class="stds"><span>EU GMP Annex 11</span><span>FDA 21 CFR Part 11</span></div>
       </div>
-      <div class="trust-grid">
-        <div class="reveal"><b>AI helps. People decide.</b><p>AI sorts answers, drafts wording and flags problems. It never writes your PSMF on its own. EU AI Act compliance is coming.</p></div>
-        <div class="reveal"><b>Hosted in the EU</b><p>Your data stays in Frankfurt, handled under GDPR.</p></div>
-        <div class="reveal"><b>Built by people who've done the job</b><p>Our team has spent close to a decade in pharmacovigilance, including years signing PSMFs as QPPV.</p></div>
-        <div class="reveal"><b>Your document, not ours</b><p>The PDF carries no Veria branding. It's the MAH's PSMF.</p></div>
+      <ul class="controls">
+        <li class="reveal"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h3"/></svg>Audit trail nobody can edit</li>
+        <li class="reveal"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Signed versions, frozen</li>
+        <li class="reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>Any past date, on request</li>
+        <li class="reveal"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M10 7h4M11 17h2"/></svg>A fresh code per signature</li>
+        <li class="reveal"><svg viewBox="0 0 24 24"><path d="M4 7h16v11H4z"/><path d="M4 8l8 5 8-5"/></svg>Invite-only, no passwords</li>
+      </ul>
+      <div class="chips">
+        <span>AI suggests, people decide</span>
+        <span>Hosted in Frankfurt</span>
+        <span>EU AI Act · coming</span>
+        <span>GDPR</span>
+        <span>A decade in pharmacovigilance</span>
       </div>
     </div>
   </section>
 
-  <!-- 8. Bigger than one document -->
-  <section class="first">
-    <div class="wrap">
-      <h2>We started with the PSMF<br><em>for a reason.</em></h2>
-      <p class="lead">It's the document inspectors open first, and the one that touches every part of a pharmacovigilance system. Getting it right is the foundation for everything else that has to stay compliant.</p>
-    </div>
-  </section>
-
-  <!-- 9. CTA -->
+  <!-- 8. CTA -->
   <section class="demo" id="demo">
     <div class="wrap">
+      <p class="first">The PSMF is where inspectors start. <em>So we started there too.</em></p>
       <h2>Bring your PSMF.<br><em>We'll show you what we find.</em></h2>
-      <p class="lead">Thirty minutes, your file or a fictional one, and your hardest questions.</p>
       <form class="qform" onsubmit="event.preventDefault()">
         <input type="email" placeholder="Work email" aria-label="Work email" required>
         <button type="submit">Book a demo</button>
       </form>
     </div>
-    <footer class="foot wrap"><span>© 2026 Veria</span><span>Hosted in Frankfurt · Annex 11 · Part 11</span></footer>
+    <footer class="foot wrap"><span>© 2026 Veria</span><span>Hosted in Frankfurt</span></footer>
   </section>
 
 </main>
