@@ -4,8 +4,8 @@ Marketing pages for Veria, a SaaS that keeps a pharmaceutical company's PSMF cur
 
 ## Rules
 - Read `PRODUCT.md` when copy or a diagram needs product facts. It's the whole product context; don't go looking for more.
-- Never invent features, integrations or numbers. If `PRODUCT.md` doesn't support it, don't present it as working today. Fictional examples are fine; invented statistics are not.
-- Promise and direction are allowed, and encouraged. Make a bigger, vaguer promise, then back it up nearby with how Veria delivers it or why it can be trusted to. Talk about where the product is heading (see "Vision and direction" in `PRODUCT.md`), framed as direction rather than as a shipped feature. Copy that only states today's facts reads as if our hands are tied.
+- Don't make up statistics. The owner fact-checks everything else.
+- Promise and direction are encouraged. Make a bigger, vaguer promise, then back it up nearby with how Veria delivers it or why it can be trusted to. Copy that only states today's facts reads as if our hands are tied.
 - Sell the value, not the machinery. One promise per page or section, said plainly.
 - Copy: short, concrete, no marketing filler, nothing that reads as AI-written. No meta-commentary on the page itself.
 - Libraries from cdnjs/jsdelivr with pinned versions (GSAP is the usual choice). Respect `prefers-reduced-motion`. Check phone width: no sideways scroll.
