@@ -8,8 +8,8 @@ Method: homepage plus one or two key pages per site. One entry per competitor, c
 Work top to bottom. Tick each one when its entry is committed.
 
 - [x] Veeva Vault SafetyDocs (veeva.com): PSMF tool inside the biggest life-sciences platform
-- [x] Extedo (extedo.com): PV/regulatory suite with a PSMF module
-- [ ] ArisGlobal LifeSphere (arisglobal.com): safety platform, loud about AI
+- [x] Extedo (extedo.com): RIM and safety suite (turned out to have no PSMF product)
+- [x] ArisGlobal LifeSphere (arisglobal.com): safety platform, loud about AI
 - [ ] IQVIA Vigilance (iqvia.com): safety platform plus services
 - [ ] Qinecsa (qinecsa.com): PV services plus tech, sells PSMF maintenance
 - [ ] ProPharma (propharmagroup.com): PV service provider, PSMF as a service
@@ -42,6 +42,18 @@ Pages: homepage, `/software/pharmacovigilance-and-drug-safety` (Oct 2026)
 - **Tone:** problem-first questions ("How much time are you wasting…?"), then a three-step plan. A classic StoryBrand template.
 - **Trust devices:** EMA logo next to pharma logos, 25+ years, used by 35+ agencies.
 - **For Veria:** "effortless" is taken and has gone hollow. No one owns the PSMF as a product at this level. Their strongest trust device is "regulators use us". Ours is the nearest equivalent: built by people who did QPPV work, designed around what inspectors flag.
+
+### ArisGlobal LifeSphere
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "AI-first platform for life sciences R&D". The vision is the headline.
+- **Vision:** turning fragmented R&D into "decision-intelligent enterprises". AI agents (NavaX) watch regulatory change and assess impact in real time. "Touchless case processing" in safety.
+- **The "after":** unified, standardized, touchless. Abstract; there are no people in it.
+- **Results claimed:** none measured. "More than 220 organizations", "nearly four decades". "Tangible results" without a number.
+- **PSMF framing:** not present.
+- **Tone:** big, jargon-heavy, urgent ("A new era of Life Sciences has arrived"). The loudest voice in the category.
+- **Trust devices:** pharma logos, regulators (FDA, Health Canada, NMPA), analyst award, an AI Trust Center page.
+- **For Veria:** proof that a bold future is acceptable in this market, even at enterprise level. Also the warning: "touchless" and "decision-intelligent" read as hype and remove the human, which `PRODUCT.md` says to avoid. Their real-time regulatory-change agents are the same promise as our "never miss a change in the rules". We should say it more concretely and about one document. The AI Trust Center is worth copying in spirit: a clear AI-governance statement belongs in our trust section.
 
 ## Synthesis
 Not written yet. Comes after the entries.
