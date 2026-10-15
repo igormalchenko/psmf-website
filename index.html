@@ -3,25 +3,112 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Veria drafts</title>
-<link rel="icon" href="assets/icon.svg">
-<style>
-  :root { color-scheme: light dark; }
-  body { font: 16px/1.6 system-ui, sans-serif; max-width: 480px; margin: 48px auto; padding: 0 16px; }
-  ul { list-style: none; padding: 0; }
-  li { margin: 8px 0; }
-</style>
+<title>Veria · No more PSMF projects</title>
+<meta name="description" content="Veria keeps your PSMF current all year in small steps, so the update never becomes a project again.">
+<link rel="icon" href="../assets/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="v6.css">
 </head>
 <body>
-<h1>Veria drafts</h1>
-<ul>
-  <li><a href="v1/">v1</a></li>
-  <li><a href="v2/">v2</a></li>
-  <li><a href="v3/">v3</a></li>
-  <li><a href="v4/">v4</a></li>
-  <li><a href="v5/">v5</a></li>
-  <li><a href="v6/">v6</a></li>
-  <li><a href="v7/">v7</a></li>
-</ul>
+
+<header class="nav">
+  <a class="logo" href="#top" aria-label="Veria">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 9l7 15 7-15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Veria
+  </a>
+  <a class="nav-cta" href="#quiet">Book a demo</a>
+</header>
+
+<main id="top">
+
+  <!-- 1. The year, two ways -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>The PSMF update<br><em>stops being a project.</em></h1>
+        <p class="lead">Veria asks the right people on a schedule, takes in what they confirm, and keeps the draft current all year. You review what needs you and sign when it suits you.</p>
+        <div class="toggle" id="toggle" role="tablist" aria-label="Compare">
+          <button type="button" role="tab" aria-selected="true" data-mode="old">Once a year</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="new">With Veria</button>
+          <i class="pill"></i>
+        </div>
+        <p class="legend" id="legend"><span class="lg-drift"></span>How far the PSMF drifts from reality<span class="lg-work"></span>Work on the PSMF</p>
+      </div>
+      <div class="ring-wrap">
+        <svg class="ring" id="ring" viewBox="0 0 600 600" role="img" aria-label="A year of PSMF upkeep: one long crunch, compared with small revisions spread across the year">
+          <g id="months"></g>
+          <path id="drift" class="drift" d=""></path>
+          <circle class="base" cx="300" cy="300" r="210"></circle>
+          <path id="crunch" class="crunch" d=""></path>
+          <g id="dots"></g>
+          <g id="signs"></g>
+          <g id="today"></g>
+          <text id="crunchLabel" class="note" text-anchor="middle"></text>
+          <g class="center">
+            <text id="cTop" x="300" y="276" text-anchor="middle" class="c-top">Last brought up to date</text>
+            <text id="cBig" x="300" y="330" text-anchor="middle" class="c-big">11 months ago</text>
+            <text id="cSub" x="300" y="362" text-anchor="middle" class="c-sub">in one long push</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. A year with Veria -->
+  <section class="year" id="year">
+    <div class="year-pin" id="yearPin">
+      <div class="month-word" id="monthWord">January</div>
+      <div class="year-head">
+        <h2>A year with Veria</h2>
+        <div class="tally"><span><b id="tSigned">0</b> versions signed</span><span><b id="tProjects">0</b> projects</span></div>
+      </div>
+      <div class="track-wrap">
+        <div class="track" id="track"></div>
+        <div class="playhead"><i></i></div>
+        <div class="axis" id="axis"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. What you stop doing -->
+  <section class="stop" id="stop">
+    <div class="wrap stop-grid">
+      <h2>What you<br><em>stop doing.</em></h2>
+      <div>
+        <ul class="chores" id="chores">
+          <li><span>Writing the request emails</span></li>
+          <li><span>Keeping a tracker of who has replied</span></li>
+          <li><span>Merging everyone's Word copies</span></li>
+          <li><span>Hunting down every place a name appears</span></li>
+          <li><span>Writing the logbook from memory</span></li>
+          <li><span>Printing, signing and scanning</span></li>
+        </ul>
+        <div class="left" id="left">
+          <span>What's left</span>
+          <p>Read what changed. Decide what was held. <em>Sign.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Quiet -->
+  <section class="quiet" id="quiet">
+    <div class="wrap">
+      <h2>Have a quiet<br><em>November.</em></h2>
+      <p class="lead">Thirty minutes. A fictional PSMF, a whole year of it, and your questions.</p>
+      <form class="qform" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="Work email" aria-label="Work email" required>
+        <button type="submit">Book a demo</button>
+      </form>
+    </div>
+    <footer class="foot wrap"><span>© 2026 Veria</span><span>Hosted in Frankfurt</span></footer>
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="v6.js"></script>
 </body>
 </html>
