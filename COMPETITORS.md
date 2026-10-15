@@ -25,8 +25,8 @@ Round two:
 - [x] PrimeVigilance (primevigilance.com): large PV service provider
 - [x] Freyr (freyrsolutions.com): regulatory services plus software
 - [x] Biologit (biologit.com): AI literature monitoring, startup
-- [ ] Qualio (qualio.com): adjacent, life-sciences QMS SaaS
-- [ ] Greenlight Guru (greenlight.guru): adjacent, medtech QMS
+- [x] Qualio (qualio.com): adjacent, life-sciences QMS SaaS
+- [x] Greenlight Guru (greenlight.guru): adjacent, medtech QMS
 - [ ] MasterControl (mastercontrol.com): adjacent, incumbent QMS
 
 ## Entries
@@ -210,6 +210,30 @@ Pages: homepage (Oct 2026)
 - **Tone:** short, direct, specialist. The closest to our own copy rules of anyone in the set.
 - **Trust devices:** client logos, named PhD testimonials, ISO 27001, "Designed by PV experts and technologists".
 - **For Veria:** proof that a narrow focus can sound strong, not small ("All we do"). Veria could own the PSMF the same way and still hint at more later. "No black boxes" is a good line for AI trust. Veria can go one step further where Biologit stays silent: say who approves (a person, always), and back it with the 0-of-45 test run.
+
+### Qualio (adjacent)
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "The Agentic Compliance Platform for Life Sciences". "Agentic" has reached life-sciences QMS too.
+- **Vision:** faster to market, "scale globally with confidence". Section: "Constant audit readiness in a world of changing regulations".
+- **The "after":** "a constant state of audit readiness" and, again, a customer's "sleep better at night".
+- **Results claimed:** a dense set (80% less audit prep, 5x ROI in 2 months, 60% lower consultant spend, "20+ weeks to <4" for audit readiness).
+- **How it's made concrete:** dashboard mock with a compliance score, gap count and per-requirement status. An AI agent notification announcing a finished gap analysis.
+- **Tone:** reassuring, approachable, acronym-fluent.
+- **Trust devices:** G2 rating with review count, ISO badges, named testimonials, a validation-approach section ("only 1% of customers validate it themselves").
+- **For Veria:** the closest adjacent analogue: regulated life sciences, a small buyer, a compliance document set. "Constant audit readiness in a world of changing regulations" is our "never miss a rule change" plus "always current" in one line, which shows the pairing works. A section saying how validation works (what we did, what's left for you) is a strong trust device for Annex 11 buyers. "Consultant spend" is a real cost line we could also point at.
+
+### Greenlight Guru (adjacent)
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "The medical device platform that lowers audit risk by 3.5x". The only headline in the set built on a risk number.
+- **Vision:** "move faster, stay compliant, and grow with confidence". Signature claim: "Nobody knows medtech like Greenlight Guru."
+- **The "after":** the best line in the whole research: the system "stays current and audit-ready without your team manually holding it together". Also "Spend less time on the system and more time on your device."
+- **Results claimed:** scale counts (clearances, certifications, companies), plus the 3.5x risk claim.
+- **How it's made concrete:** traceability shown as linked items, AI search that returns "linked source references".
+- **Tone:** confident, plain, industry-fluent but explained.
+- **Trust devices:** domain-expert identity, logos, G2, named experts, trust and status pages.
+- **For Veria:** "without your team manually holding it together" names the PSMF pain exactly (emails, trackers, merging Word copies). The PV version: "Spend less time on the PSMF and more on safety." "Nobody knows X like us" is the confident form of "built by people who've done the job". It works because it's about the domain, not about the founders. Showing links to sources is a good visual idea: each fact in the PSMF traced to its owner and answer.
 
 ## Synthesis
 
