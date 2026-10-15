@@ -32,8 +32,8 @@ Round two:
 Round three (deep dives: several pages per site, the product's own words for the PSMF problem):
 - [x] Veeva PSMF in depth (dedicated PSMF page, white paper, logbook feature)
 - [x] PSMF Manager in depth (features, pricing, blog)
-- [ ] Quartica MARS PSMF (quartica.com): automated PSMF module
-- [ ] Compier PSMF (techsollifesciences.com): digital PSMF lifecycle
+- [x] Quartica MARS PSMF (quartica.com): automated PSMF module
+- [x] Compier PSMF (techsollifesciences.com): digital PSMF lifecycle
 - [ ] Cloudbyz (cloudbyz.com): Salesforce-based safety suite, check for PSMF
 - [ ] PSMF services with tooling: Arriello, Drug-card, Tepsivo's PSMF page
 - [ ] AI regulatory writing: Certara CoAuthor, Yseop, Celegence, Docuvera
@@ -281,6 +281,25 @@ Pages: homepage, `/features/external-data-sources`, `/pricing`, blog post "PSMF 
 - **The problem, in their words (blog):** "Change Log entries added after the update", "Approvals stored in emails", "Annex updates tracked in separate files", "The biggest risk is retrospective reconstruction."
 - **Where it stops:** the unit is a document section or a linked file. People edit text; the system tracks who did what. Nothing works out what one change means for the rest of the file, and the connector moves files, not facts.
 - **For Veria:** weak as a brand, but it has already put two of Veria's ideas on its feature list: an AI-drafted logbook and syncing from source systems. So "connects to your systems" alone won't land as new. What makes Veria's version different is what happens after the data arrives: checked, matched to the fact it changes, every mention updated, held for a person if anything looks wrong. Their pain list ("approvals stored in emails", "retrospective reconstruction") is a good, specific picture of the "before"; the same pains could carry a visual. The vendor tier is a reminder that PV service providers maintaining PSMFs for several MAHs are a buyer type with their own plan.
+
+### Quartica MARS: PSMF module
+Pages: `/solutions/pharmacovigilance-safety-suite/pharmacovigilance-system-master-file/` (Oct 2026)
+
+- **Promise:** "Automate your global and local PSMF business processes minimizing manual steps and outsourcing costs." The parent brand is "an AI Medical Writing solution"; the PSMF page itself describes no AI.
+- **The problem, in their words:** a mix of "tools and manual processes"; "Gap in business process and tools lead to incorrect outputs and errors"; it "introduces inconsistency, duplication". The named problem is the main body, annexes, and global and local files falling out of line with each other.
+- **How it works:** templates and workflow. Quarterly plus ad-hoc updates; content pulled from Word, PDF and Excel into the body and annexes; local PSMFs generated from the global one; annex input from other areas such as PV agreements; the logbook scheduled and updated when the body or annexes change; parallel editing, decision log, reminders.
+- **Results claimed:** none. No customers named on the page. Copyright 2019.
+- **Where it stops:** content moves between documents by mapping. Nothing about checking what comes in.
+- **For Veria:** Quartica names the right enemy in plain words ("inconsistency, duplication", "incorrect outputs"). It's the closest anyone gets to Veria's "the file quietly contradicts itself", yet the answer is still templates and workflow. "Outsourcing costs" as a line item shows the buyer's alternative is often a service provider, not software.
+
+### Compier PSMF (Techsol Life Sciences)
+Pages: `/pharmacovigilance/compier-psmf/` (Oct 2026)
+
+- **Promise:** "Establish an Audit-ready Digital PSMF…" (the headline has a typo: "improvised Process Efficiency"). Lines: "Stay Audit-ready with a Digital PSMF", "Auto PSMF Updates".
+- **The problem, in their words:** a living document fed by many inputs; "Coordinating and integrating this input can be challenging." Six named challenges: complexity, timeliness, data management, resources, compliance, operational insight. Problems surface only at inspection.
+- **How it works:** each section and annex is a component with its own lifecycle and versions; annex data updated automatically from the safety database, document management and QMS (via APIs and file exchange); configurable workflows; real-time review with e-signatures; instant PDF; a built-in shared mail inbox for PV correspondence; dashboards tracking updates against schedule. Part 11 and Annex 11, IQ/OQ documentation at implementation.
+- **Where it stops:** no import of an existing PSMF, no logbook on the page, no AI on the PSMF page. Nothing checks incoming data.
+- **For Veria:** a third vendor claiming source-system sync for annexes (after PSMF Manager and, in direction, Veeva). The connectors vision is table stakes in feature lists. The open ground is what happens between "data arrived" and "the PSMF changed". Compier's "problems surface only at inspection" is the same enemy Veria names; it stays a line on a page because the product has no checks.
 
 ## Synthesis
 Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
