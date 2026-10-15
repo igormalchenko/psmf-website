@@ -14,8 +14,8 @@ Work top to bottom. Tick each one when its entry is committed.
 - [x] Qinecsa (qinecsa.com): PV services plus tech, sells PSMF maintenance
 - [x] ProPharma (propharmagroup.com): PV service provider, PSMF as a service
 - [x] Vanta (vanta.com): adjacent, "continuous compliance" promise
-- [ ] Drata (drata.com): adjacent, same category as Vanta
-- [ ] PSMF Manager (psmfmanager.com): direct but weak per owner, quick look only
+- [x] Drata (drata.com): adjacent, same category as Vanta
+- [x] PSMF Manager (psmfmanager.com): direct but weak per owner, quick look only
 
 ## Entries
 
@@ -102,6 +102,28 @@ Pages: homepage (Oct 2026)
 - **How it's made concrete:** real-looking product UI with specific data (a progress bar at 87%, a count of tests, a risk grid). Their visuals do the explaining, which is our own rule.
 - **Trust devices:** logo wall, analyst placement, their own compliance badges, a public trust center.
 - **For Veria:** this is the direction story we're missing, from a market that's further along. Periodic crunch becomes a continuous state. "Get and stay" is exactly our arc (import, then the file keeps itself current). "Cool, calm, and audit-ready" names a feeling a QPPV wants. The pharma version must be quieter: keep the calm, drop the jokes. A public trust center is a cheap, credible device we could ship.
+
+### Drata (adjacent)
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "The Agentic Trust Management Platform". A category name built on a buzzword.
+- **Vision:** "autonomous AI agents" and "Continuous Compliance on AI Autopilot". Proving security "every day—not once a year".
+- **The "after":** evidence collects itself, work is done once and reused, trust drives revenue.
+- **Results claimed:** a wall of numbers (75% shorter audits, 10x faster, thousands of hours saved, $20M revenue "accelerated").
+- **Tone:** cinematic space metaphors ("Mission Control", "Stage of Flight"), bracketed eyebrows, an imperative in every heading.
+- **Trust devices:** customer count, G2 rating, named testimonials, public trust center, status page.
+- **For Veria:** same promise as Vanta, louder. This is the frantic register the owner dislikes, and it would scare a QPPV. "Every day, not once a year" is the one line worth keeping: our periodic crunch versus a file that's always current. "Autopilot" and "autonomous" are what `PRODUCT.md` warns against ("removing the human factor").
+
+### PSMF Manager (direct, quick look)
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "AI-Powered PSMF Management". Generic.
+- **Vision:** year-round readiness. Best line: "Stop reacting to inspections & Start expecting them".
+- **The "after":** relief from firefighting. Readiness all year, not only before an audit.
+- **Results claimed:** none. Service commitments instead (rollback window, response within one business day, 4–6 week setup, 3-month free trial).
+- **Tone:** plain, slightly clumsy section headings. Backed by a consultancy.
+- **Trust devices:** GVP Module II and Part 11 named, security feature list, named people with phone numbers, FAQ.
+- **For Veria:** the only direct PSMF product found. Its pitch is the same "always inspection-ready" one, which confirms that claim alone won't set us apart. Named humans and concrete service commitments are cheap trust in a small-vendor market.
 
 ## Synthesis
 Not written yet. Comes after the entries.
