@@ -38,7 +38,7 @@ Round three (deep dives: several pages per site, the product's own words for the
 - [x] PSMF services with tooling: Arriello, Drug-card, Tepsivo's PSMF page
 - [x] AI regulatory writing: Certara CoAuthor, Yseop, Celegence, Docuvera
 - [x] How compliance SaaS sells integrations (Vanta, Drata, one more): precedent for the connectors vision
-- [ ] Regulatory-change monitoring: Cortellis, Redica, RegDesk
+- [x] Regulatory-change monitoring: Redica, Clarivate ClaRITA, Freyr, iViReg
 - [ ] Market voice: inspection findings, how practitioners describe PSMF pain
 
 ## Entries
@@ -333,6 +333,15 @@ The precedent for Veria's second stage (facts pulled from HR, Legal and QMS inst
 - **What happens when something's wrong:** surprisingly vague on all three sites. "Sending reminders when needed", "within your company's SLAs". No one shows who gets told, or how.
 - **Secureframe's people angle:** "automation backed by world-class experts", "Our automated platform built by experts takes the guess work and grunt work out", "more than 30 in-house compliance experts and former auditors".
 - **For Veria:** the second-stage vision isn't a leap of faith. It's the proven model of a neighbouring market (connect the systems of record, compare them, flag the mismatch), applied to the PSMF where nobody has done it. Vanta's account-vs-personnel test is the same shape as Veria's own example ("the CVs don't match the org chart"). Veria can go further than all three on the step they leave vague: say who gets told (the owner of the source, by email, no login) and show it. Secureframe's "former auditors" is the template for the trust line: built by people who've been QPPVs, and know what inspectors look for. When connectors exist, a small logo strip of systems (HR, contracts, QMS, safety database) does the explaining; until then, keep it to "coming" and the existing "If it exports to a spreadsheet, it goes in."
+
+### Regulatory-change monitoring: Redica, Clarivate ClaRITA, Freyr, iViReg
+The market behind Veria's "you'll never miss a change in the rules". Pages: Redica homepage, Clarivate ClaRITA page; Freyr and ivigee's iViReg via search (iViReg's page returned 404) (Oct 2026)
+
+- **Redica:** "The Intelligence Cloud for Quality and Regulatory Excellence". The arc: "From Signal to Decision to Action". "Know what changed across 250+ regulators", then "whether it affects you, and which process and owner should respond", then "route approved actions into Veeva and the systems your teams already use". The "after": "Move from periodic reviews to continuous intelligence." Customer: "With Redica, I can leave the noise behind." Proof: dataset sizes, "1 Day" to publish core regulatory signals, "Every output is explainable and audit-ready."
+- **Clarivate ClaRITA:** daily alerts from Cortellis, "Single source of regulatory truth" across PV, clinical and manufacturing, "systematic business rules for impact assessments", required updates turned into assigned, trackable tasks.
+- **Freyr / iViReg:** newsletters customized to your markets and products (Freyr, 150+ markets); a regulatory-alerts workflow plus weekly PV monitoring updates (iViReg).
+- **Where they stop:** every one ends at a task. A person still has to read the change, work out what it means for the PSMF, and rewrite the file. Industry write-ups describe the same three steps (track, interpret, then update SOPs and documents) and say tools cover the first.
+- **For Veria:** this makes "never miss a change in the rules" concrete and different. The monitoring tools tell you something changed; Veria puts the change into the PSMF itself (a new EMA template or guidance shows up in your draft, ready for review). Redica's "signal → decision → action" is a good shape for a small diagram: EMA publishes → Veria maps it to the sections it touches → the QPPV reviews the redline. "Leave the noise behind" names a real feeling: PV people drown in alerts. Veria's version: one change, already in your draft. (Check with the owner how far this goes today before the copy promises it; `PRODUCT.md` frames it as the promise.)
 
 ## Synthesis
 Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
