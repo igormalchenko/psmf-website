@@ -39,7 +39,7 @@ Round three (deep dives: several pages per site, the product's own words for the
 - [x] AI regulatory writing: Certara CoAuthor, Yseop, Celegence, Docuvera
 - [x] How compliance SaaS sells integrations (Vanta, Drata, one more): precedent for the connectors vision
 - [x] Regulatory-change monitoring: Redica, Clarivate ClaRITA, Freyr, iViReg
-- [ ] Market voice: inspection findings, how practitioners describe PSMF pain
+- [x] Market voice: inspection findings, how practitioners describe PSMF pain
 
 ## Entries
 
@@ -342,6 +342,23 @@ The market behind Veria's "you'll never miss a change in the rules". Pages: Redi
 - **Freyr / iViReg:** newsletters customized to your markets and products (Freyr, 150+ markets); a regulatory-alerts workflow plus weekly PV monitoring updates (iViReg).
 - **Where they stop:** every one ends at a task. A person still has to read the change, work out what it means for the PSMF, and rewrite the file. Industry write-ups describe the same three steps (track, interpret, then update SOPs and documents) and say tools cover the first.
 - **For Veria:** this makes "never miss a change in the rules" concrete and different. The monitoring tools tell you something changed; Veria puts the change into the PSMF itself (a new EMA template or guidance shows up in your draft, ready for review). Redica's "signal → decision → action" is a good shape for a small diagram: EMA publishes → Veria maps it to the sections it touches → the QPPV reviews the redline. "Leave the noise behind" names a real feeling: PV people drown in alerts. Veria's version: one change, already in your draft. (Check with the owner how far this goes today before the copy promises it; `PRODUCT.md` frames it as the promise.)
+
+### Market voice: what inspectors find, how practitioners describe it
+Not a competitor. The "before" picture, in the market's own words, so the copy names the pain the way buyers already say it.
+
+**Primary source (checked in the PDF itself):** EMA, *Annual report of the Pharmacovigilance Inspectors' Working Group for 2024* (EMA/INS/PhV/122716/2025, 25 September 2025), section 3.2. For CHMP-requested human-medicines inspections in 2024: "A total of 87 deficiencies, comprising 0 critical (0%), 29 major (33.33%) and 58 minor (66.67%)". "The three most common areas with findings identified during inspections conducted in 2024 were the following: Management and reporting of adverse reactions, QMS, PSMF." That covers 10 CHMP-requested inspections (Table 1), so it's a small sample. "PSMF Expectations" was also a topic at EMA's 2024 stakeholder meeting. Usable on the site with the citation; the owner should check the wording.
+
+**Secondary (vendor and consultancy pages, not data):**
+- **The usual findings (QPPV.com's list of ten):** "The document no longer reflects reality" (former QPPVs still listed, obsolete org charts); missing vendors ("outsourcing does not transfer accountability"); wrong product lists after acquisitions; annexes that "have not been updated for extended periods"; governance described on paper but not practised; poor traceability between PSMF statements, contracts, procedures and evidence; and the PSMF "treated as an inspection document", updated only before an inspection, then left to decay again.
+- **Where it drifts:** the annexes. Other guides: annexes "carry most of the maintenance burden"; PQRA names expired contracts, superseded deputy arrangements, stale system lists.
+- **Qinecsa's name for it: "PSMF latency"**, "the lag between something changing in the pharmacovigilance system and that change appearing" in the file. Their scenario: an inspector asks about the literature-screening vendor in Annex B; the work moved to another provider months ago. Root cause, in their words: "a process that was designed for a static system being applied to one that moves continuously." A midsize MAH can have "more than twenty functions and individuals" with a stake in the PSMF. Their proposed fix is real-time visibility of drift and a logbook that records system change rather than document edits.
+- **Root cause most often named:** ownership. No one is clearly responsible for keeping the file current between formal reviews. Suggested fixes are all people and process: annex owners, quarterly reviews, reconciling each annex against contracts and SOP indexes before sign-off.
+
+**For Veria:**
+- The EMA line is the one official fact that makes the enemy real without inventing a number: the PSMF is among the top three areas of findings. Cite it; don't inflate it.
+- Practitioners describe exactly what Veria fixes, in Veria's terms: facts owned by other people, changes that happen between reviews, annexes that drift, a logbook that doesn't say what changed. The site can name these pains in their words ("no longer reflects reality") instead of explaining the product.
+- **Competitive flag:** Qinecsa, which now owns Insife, is publishing Veria's thesis almost word for word ("static process, moving system", "a visibility problem") and points to software. Expect a Qinecsa product aimed here. Veria's edge has to be the mechanism (each fact asked of its owner, checked, every mention updated), not the diagnosis, which is becoming common.
+- "PSMF latency" is a useful term to know but too jargony for a headline. The plain version is the promise: the file changes when the system does.
 
 ## Synthesis
 Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
