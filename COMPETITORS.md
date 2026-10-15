@@ -17,6 +17,18 @@ Work top to bottom. Tick each one when its entry is committed.
 - [x] Drata (drata.com): adjacent, same category as Vanta
 - [x] PSMF Manager (psmfmanager.com): direct but weak per owner, quick look only
 
+Round two:
+- [ ] Insife (insife.com): PV compliance platform, Nordic
+- [ ] Tepsivo (tepsivo.com): tech-enabled PV service, startup
+- [ ] Oracle Argus / Safety One (oracle.com): the incumbent safety database
+- [ ] Ennov (ennov.com): PV and regulatory suite
+- [ ] PrimeVigilance (primevigilance.com): large PV service provider
+- [ ] Freyr (freyrsolutions.com): regulatory services plus software
+- [ ] Biologit (biologit.com): AI literature monitoring, startup
+- [ ] Qualio (qualio.com): adjacent, life-sciences QMS SaaS
+- [ ] Greenlight Guru (greenlight.guru): adjacent, medtech QMS
+- [ ] MasterControl (mastercontrol.com): adjacent, incumbent QMS
+
 ## Entries
 
 ### Veeva Vault SafetyDocs
