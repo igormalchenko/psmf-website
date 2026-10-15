@@ -29,6 +29,18 @@ Round two:
 - [x] Greenlight Guru (greenlight.guru): adjacent, medtech QMS
 - [x] MasterControl (mastercontrol.com): adjacent, incumbent QMS
 
+Round three (deep dives: several pages per site, the product's own words for the PSMF problem):
+- [ ] Veeva PSMF in depth (dedicated PSMF page, white paper, logbook feature)
+- [ ] PSMF Manager in depth (features, pricing, blog)
+- [ ] Quartica MARS PSMF (quartica.com): automated PSMF module
+- [ ] Compier PSMF (techsollifesciences.com): digital PSMF lifecycle
+- [ ] Cloudbyz (cloudbyz.com): Salesforce-based safety suite, check for PSMF
+- [ ] PSMF services with tooling: Arriello, Drug-card, Tepsivo's PSMF page
+- [ ] AI regulatory writing: Certara CoAuthor, Yseop, Celegence, Docuvera
+- [ ] How compliance SaaS sells integrations (Vanta, Drata, one more): precedent for the connectors vision
+- [ ] Regulatory-change monitoring: Cortellis, Redica, RegDesk
+- [ ] Market voice: inspection findings, how practitioners describe PSMF pain
+
 ## Entries
 
 ### Veeva Vault SafetyDocs
