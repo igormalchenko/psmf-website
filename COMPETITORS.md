@@ -36,7 +36,7 @@ Round three (deep dives: several pages per site, the product's own words for the
 - [x] Compier PSMF (techsollifesciences.com): digital PSMF lifecycle
 - [x] Cloudbyz (cloudbyz.com): Salesforce-based safety suite, check for PSMF
 - [x] PSMF services with tooling: Arriello, Drug-card, Tepsivo's PSMF page
-- [ ] AI regulatory writing: Certara CoAuthor, Yseop, Celegence, Docuvera
+- [x] AI regulatory writing: Certara CoAuthor, Yseop, Celegence, Docuvera
 - [ ] How compliance SaaS sells integrations (Vanta, Drata, one more): precedent for the connectors vision
 - [ ] Regulatory-change monitoring: Cortellis, Redica, RegDesk
 - [ ] Market voice: inspection findings, how practitioners describe PSMF pain
@@ -312,6 +312,16 @@ Pages: Arriello `/qppv/pharmacovigilance-system-master-file-psmf/`, DrugCard `/p
 - **Tepsivo:** the PSMF as solved: "There is no great magic behind putting a PSMF together." A ready-made template is filled when the PV system is set up with them; QPPVs review on their platform. One heading asks how they keep it up to date, and the answer is a guarantee, not a process. "Tens of admin hours saved each month."
 - **Pattern:** for service providers the PSMF is the paperwork that comes with the QPPV contract. Creation is a template; upkeep is staff time, described as a guarantee. None says how they know the file is still true between updates.
 - **For Veria:** two lessons. (1) The question "how do you keep it up to date?" is asked out loud on competitor pages and answered with promises. Veria can answer it with a mechanism and show it in a diagram. (2) Service providers are also Veria's buyers (a provider keeping PSMFs for several MAHs). The pitch to them isn't "replace your service", it's "keep 20 files true with the team you have". Arriello's "fear of switching" is a real objection; import that loses nothing (already in `PRODUCT.md`) answers it.
+
+### AI regulatory writing: Yseop, Certara CoAuthor, Celegence, Docuvera
+Not PSMF tools. They show how life-sciences buyers are already being sold AI that writes regulated text, which is half of what Veria does (drafting new wording for every mention of a changed fact). Pages: homepages; Certara's CoAuthor page only had a tagline (Oct 2026).
+
+- **Yseop: the best AI-trust framing in the whole research.** Headline "Regulatory-Grade AI for Submission-Ready Content", sub "built-in accuracy, full traceability, and human control." Contrast section: "Most AI Can Generate Content. It Cannot Pass Regulatory Review." Positioning: "built for what comes after draft generation: regulatory review, audit, and approval." Core line: "AI executes. Humans decide." Plus "nothing moves forward without you." Three pillars: Accuracy (grounded in source data), Traceability (every claim accounted for), Repeatability. Customer numbers (GSK, Lilly) and awards.
+- **Certara CoAuthor:** "GenAI, templates and structured content for regulatory writing." The press releases say "human in the loop" and lean on Word integration and 280+ templates. The product page carries almost nothing.
+- **Celegence:** "We Deliver the Outcome. Expert Regulatory Teams. Purpose-Built AI." A service firm with in-house AI that "relieve[s] delivery teams from repetitive, time-consuming tasks". Many numbers; one claim of "0% risk", which a compliance reader won't believe.
+- **Docuvera:** "Governance-First Structured Content Authoring". Content "created once and reused across teams, document types, and global markets." "Remove the pain of cut and paste." Customer-attributed reuse rates (80%, and 65% in year one for Lilly).
+- **Pattern:** the serious players have moved the AI pitch from "it writes for you" to "it's safe to approve": grounded in sources, traceable, a person decides. Structured content ("write once, reuse everywhere") is the established name for what Veria calls "a fact is stored once and shown wherever it appears".
+- **For Veria:** Yseop's "AI executes. Humans decide." is the model for Veria's AI line (`PRODUCT.md`: "AI helps; it never decides for you"); don't copy it, but match its shape: short, two halves, the human gets the verb that matters. "Every claim accounted for" maps to Veria showing which owner and which answer each fact came from. Docuvera shows that "stored once, shown everywhere" is a known, valued idea in pharma. Veria can use it without explaining it, then go one step further: the PSMF also finds the sentences that still say the old thing.
 
 ## Synthesis
 Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
