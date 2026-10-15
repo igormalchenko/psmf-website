@@ -31,7 +31,7 @@ Round two:
 
 Round three (deep dives: several pages per site, the product's own words for the PSMF problem):
 - [x] Veeva PSMF in depth (dedicated PSMF page, white paper, logbook feature)
-- [ ] PSMF Manager in depth (features, pricing, blog)
+- [x] PSMF Manager in depth (features, pricing, blog)
 - [ ] Quartica MARS PSMF (quartica.com): automated PSMF module
 - [ ] Compier PSMF (techsollifesciences.com): digital PSMF lifecycle
 - [ ] Cloudbyz (cloudbyz.com): Salesforce-based safety suite, check for PSMF
@@ -270,6 +270,17 @@ Pages: `/modern-pharmacovigilance-system-master-file-management/`, the white pap
 - **Numbers (customer-attributed):** a top-10 biopharma cut authoring-to-approval cycle time by 30%; a PSMF steward went from "many hours" to about 10 minutes to publish (the product page's Moderna quote says under 30 minutes).
 - **Where it stops:** the unit is the **document**. Owners keep their documents current; Veeva links, reminds, assembles and logs. Nothing checks whether what an owner wrote is right, consistent with the rest of the file, or still mentioned correctly in Section 2 after Annex B changed. The logbook is generated from entries people write.
 - **For Veria:** the most important finding of round three. Veeva has already described half of Veria's loop as its own ideal state (owners asked on a schedule, automated emails, automatic logbook, QPPV oversight). So "we remind the owners" is not a differentiator against the market leader. What Veeva doesn't do is work at the level of the **fact**: one fact stored once, every change checked by rules and AI, every mention found and redrafted, a redline against the last signed version. The pitch against Veeva is not "we ask the owners" but "we know what every answer changes". Also: "PSMF as an asset for monitoring the PV system" is a direction line in Veeva's own paper that the product page never uses. Veria could take that ground (the file that tells the QPPV how the system is really running).
+
+### PSMF Manager: in depth
+Pages: homepage, `/features/external-data-sources`, `/pricing`, blog post "PSMF Change Tracking From Manual Logs to Automation" (Oct 2026)
+
+- **Product shape:** a document editor with workflow. Revisions go Initiate → Edit → Review → Draft → Approve → Lock. An admin unlocks a draft; users with roles edit it. Vendors get restricted access to the modules or data requests assigned to them. Part 11 e-signatures, version history, tracked changes.
+- **AI:** "AI Review Assistant" (remarks on updated content), "Auto-Annex I Generator" (change-log entries generated from updates), "Ask AI". The blog says AI should not approve changes or replace QPPV judgment.
+- **Connectors already claimed:** "External Data Sources" links to systems "having webhooks and open APIs" and to document repositories, screening "every 24 hours" by default. A changed source file creates a change request for review; with auto-update on, the file is copied into the PSMF and logged in Annex I. No systems are named, and nothing says incoming data is checked.
+- **Pricing shape:** Standard (up to 20 users, data migration included, support in 2 business days) and Enterprise (up to 50 users, private subdomain, isolated database, region choice, 4-day rollback). Plus an unexplained "Multi Tenant for Vendors" plan. No prices shown. 3-month free trial.
+- **The problem, in their words (blog):** "Change Log entries added after the update", "Approvals stored in emails", "Annex updates tracked in separate files", "The biggest risk is retrospective reconstruction."
+- **Where it stops:** the unit is a document section or a linked file. People edit text; the system tracks who did what. Nothing works out what one change means for the rest of the file, and the connector moves files, not facts.
+- **For Veria:** weak as a brand, but it has already put two of Veria's ideas on its feature list: an AI-drafted logbook and syncing from source systems. So "connects to your systems" alone won't land as new. What makes Veria's version different is what happens after the data arrives: checked, matched to the fact it changes, every mention updated, held for a person if anything looks wrong. Their pain list ("approvals stored in emails", "retrospective reconstruction") is a good, specific picture of the "before"; the same pains could carry a visual. The vendor tier is a reminder that PV service providers maintaining PSMFs for several MAHs are a buyer type with their own plan.
 
 ## Synthesis
 Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
