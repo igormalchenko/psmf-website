@@ -21,7 +21,7 @@ Round two:
 - [x] Insife (insife.com): acquired by Qinecsa, no entry
 - [x] Tepsivo (tepsivo.com): tech-enabled PV service, startup
 - [x] Oracle Argus / Safety One (oracle.com): the incumbent safety database
-- [ ] Ennov (ennov.com): PV and regulatory suite
+- [x] Ennov (ennov.com): PV and regulatory suite
 - [x] PrimeVigilance (primevigilance.com): large PV service provider
 - [ ] Freyr (freyrsolutions.com): regulatory services plus software
 - [ ] Biologit (biologit.com): AI literature monitoring, startup
@@ -174,6 +174,18 @@ Pages: homepage (Oct 2026)
 - **Tone:** steady B2B, reassuring.
 - **Trust devices:** anonymized testimonials (job title only), quality statements, group affiliation, UK office.
 - **For Veria:** "sleep soundly at night" is the emotional core of this whole market, and nobody puts it in their own voice. Consolidating many vendors into one is a real buyer pain. Veria's version: many owners, one file, one place to see it. The broken stat bar is a reminder that a weak number does more harm than having none.
+
+### Ennov
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "The only AI-powered unified compliance platform to support the entire product life cycle". Superlative, and it bundles three buzzwords.
+- **Vision:** one platform with no silos ("eliminate silos and reduce complexity across regulated processes").
+- **The "after":** faster rollout, consistent compliance, digital instead of paper signing.
+- **Results claimed:** 650+ companies, and a customer standardizing quality across 16 sites. Image-based stat tiles seem to show FTEs freed and faster audit prep, but the text didn't come through, so these are unverified.
+- **PSMF framing:** not mentioned. PV is a case-database module ("Safety Documents" exists, unexplained).
+- **Tone:** confident, superlative, platform-wide.
+- **Trust devices:** ISO 9001 and 27001 badges, Gartner mention, named customer exec, "zero downtime" migration.
+- **For Veria:** "compliance platform for the whole lifecycle" is the crowded future every suite claims. Veria's "bigger than one document" should grow from one place outward (the PSMF first, then what it touches) rather than claim the whole lifecycle on day one. That's more believable and fits "steady, not maverick".
 
 ## Synthesis
 
