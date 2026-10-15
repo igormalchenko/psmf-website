@@ -21,3 +21,6 @@ Talk it through with the owner to pull out the vision and promise, then use it t
 ## 2. More pages (much later)
 
 Eventually the site needs the pages you'd expect on a site like this: feature drill-downs and so on. Not a concern right now.
+
+### Competitor comparison pages
+At some point: the industry-standard "Veria vs X" pages, with comparison tables and the rest.
