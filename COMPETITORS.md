@@ -20,7 +20,7 @@ Work top to bottom. Tick each one when its entry is committed.
 Round two:
 - [x] Insife (insife.com): acquired by Qinecsa, no entry
 - [x] Tepsivo (tepsivo.com): tech-enabled PV service, startup
-- [ ] Oracle Argus / Safety One (oracle.com): the incumbent safety database
+- [x] Oracle Argus / Safety One (oracle.com): the incumbent safety database
 - [ ] Ennov (ennov.com): PV and regulatory suite
 - [ ] PrimeVigilance (primevigilance.com): large PV service provider
 - [ ] Freyr (freyrsolutions.com): regulatory services plus software
@@ -151,6 +151,17 @@ Pages: homepage (Oct 2026)
 - **Tone:** startup maverick. Punchy, a bit cheeky, very confident.
 - **Trust devices:** public price list (€60k–€300k a year all-inclusive), named client exec, Helsinki address and VAT number, free 15-minute call.
 - **For Veria:** the clearest example of what `PRODUCT.md` says not to be: the fast-moving maverick. Its unbacked claims ("100% legal compliance") are exactly what a compliance reader distrusts. But "staff focus on scientific work instead of admin" is a good, human description of the "after". Public pricing is a strong trust move for a small vendor, if the owner ever wants it.
+
+### Oracle Argus / Safety One
+Pages: oracle.com blocked direct fetching (403), so this comes from search snippets of the PV and Safety One Intake pages (Oct 2026). Thin entry.
+
+- **Headline promise:** product names and functions ("Safety One Intake", "Safety One Argus"). No stated vision.
+- **Vision:** AI across intake, case management, signal detection and regulatory workflows, built on Oracle's cloud.
+- **The "after":** manual data entry mostly gone. Up to 90% less manual entry, per Oracle's own numbers from a conference talk.
+- **PSMF framing:** none found.
+- **Tone:** infrastructure vendor. Features and accuracy figures.
+- **Trust devices:** being the default safety database, and the ecosystem of consultancies that build on it.
+- **For Veria:** Argus is where the case data lives. It's a likely future source for Annex figures, not a competitor for the PSMF promise. "We work with the system you already have" fits the connectors vision.
 
 ## Synthesis
 
