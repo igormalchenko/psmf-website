@@ -18,8 +18,8 @@ Work top to bottom. Tick each one when its entry is committed.
 - [x] PSMF Manager (psmfmanager.com): direct but weak per owner, quick look only
 
 Round two:
-- [ ] Insife (insife.com): PV compliance platform, Nordic
-- [ ] Tepsivo (tepsivo.com): tech-enabled PV service, startup
+- [x] Insife (insife.com): acquired by Qinecsa, no entry
+- [x] Tepsivo (tepsivo.com): tech-enabled PV service, startup
 - [ ] Oracle Argus / Safety One (oracle.com): the incumbent safety database
 - [ ] Ennov (ennov.com): PV and regulatory suite
 - [ ] PrimeVigilance (primevigilance.com): large PV service provider
@@ -136,6 +136,21 @@ Pages: homepage (Oct 2026)
 - **Tone:** plain, slightly clumsy section headings. Backed by a consultancy.
 - **Trust devices:** GVP Module II and Part 11 named, security feature list, named people with phone numbers, FAQ.
 - **For Veria:** the only direct PSMF product found. Its pitch is the same "always inspection-ready" one, which confirms that claim alone won't set us apart. Named humans and concrete service commitments are cheap trust in a small-vendor market.
+
+### Insife
+insife.com now redirects to Qinecsa, which acquired it. No separate entry; see Qinecsa. The PV-tech startups are being absorbed by service providers, which matters if Veria wants to look like it's here for the long run.
+
+### Tepsivo
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "Pharmacovigilance done the modern way", then "Imagine your PV activities covered in over 150 countries at a fraction of the usual cost".
+- **Vision:** disruption, said out loud. "It's 2026. Let's bring PV into it." "Join the revolution." "Human-machine powerhouse."
+- **The "after":** one platform instead of many providers, routine admin gone, staff free for scientific work, fixed predictable cost.
+- **Results claimed:** a stat bar (150+ countries, 2-week setup, 50+ customers), plus "0 admin costs" and "100% legal compliance" with nothing behind them.
+- **PSMF framing:** one mention. The QPPV can reach the PSMF "24/7". Treated as a convenience.
+- **Tone:** startup maverick. Punchy, a bit cheeky, very confident.
+- **Trust devices:** public price list (€60k–€300k a year all-inclusive), named client exec, Helsinki address and VAT number, free 15-minute call.
+- **For Veria:** the clearest example of what `PRODUCT.md` says not to be: the fast-moving maverick. Its unbacked claims ("100% legal compliance") are exactly what a compliance reader distrusts. But "staff focus on scientific work instead of admin" is a good, human description of the "after". Public pricing is a strong trust move for a small vendor, if the owner ever wants it.
 
 ## Synthesis
 
