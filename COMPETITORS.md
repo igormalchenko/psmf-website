@@ -12,7 +12,7 @@ Work top to bottom. Tick each one when its entry is committed.
 - [x] ArisGlobal LifeSphere (arisglobal.com): safety platform, loud about AI
 - [x] IQVIA Vigilance (iqvia.com): safety platform plus services
 - [x] Qinecsa (qinecsa.com): PV services plus tech, sells PSMF maintenance
-- [ ] ProPharma (propharmagroup.com): PV service provider, PSMF as a service
+- [x] ProPharma (propharmagroup.com): PV service provider, PSMF as a service
 - [ ] Vanta (vanta.com): adjacent, "continuous compliance" promise
 - [ ] Drata (drata.com): adjacent, same category as Vanta
 - [ ] PSMF Manager (psmfmanager.com): direct but weak per owner, quick look only
@@ -78,6 +78,18 @@ Pages: homepage, `/our-services/quality-compliance/psmf-setup-and-maintenance` (
 - **Tone:** steady, expert, partnership. UK company details on the page.
 - **Trust devices:** named client testimonials, years-long relationships, ISO 27001 and Cyber Essentials Plus badges, 24/7 call center.
 - **For Veria:** the service providers sell the same outcome we do ("always inspection-ready"), delivered by people you pay to own the accuracy. That makes "always current" a standard claim, not a differentiator. What's different is how: the file stays accurate because every fact comes from its owner and every change is checked, not because a consultant re-reads it. Tenure as proof is unavailable to us. "Built by people who've done the job" is the closest substitute.
+
+### ProPharma
+Pages: `/pharmacovigilance-services/psmf-development-maintenance` (redirects to a general PV page, Oct 2026)
+
+- **Headline promise:** generic. "Pharmacovigilance", then patient safety and risk across the lifecycle.
+- **Vision:** none beyond "we'll handle it".
+- **The "after":** the work is off your plate, done by experienced staff with set templates. Warmth: they treat your project "as if their project were our only project".
+- **Results claimed:** operational numbers. "Greater than 99%" compliance rate, case volumes, countries. They offer to share their current compliance rate.
+- **PSMF framing:** honest about the pain. Regulators routinely request it, input comes from many teams, keeping it current is hard. The answer is staffing.
+- **Tone:** warm, conversational, "we're here to help".
+- **Trust devices:** industry awards, named experts with years of experience, monthly compliance metrics shared with clients, read-only client access.
+- **For Veria:** they name the same root problem we do (many owners, one file) and answer it with people. The openness devices are worth noting: a published compliance rate and client read-only access. Veria's version is structural: every change is visible, and the PSMF can be shown as it was on any date. Once real figures exist, a live, honest metric is the most credible proof format in this market.
 
 ## Synthesis
 Not written yet. Comes after the entries.
