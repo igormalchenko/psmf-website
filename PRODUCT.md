@@ -24,6 +24,27 @@ High-level facts for writing copy and drawing diagrams. If something isn't here,
 
 Plus: **import.** An existing PSMF (Word, with Excel annexes and PDFs) is read in, its parts are mapped into the standard structure (AI proposes, a person confirms), and the whole file is checked for problems: sections that contradict each other, references to annexes that don't exist, template leftovers, overdue CAPAs, tables months behind. Anything not carried over is listed. Nothing disappears silently.
 
+## Vision and direction (from the owner)
+Not built yet. Use it as promise and direction, never as a working feature.
+
+**The enemy is mistakes reaching the inspector.** Contradictions inside the document, facts missing from it, facts that are out of date: anything that slips through. A clean, ironed-out PSMF means you're not in trouble. Today professionals keep it clean by spending a lot of time on meaningless operational work.
+
+**What each side gets:**
+- MAH: you won't be in trouble for the document you hand over.
+- QPPV (also accountable): far more visibility, far less manual work.
+- Everyone on the MAH and QPPV side, as the product grows: less and less of the operational busywork.
+
+**Where it's going: the PSMF keeps itself current.** Today Veria still depends on people answering questions and knowing their part. The engine behind it (store each fact once, check every change, update every mention, redline, sign) doesn't have to be fed by hand. The direction:
+- Veria pulls changes straight from the systems where the facts already live. Some sources are shared by everyone (e.g. a new PSMF template or guidance published by the EMA, picked up right away instead of weeks later). Others are specific to each customer (their HR system, Legal's contract repository, the QMS); we set these connections up for each customer as a service.
+- People at the MAH just do their jobs and keep their own records current. They never touch the PSMF. Systems don't forget: an intern hired and gone in two months is still recorded by the HR system even if a person would forget.
+- When sources contradict each other, Veria tells the person who owns them straight away, by email, with no login needed. Example: "I've gathered everything for this cycle and the CVs don't match the org chart. Did one of them not get updated?" The QPPV doesn't chase anyone and doesn't have to see that back-and-forth, though all of it is in the audit trail.
+- The only human step left: the QPPV reviews the changes and signs, or doesn't.
+- Don't call it "removing the human factor". That sounds alien and off-putting. It's people doing their jobs, and the file following.
+
+**Bigger than one document.** The PSMF is the first and most important piece of automating compliance in pharmacovigilance, not the whole product. Let the reader feel there's more coming, and above all that Veria is here for the long run: a buyer here won't choose a vendor that looks like it could pivot in two weeks. Steady and permanent, not a fast-moving maverick.
+
+**Public direction statement: not decided yet.** Small wins (reading PDFs, automatic reminders) are too weak to announce as the direction. The ambitious line is still open; competitor research should help.
+
 ## Trust facts (true, usable)
 - Hosted in the EU (Frankfurt).
 - AI never writes the PSMF on its own. It sorts answers, drafts text and flags problems; people approve.
@@ -31,12 +52,19 @@ Plus: **import.** An existing PSMF (Word, with Excel annexes and PDFs) is read i
 - Every signed version is kept exactly as signed, and the PSMF can be shown as it was on any past date.
 - Access is by invitation only, with an email code for every sign-in (no passwords).
 - The one real number: in the stored AI test run, **0 of 45** deliberately broken updates were applied without a person.
+- The team has a background in pharmacovigilance, including years of QPPV work. Say it impersonally ("built by people who've done the job"). No names, no "co-founder", no bios.
 
-## Don't claim
-- Connectors to other systems (safety database, HR, DocuSign…). Data from systems arrives as exports pasted or uploaded by people. The true line: "If it exports to a spreadsheet, it goes in."
+## Trust: in progress (say as commitment, not as done)
+- **EU GMP Annex 11 and FDA 21 CFR Part 11.** Close to compliant, aiming for full compliance and ready to be audited. This is the one worth showcasing: it's the industry's own standard for computerised systems. Built-in controls behind it: an audit trail stored append-only, so past entries can't be edited; frozen signed versions; signing with a fresh code.
+- **EU AI Act.** Working toward full compliance. AI assists; it never decides for you.
+- **GDPR.** Will be fully compliant, but it's table stakes. Mention it, don't boast.
+- The trust section should be a real section that covers all of this and makes it land, not a single "hosted in Frankfurt" line.
+
+## Don't claim (as working today)
+- Connectors to other systems (safety database, HR, DocuSign…). Today data from systems arrives as exports pasted or uploaded by people. The true line: "If it exports to a spreadsheet, it goes in." Connecting to customers' systems is fine to present as where Veria is heading.
 - Automatic chasing, reminders or deadlines. Veria sends one email per revision.
 - Reading PDFs or images. They are stored and attached, not read.
-- Certification ("Part 11 / Annex 11 compliant"). The customer validates; Veria provides the controls and evidence.
+- Finished compliance or certification ("Part 11 / Annex 11 compliant", "AI Act compliant"). Not done yet; see "Trust: in progress". The customer validates; Veria provides the controls and evidence.
 - Time-saved percentages or customer metrics. There are no customers yet.
 
 ## Words to use
