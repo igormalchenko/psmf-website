@@ -23,8 +23,8 @@ Round two:
 - [x] Oracle Argus / Safety One (oracle.com): the incumbent safety database
 - [x] Ennov (ennov.com): PV and regulatory suite
 - [x] PrimeVigilance (primevigilance.com): large PV service provider
-- [ ] Freyr (freyrsolutions.com): regulatory services plus software
-- [ ] Biologit (biologit.com): AI literature monitoring, startup
+- [x] Freyr (freyrsolutions.com): regulatory services plus software
+- [x] Biologit (biologit.com): AI literature monitoring, startup
 - [ ] Qualio (qualio.com): adjacent, life-sciences QMS SaaS
 - [ ] Greenlight Guru (greenlight.guru): adjacent, medtech QMS
 - [ ] MasterControl (mastercontrol.com): adjacent, incumbent QMS
@@ -186,6 +186,30 @@ Pages: homepage (Oct 2026)
 - **Tone:** confident, superlative, platform-wide.
 - **Trust devices:** ISO 9001 and 27001 badges, Gartner mention, named customer exec, "zero downtime" migration.
 - **For Veria:** "compliance platform for the whole lifecycle" is the crowded future every suite claims. Veria's "bigger than one document" should grow from one place outward (the PSMF first, then what it touches) rather than claim the whole lifecycle on day one. That's more believable and fits "steady, not maverick".
+
+### Freyr
+Pages: homepage (first ~100k characters, Oct 2026)
+
+- **Headline promise:** "Your Regulatory Impact Assessment Agent for Turning Change into Action". Then "Stay Ahead with a Unified, AI-First Regulatory Cloud".
+- **Vision:** an AI-first regulatory platform with named agents (one assesses the impact of a change, one identifies variations), backed by consultants.
+- **The "after":** regulatory change goes from something you monitor to something you act on. One system instead of separate tools and vendors.
+- **Results claimed:** "15+ years of regulatory expertise". No outcome numbers in what was read.
+- **PSMF framing:** none. PV appears as a list of services (QPPV, audits, signal detection).
+- **Tone:** technical and AI-heavy. Agents have human names.
+- **Trust devices:** years, case studies, awards, a "Compliance Wall", country sites.
+- **For Veria:** "turning change into action" is the regulatory side of our "never miss a change in the rules", already sold as a headline. Ours is narrower and more concrete: a new EMA template or guidance arrives and shows up in your PSMF, not in a feed you have to read. Named AI agents are a trend; they personalize the AI, which is the opposite of "AI helps; it never decides".
+
+### Biologit
+Pages: homepage (Oct 2026)
+
+- **Headline promise:** "One Platform. All Literature. Global and Local." Plain and specific.
+- **Vision:** narrow on purpose. "Literature Monitoring Is All We Do." "Built for PV. Not Bolted On."
+- **The "after":** all sources in one place, fewer manual searches. The problem is named in fragments ("Manual searches. Disconnected workflows.").
+- **Results claimed:** a customer's time-and-motion quote (effort down "50 to 60%"). The stat block shows placeholder zeros, another broken proof bar.
+- **AI trust:** "Proprietary auditable AI. No black boxes." Names GxP, GAMP, Part 11 and EU AI Act readiness. Doesn't say who reviews the AI's output.
+- **Tone:** short, direct, specialist. The closest to our own copy rules of anyone in the set.
+- **Trust devices:** client logos, named PhD testimonials, ISO 27001, "Designed by PV experts and technologists".
+- **For Veria:** proof that a narrow focus can sound strong, not small ("All we do"). Veria could own the PSMF the same way and still hint at more later. "No black boxes" is a good line for AI trust. Veria can go one step further where Biologit stays silent: say who approves (a person, always), and back it with the 0-of-45 test run.
 
 ## Synthesis
 
