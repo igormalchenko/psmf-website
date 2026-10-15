@@ -34,8 +34,8 @@ Round three (deep dives: several pages per site, the product's own words for the
 - [x] PSMF Manager in depth (features, pricing, blog)
 - [x] Quartica MARS PSMF (quartica.com): automated PSMF module
 - [x] Compier PSMF (techsollifesciences.com): digital PSMF lifecycle
-- [ ] Cloudbyz (cloudbyz.com): Salesforce-based safety suite, check for PSMF
-- [ ] PSMF services with tooling: Arriello, Drug-card, Tepsivo's PSMF page
+- [x] Cloudbyz (cloudbyz.com): Salesforce-based safety suite, check for PSMF
+- [x] PSMF services with tooling: Arriello, Drug-card, Tepsivo's PSMF page
 - [ ] AI regulatory writing: Certara CoAuthor, Yseop, Celegence, Docuvera
 - [ ] How compliance SaaS sells integrations (Vanta, Drata, one more): precedent for the connectors vision
 - [ ] Regulatory-change monitoring: Cortellis, Redica, RegDesk
@@ -300,6 +300,18 @@ Pages: `/pharmacovigilance/compier-psmf/` (Oct 2026)
 - **How it works:** each section and annex is a component with its own lifecycle and versions; annex data updated automatically from the safety database, document management and QMS (via APIs and file exchange); configurable workflows; real-time review with e-signatures; instant PDF; a built-in shared mail inbox for PV correspondence; dashboards tracking updates against schedule. Part 11 and Annex 11, IQ/OQ documentation at implementation.
 - **Where it stops:** no import of an existing PSMF, no logbook on the page, no AI on the PSMF page. Nothing checks incoming data.
 - **For Veria:** a third vendor claiming source-system sync for annexes (after PSMF Manager and, in direction, Veeva). The connectors vision is table stakes in feature lists. The open ground is what happens between "data arrived" and "the PSMF changed". Compier's "problems surface only at inspection" is the same enemy Veria names; it stays a line on a page because the product has no checks.
+
+### Cloudbyz
+Salesforce-native safety suite (case intake, coding, E2B reporting, signals, risk management). Search and directory listings show no PSMF product, so no entry. It belongs with Oracle as a safety database, a future data source rather than a competitor.
+
+### PSMF services with tooling: Arriello, DrugCard, Tepsivo
+Pages: Arriello `/qppv/pharmacovigilance-system-master-file-psmf/`, DrugCard `/pharmacovigilance-system-master-file/`, Tepsivo `/pharmacovigilance-services/pharmacovigilance-system-master-file/` (Oct 2026)
+
+- **Arriello:** the PSMF as a high-stakes legal duty: "must be kept fully up to date at all times", available in 7 days. Their QPPVs and experts do the work. A case study titled "A bespoke cloud based system" has no details. The other angle is the fear of switching providers ("too great an upheaval"). Trust: named EU QPPV, ISO badges, an award.
+- **DrugCard:** software and services together, under "AI-enabled Data Intelligence". The PSMF is a service: "a living document that accurately tracks all system changes", "PSMFs require ongoing maintenance to remain valid". Standard build "4 to 8 weeks". Three named client case studies.
+- **Tepsivo:** the PSMF as solved: "There is no great magic behind putting a PSMF together." A ready-made template is filled when the PV system is set up with them; QPPVs review on their platform. One heading asks how they keep it up to date, and the answer is a guarantee, not a process. "Tens of admin hours saved each month."
+- **Pattern:** for service providers the PSMF is the paperwork that comes with the QPPV contract. Creation is a template; upkeep is staff time, described as a guarantee. None says how they know the file is still true between updates.
+- **For Veria:** two lessons. (1) The question "how do you keep it up to date?" is asked out loud on competitor pages and answered with promises. Veria can answer it with a mechanism and show it in a diagram. (2) Service providers are also Veria's buyers (a provider keeping PSMFs for several MAHs). The pitch to them isn't "replace your service", it's "keep 20 files true with the team you have". Arriello's "fear of switching" is a real objection; import that loses nothing (already in `PRODUCT.md`) answers it.
 
 ## Synthesis
 Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
