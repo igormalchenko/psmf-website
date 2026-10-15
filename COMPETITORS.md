@@ -30,7 +30,7 @@ Round two:
 - [x] MasterControl (mastercontrol.com): adjacent, incumbent QMS
 
 Round three (deep dives: several pages per site, the product's own words for the PSMF problem):
-- [ ] Veeva PSMF in depth (dedicated PSMF page, white paper, logbook feature)
+- [x] Veeva PSMF in depth (dedicated PSMF page, white paper, logbook feature)
 - [ ] PSMF Manager in depth (features, pricing, blog)
 - [ ] Quartica MARS PSMF (quartica.com): automated PSMF module
 - [ ] Compier PSMF (techsollifesciences.com): digital PSMF lifecycle
@@ -257,6 +257,19 @@ Pages: homepage (Oct 2026)
 - **Tone:** incumbent, technical, calm.
 - **Trust devices:** "patented validation tools", an AI Trust Center, FedRAMP-ready, HQ address and phone.
 - **For Veria:** "burden to advantage" is the incumbent's version of a vision: safe and forgettable. The AI Trust Center appears again (ArisGlobal, MasterControl): the bigger vendors now treat a stated AI-governance page as standard.
+
+## Deep dives (round three)
+Several pages per site. The question each time: how does the product describe the PSMF problem, and where does its answer stop?
+
+### Veeva SafetyDocs: the PSMF in depth
+Pages: `/modern-pharmacovigilance-system-master-file-management/`, the white paper "How to Globalize PSMF Management…", Vault help on the automatic logbook (Oct 2026)
+
+- **Page promise:** "Rapidly generate an accurate PSMF on-demand." Sections: "Gain Complete Oversight" ("Demonstrate QPPV oversight"), "Role-based Collaboration", "Harmonize Processes". The QPPV is named as the person served, which no other vendor does.
+- **The problem, in their words (white paper):** "One of the biggest challenges in maintaining a PSMF is keeping content current." Content comes from departments outside safety, which "causes difficulties identifying content owners and verifying that content is current." "With a manual process, it is challenging to keep the logbook up to date." Production is "labor-intensive and manual."
+- **Their ideal state:** one validated global platform; a global main body with local annexes; "virtual binders" that link documents and generate the PSMF in one click; content owners update their own documents; scheduled review reminders based on SOPs and automated emails to owners; the logbook built automatically from logbook entries; e-approval by the QPPV; dashboards of overdue tasks. End state: the PSMF as "an asset" for monitoring the PV system, not a static repository.
+- **Numbers (customer-attributed):** a top-10 biopharma cut authoring-to-approval cycle time by 30%; a PSMF steward went from "many hours" to about 10 minutes to publish (the product page's Moderna quote says under 30 minutes).
+- **Where it stops:** the unit is the **document**. Owners keep their documents current; Veeva links, reminds, assembles and logs. Nothing checks whether what an owner wrote is right, consistent with the rest of the file, or still mentioned correctly in Section 2 after Annex B changed. The logbook is generated from entries people write.
+- **For Veria:** the most important finding of round three. Veeva has already described half of Veria's loop as its own ideal state (owners asked on a schedule, automated emails, automatic logbook, QPPV oversight). So "we remind the owners" is not a differentiator against the market leader. What Veeva doesn't do is work at the level of the **fact**: one fact stored once, every change checked by rules and AI, every mention found and redrafted, a redline against the last signed version. The pitch against Veeva is not "we ask the owners" but "we know what every answer changes". Also: "PSMF as an asset for monitoring the PV system" is a direction line in Veeva's own paper that the product page never uses. Veria could take that ground (the file that tells the QPPV how the system is really running).
 
 ## Synthesis
 Covers both rounds: 18 entries (Insife was acquired by Qinecsa, so it has no entry of its own).
