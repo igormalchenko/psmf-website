@@ -8,6 +8,7 @@ Marketing pages for Veria, a SaaS that keeps a pharmaceutical company's PSMF cur
 - Sell the value, not the machinery. One promise per page or section, said plainly.
 - Copy: short, concrete, no marketing filler, nothing that reads as AI-written. No meta-commentary on the page itself.
 - Libraries from cdnjs/jsdelivr with pinned versions (GSAP is the usual choice). Respect `prefers-reduced-motion`. Check phone width: no sideways scroll.
+- Don't create `.md` files on your own initiative. Only when the owner explicitly asks for one.
 - Ship every change straight to prod without asking: commit to `main` and push. No branches, no PRs. These are low-risk drafts.
 
 ## Taste (from the owner)
