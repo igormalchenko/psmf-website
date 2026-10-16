@@ -457,9 +457,9 @@ h2 { font-size: clamp(2.1rem, 3.9vw, 3.5rem); text-wrap: balance; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .tr { display: grid; }
-.tr-row { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; align-items: center; padding: clamp(14px, 2.6vh, 26px) 0; border-bottom: 1px solid var(--night-line); }
+.tr-row { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; align-items: center; padding: clamp(10px, 1.9vh, 22px) 0; border-bottom: 1px solid var(--night-line); }
 .tr-row:first-child { border-top: 1px solid var(--night-line); }
-.tr-claim { font: 400 clamp(2.3rem, 5vw, 5.2rem)/1 var(--serif); letter-spacing: -0.03em; color: #fff; opacity: 0.18; transform: translateY(10px); transition: opacity 0.9s, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.tr-claim { font: 400 clamp(2.2rem, 4.6vw, 4.8rem)/1 var(--serif); letter-spacing: -0.03em; color: #fff; opacity: 0.18; transform: translateY(10px); transition: opacity 0.9s, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .tr-proof { display: flex; flex-wrap: wrap; gap: 10px 26px; }
 .tr-proof li { display: flex; flex-direction: column; opacity: 0; transform: translateY(6px); transition: opacity 0.6s, transform 0.6s; }
 .tr-proof b { font-size: 17px; font-weight: 600; color: #fff; }

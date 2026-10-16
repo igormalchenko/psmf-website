@@ -20,7 +20,7 @@ Each screen answers a different question the reader has at that point. A promise
 2. **How it works:** one screen, the loop as numbered steps. Labels only, no examples.
 3. **What powers it:** 3–4 screens, one differentiator each, each with its own example. Where Veria is going is woven into these screens. Never a separate "vision" or "where we're going" section.
 4. **Life with Veria:** what changes for the reader (A year with Veria, What you stop doing).
-5. **Trust:** one bold screen. State it, don't ask for it: made for EU rules, hosted in the EU, ready for any inspector.
+5. **Trust:** one bold screen. State it, don't ask for it: built in the EU, hosted in the EU, made for EU rules, ready for any inspector.
 6. **FAQ:** objections not answered anywhere else on the page, one line each.
 7. **CTA.**
 

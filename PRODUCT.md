@@ -54,6 +54,7 @@ The trust section should be a real section that covers all of this and makes it 
 - **Built in full compliance with EU GMP Annex 11 and FDA 21 CFR Part 11, ready for your audit.** The one to showcase: it's the industry's own standard for computerised systems. Back it with a short list (or a visual) of the controls a compliance person cares about most: an audit trail stored append-only, so no past entry can be edited; every signed version frozen exactly as signed; signing with a fresh code, plus an authenticator app if required; access by invitation only.
 - **EU AI Act.** Compliance coming. AI never writes the PSMF on its own. It sorts answers, drafts text and flags problems; people approve. AI helps; it never decides for you.
 - **GDPR.** Mention it, don't boast. It's table stakes.
+- Built in the EU: the team is in the EU.
 - Hosted in the EU (Frankfurt).
 - Every change is recorded (who, when, old and new value). The PSMF can be shown as it was on any past date.
 - Access is by invitation only, with an email code for every sign-in (no passwords).
