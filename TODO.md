@@ -4,13 +4,14 @@
 The structure and promises are settled; from here the page is refined, not re-explored. Items marked (Claude) are Claude's.
 
 - `hero`: no wow factor. Its own round, the one open exploration. (owner)
-- `everywhere`: does the job but is visually heavy. (owner)
-- `trust`: much better, maybe bolder still. The content isn't there yet; "0/45 broken updates" doesn't explain itself. (owner)
-- `how`: the stepper is still visually simple. (owner)
+- `everywhere`: does the job but is visually heavy. Raised before page thumbnails replaced the redline card; look again. (owner)
+- `trust`: much better, maybe bolder still. The content isn't there yet (see "0 of 45" below). (owner)
 - `year`: unsure whether to stress signed versions. (owner)
 - `faq`: content is weak and a bit odd; the design is fine. Low priority. (owner)
 - `rules` and `trust`: the EU marks are our own drawings (blue disc, ring of twelve gold stars). There are no official logos for GDPR, the AI Act, Annex 11 or Part 11, and the EU and FDA emblems can't suggest endorsement. Check before launch. (Claude)
 - Phone fit: at 375×812 the hero runs past one screen; the year scroller has long empty stretches between cards. (Claude)
+- Before launch: the footer's Privacy policy, Terms, Legal notice and Subprocessors links go nowhere yet, and the "Book a demo" form doesn't send anywhere. (Claude)
+- The old drafts at `/v1/` to `/v7/` and `/drafts/` are still reachable by URL (search engines are kept out by `robots.txt`), with old claims on them. Keep or remove? Git keeps them either way. (Claude)
 
 ## Facts to confirm
 On the page or in `PRODUCT.md`. The owner confirms or corrects; then fix the page or the file and remove the item.
@@ -21,7 +22,6 @@ On the page or in `PRODUCT.md`. The owner confirms or corrects; then fix the pag
 - AI and the EU AI Act: PRODUCT.md says "compliance coming"; the page's badge says "Human in charge" and nothing about compliance. What can be said?
 - Where data lives: hosted in Frankfurt; AI requests go to Anthropic's API and are processed outside the EU (noted in v1). Still the setup?
 - "0 of 45": what did the stored AI test run cover, and should the page keep it? Today nobody understands the badge.
-- Revisions: every 4 months by default. Still the default?
 
 **On the page**
 - `proof`: "In EMA's 2024 inspections, the PSMF was one of the three most common areas of findings." Source: EMA, *Annual report of the Pharmacovigilance Inspectors' Working Group for 2024* (EMA/INS/PhV/122716/2025), section 3.2. It covers only 10 CHMP-requested inspections; check the wording.
