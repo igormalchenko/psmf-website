@@ -4,7 +4,7 @@ Facts about the product, where it's going, and the fictional cast the site's exa
 
 ## The domain in one minute
 - A **PSMF** (Pharmacovigilance System Master File) is a long regulatory document, legally required in the EU and UK, describing how a pharmaceutical company (the **MAH**, marketing authorisation holder) monitors the safety of its medicines.
-- Structure: a cover, Sections 1–7 (prose: the QPPV, organisation, sources of safety data, computerised systems, processes, performance, quality system) and Annexes A–I (mostly tables: people, partners and contracts, systems, SOP lists, performance figures, audits and CAPAs, products, and Annex I, the logbook of changes).
+- Structure: a cover, a table of contents and a glossary of abbreviations near the front, Sections 1–7 (prose: the QPPV, organisation, sources of safety data, computerised systems, processes, performance, quality system) and Annexes A–I (mostly tables: people, partners and contracts, systems, SOP lists, performance figures, audits and CAPAs, products, and Annex I, the logbook of changes).
 - The **QPPV** (Qualified Person Responsible for Pharmacovigilance) is accountable for it and signs each version. An EU+UK PSMF has two QPPVs, and both sign.
 - A regulator can ask for it at any time and must get a current, complete copy within **7 days**. Inspectors start from it. Common findings: out-of-date content, annexes not updated, a document that doesn't match how the system actually runs.
 - Who keeps it: a **PV service provider** maintaining PSMFs for several MAHs, a freelance QPPV, or the MAH's own PV team.
@@ -23,7 +23,8 @@ QPPVs, an MAH's head of PV, and PV service providers. "Your PSMF" speaks to all 
 3. **Check.** Fixed rules run first, then AI. Clean, routine updates go straight into the draft. Anything unclear waits for a person with the reason written down: totals that don't add up, versions going down, dates going backwards, figures for a month not yet over, deleted rows, half-filled rows, any change to key people.
 4. **Update everywhere.** A fact is stored once and shown wherever it appears. When a fact changes, Veria finds every paragraph that still mentions the old value (a withdrawn SOP code, a renamed partner) and drafts new wording. A person accepts it.
 5. **Sign.** The QPPV sees the whole draft as a redline against the last signed version, with the logbook already drafted, and signs with a fresh code (plus an authenticator app if the organisation requires it). The version is then frozen. Nothing can be signed while something the checks caught is still open. Unanswered questions don't block a version.
-6. **Output.** One consistent document in a fixed structure, printed to PDF. It carries no Veria branding: it's the MAH's document.
+6. **Whole sections written for you.** The glossary (abbreviations and their meanings, nothing else) and the logbook (Annex I) are generated end to end from the rest of the PSMF and kept in step with it. Where Veria is sure, it fills them in; where it isn't (is "AB" an abbreviation, or part of a company name?), it asks. People only review.
+7. **Output.** One consistent document in a fixed structure, printed to PDF. It carries no Veria branding: it's the MAH's document.
 
 Plus: **import.** An existing PSMF (Word, with Excel annexes and PDFs) is read in, its parts are mapped into the standard structure (AI proposes, a person confirms), and the whole file is checked for problems: sections that contradict each other, references to annexes that don't exist, template leftovers, overdue CAPAs, tables months behind. Anything not carried over is listed. Nothing disappears silently.
 
@@ -88,6 +89,7 @@ One year of Halvorsen's PSMF, with a revision every four months.
 - `hero`: the 4.3 rows (Anna Weber, Ingrid Solberg, the distributors, safety database 8.4, VP-SOP-029, Annex F to September, the logbook).
 - `sources`: UK QPPV Oliver Bennett (HR system), Nordvia AB (contracts), safety database 8.4 (a spreadsheet), SOP-PV-003 version 3 (the quality system), Medica Nord AS unchanged (Maren Dahl).
 - `everywhere`: VP-SOP-029 replacing 031; a 15th product; the QPPV office moving from Hellerup to Copenhagen.
+- `logbook`: "Nordvia AB distributes in Sweden and Finland under an SDEA." SDEA (safety data exchange agreement) goes into the glossary, the 4.3 logbook entry writes itself, and Veria asks whether "AB" is an abbreviation (no, part of the name).
 - `rules`: EMA publishes a new PSMF template at 09:00; by 09:02 Section 7 is rewritten, Annex B has a new column and a new annex is added.
 - `catch`: Section 2 says cases are processed in-house, Annex B says Nordlys; September figures, 2 late + 47 on time isn't 50; CAPA-2026-014 past due.
 - `ai`: SOP-PV-011 to 5.0 (accepted), removing a distributor (rejected), the logbook entry (accepted, then undone).

@@ -41,7 +41,7 @@ The failed first attempt asked four generic questions ("what should they feel", 
 - Short, concrete, no marketing filler, nothing that reads as AI-written, no meta-commentary on the page itself.
 
 ## Visuals
-- Each feature section has its own visual idea, in one shared design language: `sources` converge, `everywhere` ripples, `rules` is a broadcast (the regulator sends, Veria listens and adapts), `catch` scans, `ai` is a gate. Don't repeat a pattern across features (a redlined sentence, section-number labels, status chips, accept buttons): things that look 95% the same read as one feature.
+- Each feature section has its own visual idea, in one shared design language: `sources` converge, `catch` scans, `everywhere` ripples, `logbook` compiles (whole sections written from the content), `ai` is a gate, `rules` is a broadcast (the regulator sends, Veria listens and adapts). Don't repeat a pattern across features (a redlined sentence, section-number labels, status chips, accept buttons): things that look 95% the same read as one feature.
 - Each kind of thing looks like what it is, and the same everywhere: the regulator in EU blue and gold, a PSMF as a paper page, the Veria app as a white window with the logo. Different kinds of things never share a card design.
 - Leave out meta info that changes nothing (document IDs, "draft of 4.3").
 - Proof (a quote, a statistic) gets its own beat. It never competes with a feature's explanation on the same screen.
@@ -54,17 +54,19 @@ The failed first attempt asked four generic questions ("what should they feel", 
 - Sections by id, which is how the owner refers to them, and the promise each one carries:
   - `hero`: your PSMF, up to date every day.
   - `stop`: what you stop doing. You review, you sign.
-  - `how`: from every source to a version you sign, in four steps. Labels only, no examples.
-  - `sources`: wherever a fact lives, it reaches your draft.
-  - `everywhere`: change it once, it's right everywhere.
-  - `rules`: never miss a change in the rules.
-  - `proof`: the regulator's own finding on PSMF inspections, on its own.
-  - `catch`: find it before the inspector does; nothing open gets signed.
-  - `ai`: the last word is always yours.
+  - `how`: from every source to a version you sign, in four steps (facts come in, checked, placed everywhere, you sign). Labels only, no examples.
+  - `sources` (step 1): wherever a fact lives, it reaches your draft.
+  - `proof`: the regulator's own finding on PSMF inspections, on its own. It sets up `catch`.
+  - `catch` (step 2): find it before the inspector does; nothing open gets signed.
+  - `everywhere` (step 3): change it once, it's right everywhere.
+  - `logbook` (step 3, a level up): never write the logbook again, or the glossary.
+  - `ai` (step 4): the last word is always yours.
+  - `rules`: never miss a change in the rules. Beyond the loop, so it comes after the four steps.
   - `year`: a year with Veria. Everything planned, nothing piles up.
   - `trust`: built in the EU, hosted in the EU, made for EU rules, ready for any inspector.
   - `faq`: objections not answered elsewhere, one line each.
   - `demo`: a promise only Veria can make, not an audit.
+- The feature sections follow the four steps of `how`, in that order.
 - A promise is shown once. Where Veria is going is woven into the feature sections, never a separate "vision" section.
 - Examples come from the fictional cast and story in `PRODUCT.md`, which also lists what each section uses. Avoid repeating an example across feature sections.
 - Old drafts live at `/v1/` to `/v7/`, listed at `/drafts/`. They're no longer a reference; git has every other version.

@@ -49,6 +49,7 @@
     flow();
     sources();
     ownersMap();
+    logbook();
     rules();
     proof();
     scanner();
@@ -292,7 +293,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 5. Change it once: owners → the parts of the PSMF their answers appear in
+  // 7. Change it once: owners → the parts of the PSMF their answers appear in
   //    (from Veria's template: about 90 questions, each with one owner), and
   //    the pages whose wording it rewrites.
   // ---------------------------------------------------------------------------
@@ -445,7 +446,18 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 7. The regulator's finding, on its own screen.
+  // 8. A sentence goes into the PSMF. The glossary gains SDEA in its place, the
+  //    logbook writes its own entry, and the one token Veria isn't sure about
+  //    ("AB") is asked about instead of guessed.
+  // ---------------------------------------------------------------------------
+  function logbook() {
+    const c = $("#cmp");
+    const steps = [[0.3, 1], [1.2, 2], [2.0, 3], [2.8, 4], [4.0, 5], [5.0, 6]].map(([t, n]) => [t, () => c.classList.add(`s${n}`)]);
+    sequence(c, steps, () => c.classList.remove("s1", "s2", "s3", "s4", "s5", "s6"), 0.35);
+  }
+
+  // ---------------------------------------------------------------------------
+  // 5. The regulator's finding, on its own screen.
   // ---------------------------------------------------------------------------
   function proof() {
     const b = $("#proof");
@@ -453,7 +465,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 8. The whole PSMF at a glance: a scan sweeps it, problems are pinned where
+  // 6. The whole PSMF at a glance: a scan sweeps it, problems are pinned where
   //    they sit and resolved one by one; then signing unlocks.
   // ---------------------------------------------------------------------------
   function scanner() {
@@ -489,7 +501,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 6. EMA publishes a new template: gold waves cross the screen. Veria, listening
+  // 10. EMA publishes a new template: gold waves cross the screen. Veria, listening
   //    around your PSMF, catches them and the file reshapes: Section 7 rewritten,
   //    a new column in Annex B, a new annex. Then it's in your draft.
   // ---------------------------------------------------------------------------
@@ -597,7 +609,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 9. A year with Veria: scroll through the months; three revisions, one every
+  // 11. A year with Veria: scroll through the months; three revisions, one every
   //    four months, and nothing that turns into a project.
   // ---------------------------------------------------------------------------
   function year() {
@@ -708,7 +720,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 10. Trust: the claims, one after another, then the marks.
+  // 12. Trust: the claims, one after another, then the marks.
   // ---------------------------------------------------------------------------
   function trust() {
     const g = $("#ringDots");
