@@ -4,6 +4,7 @@
 The structure and promises are settled; from here the page is refined, not re-explored. Items marked (Claude) are Claude's.
 
 - `hero`: no wow factor. Its own round, the one open exploration. (owner)
+- `rules`: the broadcast version (EMA sends, Veria listens and adapts the PSMF) is better than the three cards, but the owner isn't fully happy with it yet. (owner)
 - `everywhere`: does the job but is visually heavy. Raised before page thumbnails replaced the redline card; look again. (owner)
 - `trust`: much better, maybe bolder still. The content isn't there yet (see "0 of 45" below). (owner)
 - `year`: unsure whether to stress signed versions. (owner)

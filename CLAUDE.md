@@ -15,6 +15,16 @@ The homepage's structure and promises are settled (17 October 2026). From here w
 - Ship every change straight to prod without asking: commit to `main` and push. No branches, no PRs.
 - Keep the process light: no status trackers, lab pages or per-section files. Don't create `.md` files unless the owner asks. Make a side-by-side snapshot folder only when the owner asks to compare two versions.
 
+### When the owner asks you to get a feel for something first
+This is how the `rules` rework went well on 17 October 2026, after a first attempt failed.
+1. **Look before you ask.** Open the section in the browser, in its finished state, and say concretely what fails and why, in the owner's terms ("nothing happens", "the change itself is invisible"). Your read comes first.
+2. **Ask open questions grounded in that read and in the owner's own words.** Each one should only make sense for this section. No multiple-choice menus: a form with ready-made answers decides the answer space before the owner has spoken. Don't re-ask what's already settled (in this file, `PRODUCT.md` or the conversation).
+3. **Listen for the product truth.** The owner's answers carry the real story (what the feature prevents, what failure looks like today). Build the visual on that, not on the old visual.
+4. **Say the concept in a few lines, then build it.** Name the judgement calls you made (a source you chose, illustrative numbers) so the owner can overrule them.
+5. **Build in place, check at laptop and phone width, push, and report plainly**, including anything you couldn't verify. The old version stays in git.
+
+The failed first attempt asked four generic questions ("what should they feel", "how loud", "main moment", "is the copy the problem") through a multiple-choice form, before looking at the section. They would have fit any section, and they re-opened settled copy.
+
 ## Sources
 - `PRODUCT.md`: product facts, direction, the fictional cast, brand. Read it when copy or a visual needs a product fact. Where it and the owner disagree, the owner is right: update the file.
 - `COMPETITORS.md`: read it only when the owner asks about competitors.
