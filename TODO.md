@@ -3,7 +3,7 @@
 ## Homepage: raised, not settled
 The structure and promises are settled; from here the page is refined, not re-explored. Items marked (Claude) are Claude's.
 
-- `hero`: rebuilt 17 October as a page in a shaft of light, in a dark room of drifting dust: facts fly in from their sources and become the page's text, debris turns to dust at the page's edge. Waiting for the owner's reaction. Judgement calls to confirm: the source labels on the facts (HR, Legal, Vendor, PV team), a fact re-arriving every 7–11 seconds once the page is full, and only four rows on a phone. (owner)
+- `hero`: the page in a shaft of light, in a dark room of drifting dust. It opens as signed 4.2; the three 4.3 changes fly in from their sources, are checked on the page and applied; then facts keep arriving and being checked. Debris turns to dust at the page's edge. Waiting for the owner's reaction. Judgement calls to confirm: the source labels (HR, Legal, Vendor, PV team), 4.2's Annex F "Figures to May", Annex I counting "3 new entries", a re-check every 3.5–6 seconds, and a phone showing four rows (EU QPPV and the three that change). (owner)
 - `rules`: the broadcast version (EMA sends, Veria listens and adapts the PSMF) is better than the three cards, but the owner isn't fully happy with it yet. (owner)
 - `everywhere`: does the job but is visually heavy. Raised before page thumbnails replaced the redline card; look again. (owner)
 - `trust`: much better, maybe bolder still. The content isn't there yet (see "0 of 45" below). (owner)

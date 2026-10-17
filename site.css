@@ -112,24 +112,24 @@ h2 { font-size: clamp(2.1rem, 3.9vw, 3.5rem); text-wrap: balance; }
 .doc-title { font: 400 26px/1.1 var(--serif); letter-spacing: -0.015em; }
 .doc-ver { margin-top: 6px; font-size: 13px; color: var(--mute); }
 .doc-rows { margin-top: 22px; border-top: 1px solid var(--line); }
-.row { display: grid; grid-template-columns: 9em 1fr; gap: 12px; align-items: center; min-height: 37px; padding: 7px 8px; margin: 0 -8px; border-bottom: 1px solid var(--line); border-radius: 4px; transition: background 1.6s; }
+.row { display: grid; grid-template-columns: 7.6em 1fr; gap: 12px; align-items: center; min-height: 37px; padding: 7px 8px; margin: 0 -8px; border-bottom: 1px solid var(--line); border-radius: 4px; transition: background 1.2s; }
 .row dt { font-size: 12.5px; color: var(--mute); }
-.row dd { position: relative; font: 400 15.5px/1.25 var(--serif); }
-.row .v { opacity: 0; transition: opacity 0.45s linear; }
-.row dd i { position: absolute; left: 0; top: 50%; width: 70%; height: 8px; margin-top: -4px; border-radius: 4px; background: rgb(21 24 29 / 0.08); transition: opacity 0.5s; }
-.row.in .v { opacity: 1; }
-.row.in dd i { opacity: 0; }
+.row dd { font: 400 15.5px/1.25 var(--serif); }
+/* A change on its way in: the old value gives way; then the row is checked */
+.row .v { transition: opacity 0.35s; }
+.row.out .v { opacity: 0; }
+.row.checking { background: rgb(0 105 168 / 0.08); transition: background 0.25s; }
 .row.lit { background: var(--blue-soft); transition: background 0.2s; }
-.doc-status { display: flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 13px; font-weight: 600; color: var(--amber); }
-.doc-status i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: breathe 1.6s ease-in-out infinite; }
-.doc-status.done { color: var(--green); }
-.doc-status.done i { animation: none; }
+.doc-status { display: flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 13px; font-weight: 600; color: var(--green); transition: color 0.3s; }
+.doc-status i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.doc-status.busy { color: var(--blue); }
+.doc-status.busy i { width: 10px; height: 10px; margin: -1px; background: none; border: 1.5px solid currentColor; border-right-color: transparent; animation: spin 0.8s linear infinite; }
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
   .hero { align-items: flex-start; }
   .doc { padding: 22px 20px 18px; }
-  .row { grid-template-columns: 8.4em 1fr; min-height: 32px; }
+  .row { grid-template-columns: 7em 1fr; min-height: 32px; }
   .row dd { font-size: 14.5px; }
   .doc-title { font-size: 22px; }
 }

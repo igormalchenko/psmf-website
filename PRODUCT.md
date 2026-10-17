@@ -86,7 +86,7 @@ One year of Halvorsen's PSMF, with a revision every four months.
 - 12 November 2026: the inspectorate asks for the PSMF; 4.3 is sent the same morning.
 
 ### Examples on the page, by section
-- `hero`: the 4.3 rows (Anna Weber, Ingrid Solberg, the distributors, safety database 8.4, VP-SOP-029, Annex F to September, the logbook).
+- `hero`: the page opens as signed 4.2 (distributors Medica Nord and Baltpharm, VP-SOP-031, Annex F figures to May). The three 4.3 changes arrive and are checked: Nordvia AB, VP-SOP-029, figures to September; the logbook counts them and the page becomes 4.3, ready to sign. Then Anna Weber, Ingrid Solberg, safety database 8.4 and the rest keep being checked again.
 - `sources`: UK QPPV Oliver Bennett (HR system), Nordvia AB (contracts), safety database 8.4 (a spreadsheet), SOP-PV-003 version 3 (the quality system), Medica Nord AS unchanged (Maren Dahl).
 - `everywhere`: VP-SOP-029 replacing 031; a 15th product; the QPPV office moving from Hellerup to Copenhagen.
 - `logbook`: "Nordvia AB distributes in Sweden and Finland under an SDEA." SDEA (safety data exchange agreement) goes into the glossary, the 4.3 logbook entry writes itself, and Veria asks whether "AB" is an abbreviation (no, part of the name).

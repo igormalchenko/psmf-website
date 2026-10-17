@@ -103,9 +103,19 @@
     const paper = $("#heroPaper"), doc = $("#heroDoc"), status = $("#docStatus"), copy = $(".hero-copy");
     const bx = back.getContext("2d"), fx = front.getContext("2d");
     const shown = (el) => el.offsetParent !== null;
-    const finish = () => {
-      status.classList.add("done");
-      status.querySelector("span").textContent = "Checked · ready to sign";
+    const ver = $("#docVer"), log = $('.row[data-k="log"]', doc);
+    let entries = 0, checking = 0;
+    // The status line: checking while any row is, up to date otherwise.
+    const say = () => {
+      status.classList.toggle("busy", checking > 0);
+      status.querySelector("span").textContent = checking ? "Checking" : entries ? "Up to date · ready to sign" : "Up to date";
+    };
+    // A change is in: Annex I logs it, and the draft becomes the next version.
+    const logged = () => {
+      entries++;
+      ver.textContent = ver.dataset.next;
+      $(".v", log).textContent = `${entries} new ${entries === 1 ? "entry" : "entries"}`;
+      if (shown(log)) { log.classList.add("lit"); setTimeout(() => log.classList.remove("lit"), 900); }
     };
 
     const SOURCES = { qppv: "HR", deputy: "HR", dist: "Legal", db: "Vendor", sop: "Vendor", figs: "PV team" };
@@ -181,19 +191,25 @@
       return pts.slice(0, n);
     }
 
-    const facts = $$(".row", doc).filter((r) => SOURCES[r.dataset.k]).map((row) => ({ row, v: $(".v", row), src: SOURCES[row.dataset.k], key: "" }));
+    const facts = $$(".row", doc).filter((r) => SOURCES[r.dataset.k]).map((row) => ({ row, v: $(".v", row), src: SOURCES[row.dataset.k], next: row.dataset.next || "", key: "" }));
     // A fact is drawn at the page's own font size and wrapped into the page's
     // own lines, so it lands exactly on its text. In the air it's shown 24px.
-    function lettering(F) {
-      const cs = getComputedStyle(F.v), size = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight), font = `400 ${size}px Newsreader`;
-      measure.font = font;
-      const max = F.v.parentElement.clientWidth + 0.5, lines = [];
+    // Lines the way the page wraps them, in the font set on measure.
+    const wrap = (text, max) => {
+      const lines = [];
       let line = "";
-      for (const word of F.v.textContent.split(" ")) {
+      for (const word of text.split(" ")) {
         const next = line ? `${line} ${word}` : word;
         if (line && measure.measureText(next).width > max) { lines.push(line); line = word; } else line = next;
       }
       lines.push(line);
+      return lines;
+    };
+    function lettering(F, text) {
+      const cs = getComputedStyle(F.v), size = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight), font = `400 ${size}px Newsreader`;
+      measure.font = font;
+      F.font = font;
+      const lines = wrap(text, F.v.parentElement.clientWidth + 0.5);
       const key = `${size}|${lines.join("|")}`;
       if (key === F.key) return;
       F.key = key;
@@ -206,7 +222,6 @@
       F.base = (mark.getBoundingClientRect().top - box.top) / box.height;
       mark.remove();
       F.u = size / 24;
-      F.w0 = m.width;
       F.asc = m.fontBoundingBoxAscent || size * 0.92;
       F.desc = m.fontBoundingBoxDescent || size * 0.3;  // the sprite's room below the line
       const LF = 11.5 * F.u, LH = 21 * F.u, lfont = `600 ${LF}px "Instrument Sans"`, label = F.src.toUpperCase();
@@ -451,9 +466,12 @@
     // --- Facts: fly in from their source and become the page's text -------------
     const landing = [];
     // They come out of the dark above, below or beside the page, swing round
-    // its right edge and slide onto their row.
+    // its right edge and slide onto their row. A change brings a new value;
+    // otherwise the fact is the row's own value, checked again.
     function fly(F) {
-      lettering(F);
+      const changed = !!F.next, text = F.next || F.v.textContent;
+      F.next = "";
+      lettering(F, text);
       const target = rel(F.v), x0 = Math.max(page.l + page.w * 0.3, copyBox.r + 60);
       const bands = small ? [[W * 0.2, W + 60, page.b + 20, H + 120]] : [
         [x0, W - 40, 70, page.t - 50], [x0, W - 40, page.b + 50, H - 30],
@@ -466,7 +484,7 @@
       const out = s0[1] < page.cy ? -1 : 1;
       const s1 = [lerp(s0[0], side, 0.6) + 60, lerp(s0[1], target.t, 0.45) + out * 50];
       const P1 = [...toWorld(s1, 1.8 * f), 1.8 * f];
-      landing.push({ F, P0, P1, side, t: 0, dur: small ? 2.2 : 2.6, hold: 0, done: false });
+      landing.push({ F, text, changed, P0, P1, side, t: 0, dur: small ? 2.2 : 2.6, hold: 0, done: false, out: false });
     }
     const bez = (a, b, c, d, t) => { const u = 1 - t; return u * u * u * a + 3 * u * u * t * b + 3 * u * t * t * c + t * t * t * d; };
 
@@ -479,10 +497,11 @@
     }, { passive: true });
     const queue = [];
     const at = (t, fn) => queue.push({ t, fn });
+    // Once the changes are in, the facts keep coming, and each is checked again.
     function refresh() {
-      const list = facts.filter((F) => shown(F.row) && !landing.some((l) => l.F === F));
+      const list = facts.filter((F) => shown(F.row) && !F.next && !F.row.classList.contains("checking") && !landing.some((l) => l.F === F));
       if (list.length) fly(pick(list));
-      at(T + rand(7, 11), refresh);
+      at(T + rand(3.5, 6), refresh);
     }
 
     function step(dt) {
@@ -530,15 +549,31 @@
       }
 
       for (let i = landing.length - 1; i >= 0; i--) {
-        const l = landing[i];
+        const l = landing[i], F = l.F;
         if (!l.done) {
           l.t += dt;
+          if (l.changed && !l.out && l.t > l.dur * 0.72) { F.row.classList.add("out"); l.out = true; }
           if (l.t >= l.dur) {
             l.done = true;
-            l.F.row.classList.add("in", "lit");
-            setTimeout(() => l.F.row.classList.remove("lit"), 900);
+            if (l.changed) {
+              // The new value takes the old one's place at once, under the landing fact
+              F.v.style.transition = "none";
+              F.v.textContent = l.text;
+              F.row.classList.remove("out");
+              F.v.offsetWidth;
+              F.v.style.transition = "";
+            }
+            F.row.classList.add("checking");
+            checking++;
+            say();
+            at(T + 1.1, () => {
+              F.row.classList.remove("checking");
+              checking--;
+              if (l.changed) logged();
+              say();
+            });
           }
-        } else if ((l.hold += dt) > 0.5) landing.splice(i, 1);
+        } else if ((l.hold += dt) > 0.3) landing.splice(i, 1);
       }
     }
 
@@ -623,7 +658,14 @@
       // Facts: light over the dark, ink once they're on the paper
       for (const l of landing) {
         // The text's first line on the page, as drawn: tilt and scale included
-        const F = l.F, sr = section.getBoundingClientRect(), tg = F.v.getClientRects()[0], k0 = tg.width / F.w0;
+        const F = l.F, sr = section.getBoundingClientRect(), tg = F.v.getClientRects()[0];
+        // The page's scale, from the text it shows now: tilt and font rendering included
+        if (F.shown !== F.v.textContent) {
+          F.shown = F.v.textContent;
+          measure.font = F.font;
+          F.shownW = measure.measureText(wrap(F.shown, F.v.parentElement.clientWidth + 0.5)[0]).width;
+        }
+        const k0 = tg.width / F.shownW;
         const tx = tg.left - sr.left, ty = tg.top - sr.top + tg.height * F.base;
         const P3 = [tx - VX, ty - VY, f], P2 = [l.side - VX, ty - VY + 6, 0.92 * f];
         const p = l.done ? 1 : easeIO(clamp(l.t / l.dur));
@@ -632,7 +674,7 @@
         const k = kz * lerp(1 / F.u, k0, settle);
         const sx = VX + (x - cam.x) * kz + cam.x, sy = VY + (y - cam.y) * kz + cam.y;
         const B = (10 * Math.abs(z - f) / z) / k, rot = (1 - p) * 0.06;
-        const a = smooth(0, 0.15, p) * (l.done ? 1 - l.hold / 0.5 : 1);
+        const a = smooth(0, 0.15, p) * (l.done ? 1 - l.hold / 0.3 : 1);
         fx.save();
         fx.setTransform(1, 0, 0, 1, 0, 0);
         fx.beginPath(); fx.rect(0, 0, front.width, front.height); fx.rect(pg.l * dpr, pg.t * dpr, pg.w * dpr, pg.h * dpr);
@@ -689,22 +731,17 @@
     first.slice(0, small ? 5 : 10).forEach((d, i) => launch(d, i === 0 ? 0.82 : rand(0, 0.8), i === 0 ? true : undefined));
 
     if (reduce) {
-      $$(".row", doc).forEach((r) => r.classList.add("in"));
-      finish();
+      facts.forEach((F) => { if (F.next) { F.v.textContent = F.next; F.next = ""; logged(); } });
+      say();
       T = 10;
       render();
       return;
     }
 
-    const list = facts.filter((F) => shown(F.row));
-    list.forEach((F, i) => at(1.2 + i * 0.55, () => fly(F)));
-    const end = 1.2 + (list.length - 1) * 0.55 + (small ? 2.2 : 2.6);
-    at(end + 0.35, () => {
-      const log = $('.row[data-k="log"]', doc);
-      if (shown(log)) { log.classList.add("in", "lit"); setTimeout(() => log.classList.remove("lit"), 900); }
-    });
-    at(end + 0.9, finish);
-    at(end + 7, refresh);
+    // First the changes since the last signed version, then the checking goes on.
+    const changes = facts.filter((F) => F.next && shown(F.row));
+    changes.forEach((F, i) => at(1 + i * 1.5, () => fly(F)));
+    at(1 + changes.length * 1.5 + 3, refresh);
 
     whileVisible(section, () => { running = true; last = performance.now(); requestAnimationFrame(frame); }, () => { running = false; });
   }
