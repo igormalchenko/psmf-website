@@ -51,7 +51,7 @@ The failed first attempt asked four generic questions ("what should they feel", 
 
 ## The homepage
 - `index.html`, `site.css`, `site.js`. Each section has a numbered block in `site.css` and its own function in `site.js`. Class names are global: check a new one isn't already used (`.punch` once broke the year's 12 November card).
-- Sections by id, which is how the owner refers to them, and the promise each one carries:
+- Sections by id (for code) and the promise each one carries. The owner knows them by their headlines, not their ids: when talking to the owner or writing `TODO.md`, name a section by its headline ("the logbook section", "Never miss a change in the rules"), never by id.
   - `hero`: your PSMF, up to date every day.
   - `stop`: what you stop doing. You review, you sign.
   - `how`: from every source to a version you sign, in four steps (facts come in, checked, placed everywhere, you sign). Labels only, no examples.
