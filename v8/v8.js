@@ -649,7 +649,7 @@
   // 2. The chores, struck off one by one; then what's left.
   // ---------------------------------------------------------------------------
   function chores() {
-    const items = $$("#chores li"), punch = $("#punch");
+    const items = $$("#chores li"), line = $("#stopLine");
     items.forEach((li) => {
       const s = svgEl("svg", { viewBox: "0 0 100 30", preserveAspectRatio: "none", "aria-hidden": "true" });
       const p = svgEl("path", { d: `M0 ${15 + rand(0, 4)} C 22 ${10 + rand(0, 8)}, 48 ${18 + rand(0, 6)}, 70 ${13 + rand(0, 4)} S 96 ${14 + rand(0, 6)}, 100 ${15 + rand(0, 3)}`, pathLength: 1 }, s);
@@ -659,10 +659,10 @@
     });
     const strike = (li) => { li.querySelector("path").style.transition = "stroke-dashoffset 0.55s ease"; li.querySelector("path").style.strokeDashoffset = 0; li.classList.add("done"); };
     const steps = items.map((li, i) => [0.25 + i * 0.4, () => strike(li)]);
-    steps.push([0.25 + items.length * 0.4 + 0.3, () => punch.classList.add("in")]);
+    steps.push([0.25 + items.length * 0.4 + 0.3, () => line.classList.add("in")]);
     sequence($("#chores"), steps, () => {
       items.forEach((li) => { const p = li.querySelector("path"); p.style.transition = "none"; p.style.strokeDashoffset = 1; li.classList.remove("done"); });
-      punch.classList.remove("in");
+      line.classList.remove("in");
     }, 0.5);
   }
 

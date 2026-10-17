@@ -132,9 +132,9 @@ h2 { font-size: clamp(2.1rem, 3.9vw, 3.5rem); text-wrap: balance; }
 .chores li svg { position: absolute; left: -2%; top: 50%; width: 104%; height: 30px; margin-top: -15px; overflow: visible; pointer-events: none; }
 .chores li svg path { fill: none; stroke: var(--red); stroke-width: 3; stroke-linecap: round; }
 .chores li.done { color: rgb(21 24 29 / 0.3); }
-.punch { margin-top: clamp(22px, 4.5vh, 44px); font: 400 clamp(2.4rem, 4.6vw, 4.2rem)/1 var(--serif); letter-spacing: -0.035em; opacity: 0; transform: translateY(14px); transition: opacity 0.9s, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
-.punch em { font-style: normal; color: var(--blue); }
-.punch.in { opacity: 1; transform: none; }
+.stop-line { margin-top: clamp(22px, 4.5vh, 44px); font: 400 clamp(2.4rem, 4.6vw, 4.2rem)/1 var(--serif); letter-spacing: -0.035em; opacity: 0; transform: translateY(14px); transition: opacity 0.9s, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.stop-line em { font-style: normal; color: var(--blue); }
+.stop-line.in { opacity: 1; transform: none; }
 
 /* 3. How it works */
 .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; counter-reset: st; }
