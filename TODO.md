@@ -1,10 +1,14 @@
 # To-dos
 
 ## Homepage: raised, not settled
-The whole page is a working draft. On 17 October 2026 the owner gave a first scroll-through, agreed the outline (now in CLAUDE.md under "Page structure") and asked for every section to be reworked in one pass. That pass is live; the owner hasn't reacted to it yet. Items marked (Claude) are Claude's.
+The whole page is a working draft. On 17 October 2026 the owner agreed the outline (now in CLAUDE.md under "Page structure"), and every section was reworked on it in one pass. The owner's verdict: much better than before; the copy is fine for now. Items marked (Claude) are Claude's.
 
-- **New copy to react to.** (Claude) `stop`: "You review. You sign." `how`: "From every source to a version you sign." `sources`: "Wherever a fact lives, it reaches your draft." `ai`: "The last word is always yours." `trust`: the four claims as the headline. `demo`: "Bring your PSMF. Never update it by hand again." Nav: "Trust" renamed "Compliance".
-- `hero`: visually correct and explanatory, but no wow factor. Its own round, before any other design work. (owner)
+- **Feature screens look alike.** `everywhere`, `catch` and `ai` reuse the same redlined sentence, section numbers, chips and accept buttons (and `sources` the same rows), so different features read as one feature seen from different angles. Same design language, but each needs its own visual. (owner)
+- `catch`: the EMA report quote is a great idea in the wrong place. You can't read the feature and the proof at the same time, and the bigger "Top 3" made it worse. Move it out of `catch`. (owner)
+- `rules`: the EMA notice's bright blue band is hard on the eyes against the white card. The same blue in `trust` is fine. (owner)
+- `everywhere`: does the job but is visually heavy. Review later. (owner)
+- `trust`: much better, maybe bolder still. The content isn't there yet; "0/45 broken updates" doesn't explain itself. Later. (owner)
+- `hero`: no wow factor. Its own round; not now. (owner)
 - `how`: the stepper is still visually simple. (owner)
 - `rules` and `trust`: the EU marks are our own drawings (blue disc, ring of twelve gold stars); there are no official logos for GDPR, the AI Act, Annex 11 or Part 11, and the EU and FDA emblems can't suggest endorsement. Check before launch. (Claude)
 - `year`: unsure whether to stress signed versions. (owner)
