@@ -1,4 +1,4 @@
-// Veria v8: one long page built from the best of v1–v7.
+// Veria v8: the v9 homepage with a distinct visual for each feature, for comparison.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -42,20 +42,38 @@
   }
 
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+    stars();
     nav();
     hero();
-    flow();
-    catcher();
-    ownersMap();
-    redraft();
-    rules();
-    sign();
-    year();
     chores();
-    next();
-    trust();
+    flow();
+    sources();
+    ownersMap();
+    rules();
+    proof();
+    scanner();
     gate();
+    year();
+    trust();
   });
+
+  // ---------------------------------------------------------------------------
+  // A ring of twelve gold stars, for anything that stands for the EU.
+  // ---------------------------------------------------------------------------
+  function stars() {
+    $$("svg.stars").forEach((svg) => {
+      const c = svg.viewBox.baseVal.width / 2, R = +svg.dataset.r, s = +svg.dataset.s;
+      for (let i = 0; i < 12; i++) {
+        const a = (i / 12) * Math.PI * 2, x = c + R * Math.cos(a), y = c + R * Math.sin(a);
+        const pts = [];
+        for (let k = 0; k < 10; k++) {
+          const r = k % 2 ? s * 0.4 : s, b = -Math.PI / 2 + (k * Math.PI) / 5;
+          pts.push(`${(x + r * Math.cos(b)).toFixed(2)},${(y + r * Math.sin(b)).toFixed(2)}`);
+        }
+        svgEl("polygon", { points: pts.join(" ") }, svg);
+      }
+    });
+  }
 
   // ---------------------------------------------------------------------------
   // Nav: solid once scrolled, light text over dark sections.
@@ -178,32 +196,32 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 2. The four steps, one after another.
+  // 3. How it works: the four steps, one after another. Labels only.
   // ---------------------------------------------------------------------------
   function flow() {
     const list = $("#flowSteps"), steps = $$(".st", list), bar = $("#flowBar"), rail = bar.parentElement;
-    const files = $$(".v-files .file", list), page = $(".v-page", list), rows = $(".v-rows", list), seal = $(".v-seal", list);
-    const lineW = () => rail.offsetWidth - rail.querySelector("span").offsetWidth - 14;
+    const items = $$(".v-src .it", list), check = $(".v-check", list), place = $(".v-place", list), seal = $(".v-seal", list);
+    const lineW = () => rail.offsetWidth;
     const activate = (i) => steps.forEach((s, j) => { s.classList.toggle("on", j === i); s.classList.toggle("done", j < i); });
     const fill = (f) => gsap.to(bar, { width: lineW() * f, duration: 1.2, ease: "power2.inOut" });
     sequence(list, [
       [0, () => {
         list.classList.add("run");
         activate(0);
-        if (!reduce) gsap.from(files, { y: -50, opacity: 0, duration: 0.8, stagger: 0.14, ease: "back.out(1.6)", clearProps: "opacity,y" });
+        if (!reduce) gsap.from(items, { y: -50, opacity: 0, duration: 0.8, stagger: 0.14, ease: "back.out(1.6)", clearProps: "opacity,y" });
       }],
       [1.3, () => fill(0.25)],
-      [1.7, () => { activate(1); page.classList.add("marked"); }],
+      [1.7, () => { activate(1); check.classList.add("checked"); }],
       [3.0, () => fill(0.5)],
-      [3.4, () => { activate(2); rows.classList.add("shown"); }],
+      [3.4, () => { activate(2); place.classList.add("placed"); }],
       [4.9, () => fill(0.75)],
       [5.3, () => { activate(3); seal.classList.add("stamped"); }],
       [6.5, () => { fill(1); list.classList.remove("run"); steps.forEach((s) => s.classList.remove("on", "done")); }],
     ], () => {
       list.classList.remove("run");
       steps.forEach((s) => s.classList.remove("on", "done"));
-      page.classList.remove("marked");
-      rows.classList.remove("shown");
+      check.classList.remove("checked");
+      place.classList.remove("placed");
       seal.classList.remove("stamped");
       gsap.set(bar, { width: 0 });
     });
@@ -211,31 +229,75 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 3. A scan runs down the page; problems are marked, then resolved.
+  // 4. Sources: five kinds of source, one draft. Each fact travels its spoke,
+  //    is checked where it meets the draft, and fills its row.
   // ---------------------------------------------------------------------------
-  function catcher() {
-    const paper = $("#catchPaper"), lines = $$(".cl", paper), scan = $(".scanline", paper), state = $(".scan-state em", paper);
-    const D = 2.4;
-    const steps = [[0, () => {
-      if (!reduce) gsap.fromTo(scan, { y: 30, opacity: 1 }, { y: paper.offsetHeight, duration: D, ease: "none", onComplete: () => gsap.to(scan, { opacity: 0, duration: 0.3 }) });
-    }]];
-    lines.forEach((l, i) => steps.push([D * ((l.offsetTop + l.offsetHeight * 0.6) / paper.offsetHeight), () => l.classList.add("marked")]));
-    lines.forEach((l, i) => steps.push([D + 0.9 + i * 0.55, () => l.classList.add("resolved")]));
-    steps.push([D + 0.9 + lines.length * 0.55 + 0.2, () => { paper.classList.add("checked"); state.textContent = "Checked"; }]);
-    sequence(paper, steps, () => {
-      lines.forEach((l) => l.classList.remove("marked", "resolved"));
-      paper.classList.remove("checked");
-      state.textContent = "Checking";
-      gsap.set(scan, { opacity: 0 });
+  function sources() {
+    const hub = $("#hub"), svg = $("#hubLines"), srcs = $$(".hs", hub), doc = $(".hub-doc", hub), rows = $$(".hd-row", doc);
+    let spokes = [], tw = [];
+    function build() {
+      svg.innerHTML = "";
+      const H = hub.getBoundingClientRect(), D = doc.getBoundingClientRect();
+      svg.setAttribute("viewBox", `0 0 ${H.width} ${H.height}`);
+      const lines = svgEl("g", {}, svg);
+      spokes = srcs.map((s) => {
+        const i = +s.dataset.row, I = $(".ic", s).getBoundingClientRect(), R = $("dd", rows[i]).getBoundingClientRect();
+        let x0, y0, x1, y1, d;
+        if (I.bottom <= D.top) {
+          // On a phone the sources sit in a row above the draft.
+          x0 = I.left + I.width / 2 - H.left; y0 = I.bottom - H.top + 6;
+          x1 = clamp(x0, D.left - H.left + 14, D.right - H.left - 14); y1 = D.top - H.top;
+          const my = (y0 + y1) / 2;
+          d = `M${x0} ${y0}C${x0} ${my} ${x1} ${my} ${x1} ${y1}`;
+        } else {
+          const left = I.right <= D.left;
+          x0 = left ? I.right - H.left + 6 : I.left - H.left - 6; y0 = I.top + I.height / 2 - H.top;
+          x1 = left ? D.left - H.left : D.right - H.left; y1 = R.top + R.height / 2 - H.top;
+          const mx = (x0 + x1) / 2;
+          d = `M${x0} ${y0}C${mx} ${y0} ${mx} ${y1} ${x1} ${y1}`;
+        }
+        const path = svgEl("path", { d, class: "sp" }, lines);
+        const gd = svgEl("circle", { cx: x1, cy: y1, r: 4.5, class: "gd" }, svg);
+        return { s, i, path, gd };
+      });
+    }
+    build();
+    const steps = [];
+    srcs.forEach((_, k) => {
+      const t = 0.3 + k * 0.75;
+      steps.push([t, () => {
+        const sp = spokes[k];
+        sp.s.classList.add("on");
+        sp.path.classList.add("on");
+        if (reduce) return;
+        const len = sp.path.getTotalLength(), p0 = sp.path.getPointAtLength(0);
+        const c = svgEl("circle", { r: 4, class: "pulse", cx: p0.x, cy: p0.y }, svg);
+        const st = { t: 0 };
+        tw.push(gsap.to(st, { t: 1, duration: 0.8, ease: "power1.inOut",
+          onUpdate: () => { const pt = sp.path.getPointAtLength(st.t * len); c.setAttribute("cx", pt.x); c.setAttribute("cy", pt.y); },
+          onComplete: () => c.remove() }));
+      }]);
+      steps.push([t + 0.85, () => { spokes[k].gd.classList.add("ok"); rows[spokes[k].i].classList.add("in", "lit"); }]);
+      steps.push([t + 1.7, () => { const sp = spokes[k]; rows[sp.i].classList.remove("lit"); sp.s.classList.remove("on"); sp.path.classList.remove("on"); }]);
     });
+    sequence(hub, steps, () => {
+      tw.forEach((t) => t.kill());
+      tw = [];
+      $$(".pulse", svg).forEach((c) => c.remove());
+      spokes.forEach((sp) => { sp.gd.classList.remove("ok"); sp.path.classList.remove("on"); sp.s.classList.remove("on"); });
+      rows.forEach((r) => r.classList.remove("in", "lit"));
+    }, 0.3);
+    let rw = hub.clientWidth;
+    addEventListener("resize", () => { if (hub.clientWidth !== rw) { rw = hub.clientWidth; build(); } });
   }
 
   // ---------------------------------------------------------------------------
-  // 4. Owners → the parts of the PSMF their answers appear in. From Veria's
-  //    template: about 90 questions, each with one owner.
+  // 5. Change it once: owners → the parts of the PSMF their answers appear in
+  //    (from Veria's template: about 90 questions, each with one owner), and
+  //    the pages whose wording it rewrites.
   // ---------------------------------------------------------------------------
   function ownersMap() {
-    const root = $("#map"), svg = $("#mapSvg"), cap = $("#mapCap");
+    const root = $("#map"), svg = $("#mapSvg");
     const PLACES = ["Cover", "Section 1", "Section 2", "Section 3", "Section 4", "Section 5", "Section 6", "Section 7",
       "Annex A", "Annex B", "Annex C", "Annex D", "Annex E", "Annex F", "Annex G", "Annex H", "Annex I"];
     const LOG = 16;
@@ -250,14 +312,23 @@
       ["Vendors", 24, { 3: 2, 4: 1, 5: 2, 6: 1, 7: 3, 9: 1, 11: 1, 12: 1, 13: 13 }],
       ["Quality", 13, { 3: 1, 7: 5, 12: 1, 14: 6 }],
     ];
+    // Each example: who answers, and every place the fact lands.
     const EXAMPLES = [
-      { o: 2, ans: "+ Nordvia AB", to: [2, 9], cap: "<b>Legal</b> adds a distributor. Section 2, Annex B and the logbook follow." },
-      { o: 1, ans: "Deputy: Ingrid Solberg", to: [0, 1, 8], cap: "<b>A new deputy QPPV.</b> The cover, Section 1, Annex A and the logbook follow." },
-      { o: 6, ans: "Safety database 8.4", to: [4, 11], cap: "<b>Your vendor</b> upgrades its database. Section 4, Annex D and the logbook follow." },
-      { o: 7, ans: "SOP-PV-011 v5.0", to: [12], cap: "<b>Quality</b> updates a procedure. Annex E and the logbook follow." },
-      { o: 4, ans: "Q3 indicators", to: [13], cap: "<b>Pharmacovigilance</b> reports the quarter. Annex F and the logbook follow." },
+      { o: 6, ans: "VP-SOP-029 replaces 031", short: "VP-SOP-029", to: [12, 5] },
+      { o: 3, ans: "+1 product", to: [15, 0, 2] },
+      { o: 1, ans: "QPPV office: Copenhagen", short: "Copenhagen", to: [1, 2] },
     ];
-    const list = (a) => (a.length < 2 ? a.join("") : `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}`);
+    // The pages whose wording gets rewritten; a line lights up on each.
+    const pages = $$("#ewPages .ewp");
+    const setPages = (ps) => pages.forEach((pg, k) => {
+      pg.classList.remove("on", "lit");
+      pg.classList.toggle("off", k >= ps.length);
+      if (k >= ps.length) return;
+      pg.dataset.p = ps[k];
+      $("span", pg).textContent = ps[k] === LOG ? "Logbook" : PLACES[ps[k]];
+      pg.classList.add("on");
+    });
+    const litPage = (p) => pages.forEach((pg) => { if (+pg.dataset.p === p) pg.classList.add("lit"); });
 
     let L = null, ex = 0, timer = 0, pinned = -1, running = false, tw = [];
     const g = {};
@@ -266,8 +337,8 @@
     function build() {
       svg.innerHTML = "";
       const W = root.clientWidth, H = root.clientHeight;
-      const narrow = W < 700;
-      const ox = narrow ? 102 : Math.min(190, W * 0.17), px = narrow ? W - 76 : W - Math.min(180, W * 0.16);
+      const narrow = W < 520;
+      const ox = narrow ? 102 : Math.min(150, W * 0.2), px = narrow ? W - 76 : W - 128;
       svg.classList.toggle("narrow", narrow);
       const top = 12, bot = H - 12;
       const py = PLACES.map((_, i) => lerp(top, bot, i / (PLACES.length - 1)));
@@ -316,7 +387,6 @@
     }
     const lightPlace = (p) => { L.places[p].dot.classList.add("hi"); L.places[p].t.classList.add("hi"); };
     const lightOwner = (o) => { L.owners[o].g.classList.add("hi"); L.owners[o].t.classList.add("hi"); };
-    const say = (html) => { cap.style.opacity = 0; setTimeout(() => { cap.innerHTML = html; cap.style.opacity = 1; }, 200); };
 
     function show(e) {
       clear();
@@ -327,12 +397,12 @@
       const ay = lerp(L.oy[e.o], e.to.reduce((s, p) => s + L.py[p], 0) / e.to.length, 0.5);
       const ag = svgEl("g", { class: "ans", opacity: 0 }, g.extra);
       const at = svgEl("text", { x: L.mid, y: ay + 4.5, "text-anchor": "middle" }, ag);
-      at.textContent = e.ans;
+      at.textContent = L.narrow && e.short ? e.short : e.ans;
       const w = at.getComputedTextLength() + 22;
       ag.insertBefore(svgEl("rect", { x: L.mid - w / 2, y: ay - 13, width: w, height: 26, rx: 8 }), at);
       const logPath = svgEl("path", { d: `M${L.mid + w / 2} ${ay}C${L.px - 60} ${ay} ${L.px - 60} ${L.py[LOG]} ${L.px - 6} ${L.py[LOG]}`, class: "ln hi log", "stroke-width": 1.5, opacity: 0 }, g.extra);
-      say(e.cap);
-      if (reduce) { ag.setAttribute("opacity", 1); logPath.setAttribute("opacity", 1); e.to.concat(LOG).forEach(lightPlace); return; }
+      setPages(e.to.concat(LOG));
+      if (reduce) { ag.setAttribute("opacity", 1); logPath.setAttribute("opacity", 1); e.to.concat(LOG).forEach((p) => { lightPlace(p); litPage(p); }); return; }
       T(gsap.to(ag, { attr: { opacity: 1 }, duration: 0.5, delay: 0.3 }));
       paths.forEach((l, i) => {
         const p0 = l.el.getPointAtLength(0);
@@ -341,9 +411,9 @@
         const st = { t: 0 };
         T(gsap.to(st, { t: 1, duration: 1.3, delay: 0.25 + i * 0.12, ease: "power1.inOut",
           onUpdate: () => { const pt = l.el.getPointAtLength(st.t * len); c.setAttribute("cx", pt.x); c.setAttribute("cy", pt.y); },
-          onComplete: () => { lightPlace(l.p); T(gsap.to(c, { attr: { r: 0 }, duration: 0.3 })); } }));
+          onComplete: () => { lightPlace(l.p); litPage(l.p); T(gsap.to(c, { attr: { r: 0 }, duration: 0.3 })); } }));
       });
-      T(gsap.to(logPath, { attr: { opacity: 1 }, duration: 0.5, delay: 1.5, onComplete: () => lightPlace(LOG) }));
+      T(gsap.to(logPath, { attr: { opacity: 1 }, duration: 0.5, delay: 1.5, onComplete: () => { lightPlace(LOG); litPage(LOG); } }));
     }
     function pin(o) {
       pinned = o;
@@ -353,8 +423,7 @@
       const ps = Object.keys(OWNERS[o][2]).map(Number);
       L.lines.filter((l) => l.o === o).forEach((l) => l.el.classList.add("hi"));
       ps.forEach(lightPlace);
-      const [name, n] = OWNERS[o];
-      say(`<b>${name}</b> answers ${n} question${n === 1 ? "" : "s"}. They appear in ${list(ps.map((p) => PLACES[p]))}.`);
+      pages.forEach((pg) => pg.classList.remove("on", "lit"));
     }
     function unpin() {
       if (pinned < 0) return;
@@ -366,26 +435,57 @@
       if (!running || pinned >= 0) return;
       show(EXAMPLES[ex]);
       ex = (ex + 1) % EXAMPLES.length;
-      if (!reduce) timer = setTimeout(cycle, 4600);
+      if (!reduce) timer = setTimeout(cycle, 5600);
     }
     build();
+    setPages(EXAMPLES[0].to.concat(LOG));
     let rw = root.clientWidth;
     addEventListener("resize", () => { if (root.clientWidth !== rw) { rw = root.clientWidth; build(); if (running) { clearTimeout(timer); cycle(); } } });
     whileVisible(root, () => { running = true; cycle(); }, () => { running = false; clearTimeout(timer); killAll(); });
   }
 
   // ---------------------------------------------------------------------------
-  // 5. One change; the table, the prose and the logbook follow.
+  // 7. The regulator's finding, on its own screen.
   // ---------------------------------------------------------------------------
-  function redraft() {
-    const rd = $("#rd");
-    sequence(rd, [
-      [0, () => rd.classList.add("go")],
-      [1.3, () => rd.classList.add("done1")],
-      [2.3, () => rd.classList.add("done2")],
-      [3.6, () => rd.classList.add("done3")],
-      [3.9, () => rd.classList.add("done4")],
-    ], () => rd.classList.remove("go", "done1", "done2", "done3", "done4"));
+  function proof() {
+    const b = $("#proof");
+    sequence(b, [[0.2, () => b.classList.add("in")]], () => b.classList.remove("in"));
+  }
+
+  // ---------------------------------------------------------------------------
+  // 8. The whole PSMF at a glance: a scan sweeps it, problems are pinned where
+  //    they sit and resolved one by one; then signing unlocks.
+  // ---------------------------------------------------------------------------
+  function scanner() {
+    const root = $("#scan"), spread = $(".spread", root), pages = $$(".pg", spread), beam = $(".beam", root), openN = $("#scanOpen");
+    const bad = pages.filter((p) => p.classList.contains("bad"));
+    const D = 2.2;
+    let tw = [];
+    const steps = [[0, () => {
+      if (reduce) return;
+      tw.push(gsap.fromTo(beam, { x: 0, opacity: 1 }, { x: spread.offsetWidth + 80, duration: D, ease: "none", onComplete: () => gsap.to(beam, { opacity: 0, duration: 0.2 }) }));
+    }]];
+    pages.forEach((p) => {
+      const t = D * ((p.offsetLeft + p.offsetWidth / 2) / spread.offsetWidth);
+      const isBad = bad.includes(p);
+      steps.push([t, () => { p.classList.add("seen"); if (isBad) p.classList.add("found"); }]);
+      steps.push([t + 0.45, () => p.classList.remove("seen")]);
+    });
+    const T0 = D + 0.8;
+    bad.forEach((p, i) => steps.push([T0 + i * 0.9, () => {
+      p.classList.add("fixed");
+      const left = bad.length - i - 1;
+      if (left) openN.textContent = left;
+      else root.classList.add("open");
+    }]));
+    sequence(root, steps, () => {
+      tw.forEach((t) => t.kill());
+      tw = [];
+      gsap.set(beam, { x: 0, opacity: 0 });
+      pages.forEach((p) => p.classList.remove("seen", "found", "fixed"));
+      root.classList.remove("open");
+      openN.textContent = bad.length;
+    });
   }
 
   // ---------------------------------------------------------------------------
@@ -402,39 +502,81 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 7. The last open item is settled; only then can the version be signed.
+  // 9. AI suggests; every suggestion stops at you. What you accept reaches the
+  //    PSMF, what you reject doesn't, and an accepted one can be pulled back out.
   // ---------------------------------------------------------------------------
-  function sign() {
-    const sp = $("#signPanel");
-    sequence(sp, [
-      [1.6, () => sp.classList.add("cleared")],
-      [2.7, () => sp.classList.add("press")],
-      [2.9, () => { sp.classList.remove("press"); sp.classList.add("signed"); }],
-    ], () => sp.classList.remove("cleared", "press", "signed"));
+  function gate() {
+    const root = $("#gate"), toks = $$(".tok", root), mark = $("#gMark"), page = $("#gPage"), lines = $$("i", page);
+    const node = $(".g-node", root), bar = $(".g-bar", root);
+    const lands = [lines[1], null, lines[3]];
+    if (reduce) { lines[1].classList.add("lit"); return; }
+    let tl = null;
+    const reset = () => {
+      toks.forEach((t) => { t.classList.remove("yes", "no", "undo"); gsap.set(t, { opacity: 0 }); });
+      lines.forEach((l) => l.classList.remove("lit"));
+      mark.className = "g-mark";
+    };
+    const build = () => {
+      const R = root.getBoundingClientRect();
+      const cx = (el) => { const r = el.getBoundingClientRect(); return r.left + r.width / 2 - R.left; };
+      const N = node.getBoundingClientRect();
+      const y = N.top + N.height / 2 - R.top;
+      const ax = cx(node), gx = cx(bar), px = cx(page);
+      tl = gsap.timeline({ repeat: -1, repeatDelay: 1.4, onRepeat: reset });
+      toks.forEach((t, i) => {
+        const w = t.offsetWidth, top = y - t.offsetHeight / 2, d = t.dataset.d;
+        tl.set(t, { x: ax - w / 2, y: top, opacity: 0, scale: 0.9 }, i * 2.6)
+          .to(t, { opacity: 1, scale: 1, duration: 0.3 }, ">")
+          .to(t, { x: gx - 14 - w, duration: 0.9, ease: "power2.inOut" }, ">")
+          .call(() => { mark.className = `g-mark ${d}`; t.classList.add(d); }, null, "+=0.15");
+        if (d === "yes") {
+          tl.to(t, { x: px - w / 2, duration: 0.8, ease: "power2.in" }, "+=0.35")
+            .to(t, { opacity: 0, scale: 0.6, duration: 0.25 }, "-=0.2")
+            .call(() => { lands[i].classList.add("lit"); mark.className = "g-mark"; }, null, "-=0.1");
+        } else {
+          tl.to(t, { y: top + 46, opacity: 0, duration: 0.6, ease: "power2.in" }, "+=0.45")
+            .call(() => { mark.className = "g-mark"; }, null, "<");
+        }
+      });
+      // Undo: the last accepted change comes back out of the PSMF.
+      const u = toks[2], uw = u.offsetWidth, ut = y - u.offsetHeight / 2;
+      tl.call(() => { lines[3].classList.remove("lit"); u.classList.remove("yes"); u.classList.add("undo"); }, null, "+=0.8")
+        .set(u, { x: px - uw / 2, y: ut, opacity: 0, scale: 0.6 }, "<")
+        .to(u, { opacity: 1, scale: 1, duration: 0.3 }, ">")
+        .to(u, { x: gx + 14, duration: 0.8, ease: "power2.inOut" }, ">")
+        .call(() => { mark.className = "g-mark undo"; }, null, ">")
+        .to(u, { opacity: 0, duration: 0.4 }, "+=0.7")
+        .call(() => { mark.className = "g-mark"; }, null, ">");
+    };
+    let running = false;
+    const stop = () => { if (tl) tl.kill(); tl = null; reset(); };
+    whileVisible(root, () => { running = true; build(); }, () => { running = false; stop(); });
+    let rw = root.clientWidth;
+    addEventListener("resize", () => { if (root.clientWidth !== rw) { rw = root.clientWidth; if (running) { stop(); build(); } } });
   }
 
   // ---------------------------------------------------------------------------
-  // 8. A year with Veria: scroll through the months; three revisions, one every
+  // 9. A year with Veria: scroll through the months; three revisions, one every
   //    four months, and nothing that turns into a project.
   // ---------------------------------------------------------------------------
   function year() {
     const MONTH_START = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
     const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const section = $("#year"), pin = $("#yearPin"), track = $("#track"), axis = $("#axis"), word = $("#monthWord");
-    const tSigned = $("#tSigned"), tProjects = $("#tProjects");
+    const tSigned = $("#tSigned");
     const DW = 9;
     const SEASON = ["#e5ebf1", "#e7ecf0", "#ebf0e9", "#ecf2e3", "#edf3e0", "#f3f1de", "#f6efdb", "#f6ebd8", "#f3e6d5", "#f0e0cf", "#e8e3dc", "#e3e8ee", "#e5ebf1"];
     const REVISIONS = [[31, 39], [151, 152], [273, 280]];
     const EVENTS = [
-      { day: 19, date: "20 January", title: "Quality updates a procedure", text: "SOP-PV-011 goes to version 5.0. Annex E follows the same day.", chip: "Annex E · logbook" },
-      { day: 31, date: "1–9 February", title: "Revision one", text: "Every owner gets their questions on the 1st. Most tap No change.", chip: "Version 4.1 signed", g: true, sign: 39, hi: true },
-      { day: 103, date: "14 April", title: "The vendor upgrades its database", text: "One question to the vendor. Section 4 and Annex D follow." },
-      { day: 151, date: "1–2 June", title: "Revision two", text: "A new deputy QPPV waits for your approval. You sign the next morning.", chip: "Version 4.2 signed", g: true, sign: 152, hi: true },
-      { day: 195, date: "15 July", title: "A new distributor signs", text: "Legal answers one question. Section 2, Annex B and the logbook follow.", chip: "In the draft" },
-      { day: 231, date: "August", title: "You're away", text: "Nothing piles up while you are.", hi: true },
-      { day: 273, date: "1–8 October", title: "Revision three", text: "Six procedure updates from the vendor go in on their own.", chip: "Version 4.3 signed", g: true, sign: 280, hi: true },
-      { day: 315, date: "12 November", title: "The inspectorate asks for your PSMF.", text: "They give you seven days. You send 4.3 that morning.", chip: "Sent 09:14", punch: true },
-      { day: 350, date: "December", title: "Year end", text: "Three versions, each signed when it was right. Nothing to catch up on.", hi: true },
+      { day: 19, date: "20 January", title: "Quality updates a procedure", text: "SOP-PV-011 goes to 5.0.", chip: "Annex E · logbook" },
+      { day: 31, date: "1–9 February", title: "Revision one", text: "Owners confirm their part.", chip: "Version 4.1 signed", g: true, sign: 39, hi: true },
+      { day: 103, date: "14 April", title: "The vendor upgrades its database", text: "Section 4 and Annex D follow." },
+      { day: 151, date: "1–2 June", title: "Revision two", text: "A new deputy QPPV waits for you.", chip: "Version 4.2 signed", g: true, sign: 152, hi: true },
+      { day: 195, date: "15 July", title: "A new distributor signs", text: "Section 2, Annex B and the logbook follow.", chip: "In the draft" },
+      { day: 231, date: "August", title: "You're away", text: "Nothing piles up.", hi: true },
+      { day: 273, date: "1–8 October", title: "Revision three", text: "Six vendor procedures go in on their own.", chip: "Version 4.3 signed", g: true, sign: 280, hi: true },
+      { day: 315, date: "12 November", title: "The inspectorate asks for your PSMF.", text: "Seven days to respond. You send 4.3 that morning.", chip: "Sent 09:14", punch: true },
+      { day: 350, date: "December", title: "Year end", text: "Three versions. Nothing to catch up on.", hi: true },
     ];
     track.style.width = axis.style.width = `${365 * DW}px`;
     MONTH_START.slice(0, 12).forEach((d, i) => {
@@ -486,7 +628,6 @@
         $("#tWord").textContent = s === 1 ? "version" : "versions";
         if (!reduce) gsap.fromTo(tSigned, { scale: 1.4 }, { scale: 1, duration: 0.6, ease: "back.out(3)" });
       }
-      tProjects.parentElement.style.color = REVISIONS.some(([a, b]) => d >= a - 2 && d <= b + 6) ? "var(--green)" : "";
     }
     const measure = () => {
       const r = section.getBoundingClientRect();
@@ -505,10 +646,10 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 9. The chores, struck off one by one; then what's still yours.
+  // 2. The chores, struck off one by one; then what's left.
   // ---------------------------------------------------------------------------
   function chores() {
-    const items = $$("#chores li"), left = $("#left");
+    const items = $$("#chores li"), punch = $("#punch");
     items.forEach((li) => {
       const s = svgEl("svg", { viewBox: "0 0 100 30", preserveAspectRatio: "none", "aria-hidden": "true" });
       const p = svgEl("path", { d: `M0 ${15 + rand(0, 4)} C 22 ${10 + rand(0, 8)}, 48 ${18 + rand(0, 6)}, 70 ${13 + rand(0, 4)} S 96 ${14 + rand(0, 6)}, 100 ${15 + rand(0, 3)}`, pathLength: 1 }, s);
@@ -518,150 +659,27 @@
     });
     const strike = (li) => { li.querySelector("path").style.transition = "stroke-dashoffset 0.55s ease"; li.querySelector("path").style.strokeDashoffset = 0; li.classList.add("done"); };
     const steps = items.map((li, i) => [0.25 + i * 0.4, () => strike(li)]);
-    steps.push([0.25 + items.length * 0.4 + 0.2, () => left.classList.add("in")]);
+    steps.push([0.25 + items.length * 0.4 + 0.3, () => punch.classList.add("in")]);
     sequence($("#chores"), steps, () => {
       items.forEach((li) => { const p = li.querySelector("path"); p.style.transition = "none"; p.style.strokeDashoffset = 1; li.classList.remove("done"); });
-      left.classList.remove("in");
+      punch.classList.remove("in");
     }, 0.5);
   }
 
   // ---------------------------------------------------------------------------
-  // 10. Systems feed Veria; Veria keeps the draft current. When two sources
-  //     disagree, the person who owns them gets one email.
-  // ---------------------------------------------------------------------------
-  function next() {
-    const nx = $("#nx"), svg = $("#nxSvg"), hub = $("#nxHub"), doc = $(".nx-doc", nx), count = $("#nxCount"), mail = $("#nxMail");
-    const sys = $$(".sys", nx);
-    let paths = [], out = null, timers = [], beat = 0, tw = [];
-    function build() {
-      svg.innerHTML = "";
-      const R = nx.getBoundingClientRect(), h = hub.getBoundingClientRect(), d = doc.getBoundingClientRect();
-      svg.setAttribute("viewBox", `0 0 ${R.width} ${R.height}`);
-      const hx = h.left - R.left, hy = h.top - R.top + h.height / 2;
-      paths = sys.map((s) => {
-        const r = s.getBoundingClientRect();
-        const x0 = r.right - R.left, y0 = r.top - R.top + r.height / 2, mx = (x0 + hx) / 2;
-        return svgEl("path", { d: `M${x0} ${y0}C${mx} ${y0} ${mx} ${hy} ${hx} ${hy}` }, svg);
-      });
-      const x1 = h.right - R.left, x2 = d.left - R.left, y2 = d.top - R.top + d.height / 2, m2 = (x1 + x2) / 2;
-      out = svgEl("path", { d: `M${x1} ${hy}C${m2} ${hy} ${m2} ${y2} ${x2} ${y2}` }, svg);
-      const m = mail.getBoundingClientRect();
-      if (m.bottom <= h.top) {
-        const hx2 = hx + h.width / 2;
-        svgEl("path", { d: `M${hx2} ${h.top - R.top}V${m.bottom - R.top}`, class: "mail-ln" }, svg);
-      }
-    }
-    const travel = (path, cls, dur, then) => {
-      const p0 = path.getPointAtLength(0);
-      const c = svgEl("circle", { r: 4, class: cls || "", cx: p0.x, cy: p0.y }, svg);
-      const len = path.getTotalLength(), st = { t: 0 };
-      tw.push(gsap.to(st, { t: 1, duration: dur, ease: "power1.inOut",
-        onUpdate: () => { const p = path.getPointAtLength(st.t * len); c.setAttribute("cx", p.x); c.setAttribute("cy", p.y); },
-        onComplete: () => { c.remove(); if (then) then(); } }));
-    };
-    const later = (ms, fn) => timers.push(setTimeout(fn, ms));
-    const toDoc = () => travel(out, "", 0.9, () => {
-      count.textContent = "Updated just now";
-      count.classList.add("busy");
-      later(1400, () => { count.textContent = "Up to date"; count.classList.remove("busy"); });
-    });
-    function tick() {
-      beat++;
-      if (beat % 4 === 0) {
-        // Two sources disagree.
-        [0, 2].forEach((i) => { sys[i].classList.add("warn"); travel(paths[i], "warn", 1.3); });
-        later(1300, () => { hub.classList.add("warn"); mail.classList.add("show"); svg.classList.add("mailing"); });
-        later(3600, () => mail.classList.add("answered"));
-        later(4500, () => {
-          hub.classList.remove("warn");
-          sys.forEach((s) => s.classList.remove("warn"));
-          mail.classList.remove("show");
-          svg.classList.remove("mailing");
-          toDoc();
-        });
-        later(5400, () => mail.classList.remove("answered"));
-        later(6600, tick);
-      } else {
-        const i = Math.floor(Math.random() * sys.length);
-        travel(paths[i], "", 1.2, toDoc);
-        later(2200, tick);
-      }
-    }
-    build();
-    addEventListener("resize", build);
-    if (reduce) { mail.classList.add("show", "answered"); svg.classList.add("mailing"); return; }
-    whileVisible(nx, () => { build(); later(500, tick); }, () => {
-      timers.forEach(clearTimeout);
-      timers = [];
-      tw.forEach((t) => t.kill());
-      tw = [];
-      svg.querySelectorAll("circle").forEach((c) => c.remove());
-      mail.classList.remove("show", "answered");
-      svg.classList.remove("mailing");
-      hub.classList.remove("warn");
-      sys.forEach((s) => s.classList.remove("warn"));
-    });
-  }
-
-  // ---------------------------------------------------------------------------
-  // 11. Trust: the audit trail keeps growing; the PSMF as of any date.
+  // 10. Trust: the claims, one after another, then the marks.
   // ---------------------------------------------------------------------------
   function trust() {
-    const log = $("#tvLog");
-    const NEW = [
-      ["Today", "M. Dahl", "no change: partners"], ["Today", "Veria", "drafted a logbook line"], ["Today", "I. Solberg", "CV uploaded"],
-      ["Today", "Veria", "held: version going down"], ["Today", "O. Bennett", "opened the redline"], ["Today", "A. Weber", "approved key person"],
-    ];
-    let n = 0, t = 0;
-    const add = () => {
-      const [when, who, what] = NEW[n++ % NEW.length];
-      const row = document.createElement("div");
-      row.className = "lg fresh";
-      row.innerHTML = `<span>${when}</span><b>${who}</b><em>${what}</em>`;
-      log.prepend(row);
-      if (log.children.length > 5) log.lastElementChild.remove();
-      if (!reduce) gsap.from(row, { height: 0, paddingTop: 0, paddingBottom: 0, opacity: 0, duration: 0.6, ease: "power2.out", clearProps: "all" });
-    };
-    if (!reduce) whileVisible(log, () => { t = setInterval(add, 3400); }, () => clearInterval(t));
-
-    // Versions in force, by date. Matches "A year with Veria".
-    const range = $("#dtRange"), dEl = $("#dtDate"), vEl = $("#dtVer");
-    const DAY = 864e5;
-    const start = Date.UTC(2025, 9, 1), end = Date.UTC(2026, 9, 16);
-    const VERS = [[Date.UTC(2025, 9, 14), "4.0"], [Date.UTC(2026, 1, 9), "4.1"], [Date.UTC(2026, 5, 2), "4.2"], [Date.UTC(2026, 9, 8), "4.3"]];
-    $$(".dt-rail i").forEach((tick, i) => { tick.style.left = `${((VERS[i][0] - start) / (end - start)) * 100}%`; });
-    const fmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-    const read = () => {
-      const ts = start + (range.value / 100) * (end - start);
-      const day = Math.floor(ts / DAY) * DAY;
-      const v = VERS.filter(([d]) => d <= day).pop();
-      dEl.textContent = fmt.format(day);
-      vEl.textContent = v ? `version ${v[1]}` : "before Veria";
-    };
-    range.value = ((Date.UTC(2026, 2, 12) - start) / (end - start)) * 100;
-    range.addEventListener("input", () => { touched = true; read(); });
-    read();
-    let touched = false;
-    if (!reduce) {
-      const st = { v: +range.value };
-      const sweep = gsap.to(st, { v: 96, duration: 9, ease: "sine.inOut", yoyo: true, repeat: -1, paused: true, onUpdate: () => { if (touched) { sweep.kill(); return; } range.value = st.v; read(); } });
-      whileVisible(range, () => { if (!touched) sweep.play(); }, () => sweep.pause());
+    const g = $("#ringDots");
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * Math.PI * 2;
+      svgEl("circle", { cx: 200 + 170 * Math.cos(a), cy: 200 + 170 * Math.sin(a), r: 3 }, g);
     }
-  }
-
-  // ---------------------------------------------------------------------------
-  // 12. 45 broken updates; every one stops at the gate.
-  // ---------------------------------------------------------------------------
-  function gate() {
-    const held = $("#gateHeld"), kinds = $$("#gateKinds span");
-    const dots = Array.from({ length: 45 }, () => { const i = document.createElement("i"); held.append(i); return i; });
-    let k = 0, t = 0;
-    const turn = () => { kinds.forEach((s, i) => s.classList.toggle("on", i === k)); k = (k + 1) % kinds.length; };
-    turn();
-    if (reduce) { gsap.set(dots, { opacity: 1 }); return; }
-    sequence(held, [[0, () => {
-      gsap.fromTo(dots, { y: () => -rand(60, 140), opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power2.in", stagger: { each: 0.07, from: "random" } });
-    }]], () => gsap.set(dots, { opacity: 0 }), 0.3);
-    whileVisible(held, () => { t = setInterval(turn, 1700); }, () => clearInterval(t));
+    const h = $("#trH"), badges = $("#badges");
+    $$(".bd", badges).forEach((b, i) => { b.style.transitionDelay = `${i * 0.07}s`; });
+    sequence(h.parentElement, [
+      [0.1, () => h.classList.add("in")],
+      [0.9, () => badges.classList.add("in")],
+    ], () => { h.classList.remove("in"); badges.classList.remove("in"); }, 0.3);
   }
 })();

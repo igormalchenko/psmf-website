@@ -3,6 +3,7 @@
 ## Homepage: raised, not settled
 The whole page is a working draft. On 17 October 2026 the owner agreed the outline (now in CLAUDE.md under "Page structure"), and every section was reworked on it in one pass. The owner's verdict: much better than before; the copy is fine for now. Items marked (Claude) are Claude's.
 
+- **`/v8/` to compare with the root page.** Built on 17 October 2026 from Claude's proposal of one visual verb per feature: `sources` converge (a hub of five source types around the draft), `everywhere` ripples (page thumbnails light up instead of the redline card), `catch` scans (the whole file as page thumbnails, problems pinned where they sit), `ai` is a gate (suggestions stop at you; one accepted, one rejected, one undone). The EMA finding is its own short beat before `catch`, and the EMA notice in `rules` is all blue. Waiting for the owner's look. (Claude)
 - **Feature screens look alike.** `everywhere`, `catch` and `ai` reuse the same redlined sentence, section numbers, chips and accept buttons (and `sources` the same rows), so different features read as one feature seen from different angles. Same design language, but each needs its own visual. (owner)
 - `catch`: the EMA report quote is a great idea in the wrong place. You can't read the feature and the proof at the same time, and the bigger "Top 3" made it worse. Move it out of `catch`. (owner)
 - `rules`: the EMA notice's bright blue band is hard on the eyes against the white card. The same blue in `trust` is fine. (owner)

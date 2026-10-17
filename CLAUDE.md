@@ -38,6 +38,7 @@ Why this matters: the owner has corrected it twice. On 16 October 2026: "this is
 ## The homepage
 - The root page (`index.html`, `v9.css`, `v9.js`) is the working draft. It was built as v9 on the page structure below. Earlier drafts are archived at `/v1/` to `/v8/` and listed at `/drafts/`.
 - Don't create new vN folders: git is the history. Make a snapshot folder only when the owner asks to compare two versions side by side.
+- `/v8/` is such a comparison (17 October 2026): the homepage with its own visual for each feature (`sources` as a hub, `everywhere` with page thumbnails, `catch` as a scan of the whole file, `ai` as a gate) and the EMA finding as its own beat (`proof`) before `catch`. What the owner keeps goes into the root page. The original v8 draft is in git history.
 - Sections by id, in page order, which is how the owner refers to them: `hero`, `stop`, `how`, `sources`, `everywhere`, `rules`, `catch`, `ai`, `year`, `trust`, `faq`, `demo`. Each has a numbered block in `v9.css` and its own function in `v9.js`.
 - The fictional story the page tells (versions, dates, which change went into which version) is in `PRODUCT.md` under the cast. Keep new examples consistent with it.
 - Checking in the desktop app's browser pane: when the pane is hidden, timers, animation frames and IntersectionObserver are throttled. To see an animated end state, pause `gsap.globalTimeline` and step it with `.time()`, or add the end-state classes by hand. After moving files, reload with a query string (`?fresh=1`) to skip the cache.
