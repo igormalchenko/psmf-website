@@ -93,107 +93,574 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 1. Hero: facts and file debris drift; the debris fades, the facts settle
-  //    into their rows of the PSMF.
+  // 1. Hero: the PSMF as a page in a shaft of light, in a dark room of drifting
+  //    dust, with a real depth of field. Facts fly in from their sources, come
+  //    into focus, turn dark as they cross onto the paper and become the page's
+  //    own text. File debris drifts up to the page and turns to dust at its edge.
   // ---------------------------------------------------------------------------
   function hero() {
-    const field = $("#field"), doc = $("#heroDoc"), status = $("#docStatus"), copy = $(".hero-copy");
-    const done = () => {
-      doc.classList.add("final");
-      $$(".row", doc).forEach((r) => r.classList.add("in"));
+    const section = $("#hero"), back = $("#heroBack"), front = $("#heroFront");
+    const paper = $("#heroPaper"), doc = $("#heroDoc"), status = $("#docStatus"), copy = $(".hero-copy");
+    const bx = back.getContext("2d"), fx = front.getContext("2d");
+    const shown = (el) => el.offsetParent !== null;
+    const finish = () => {
       status.classList.add("done");
       status.querySelector("span").textContent = "Checked · ready to sign";
     };
-    if (reduce) { done(); return; }
 
-    const FACTS = [
-      { k: "dist", src: "Legal", text: "New distributor: Nordvia AB" },
-      { k: "deputy", src: "HR", text: "Deputy EU QPPV: Ingrid Solberg" },
-      { k: "sop", src: "Vendor", text: "VP-SOP-029 replaces 031" },
-      { k: "qppv", src: "PSMF team", text: "EU QPPV: Anna Weber" },
-      { k: "figs", src: "PV team", text: "September figures" },
-      { k: "db", src: "Vendor", text: "Safety database 8.4" },
+    const SOURCES = { qppv: "HR", deputy: "HR", dist: "Legal", db: "Vendor", sop: "Vendor", figs: "PV team" };
+    const DEBRIS = [
+      "Annex_B_v3_FINAL (2).xlsx", "Re: Fwd: deputy QPPV?", "tracker_Q3.xlsx", "org_chart_old.pdf",
+      "PSMF_4.2_signed_scan.pdf", "Who owns Annex D?", "PSMF_draft_AW_edits.docx", "Re: Re: figures?",
+      "SOP list 2024.xlsx", "which version is current?", "copy of copy of Annex H.xlsx", "pls ignore previous email",
+      "final-final-v3.docx", "Out of office until 3 Nov", "312 tracked changes", "where is the signed copy?",
+      "Annex C (old).docx", "QPPV_CV_2019.pdf",
     ];
-    const NOISE = [
-      ["XLSX", "Annex_B_v3_FINAL (2)"], ["Mail", "Re: Fwd: deputy QPPV?"], ["XLSX", "tracker_Q3"],
-      ["PDF", "org_chart_old"], ["PDF", "PSMF_4.2_signed_scan"], ["Mail", "Who owns Annex D?"],
-      ["DOCX", "PSMF_draft_AW_edits"], ["Mail", "Re: Re: figures?"], ["XLSX", "SOP list 2024"],
-    ];
-    // On a phone there's no room around the page: no debris, and the facts
-    // come in from the edges of the screen.
-    const small = innerWidth < 640;
-    const noise = small ? [] : NOISE.slice(0, 7);
 
-    const rowOf = (k) => $(`.row[data-k="${k}"]`, doc);
-    const make = (cls, tag, text) => {
-      const c = document.createElement("div");
-      c.className = `chip ${cls}`;
-      c.innerHTML = `<b>${tag}</b>${text}`;
-      field.append(c);
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    const easeIO = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const smooth = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+    const pick = (a) => a[(Math.random() * a.length) | 0];
+
+    // --- Sprites: text pre-rendered sharp and at four blur levels -------------
+    const BLUR = [0, 1.5, 3.5, 7, 13];
+    const measure = document.createElement("canvas").getContext("2d");
+    function sprite(w, h, paint, color, sharpOnly) {
+      const sharp = document.createElement("canvas");
+      sharp.width = Math.ceil(w * 2); sharp.height = Math.ceil(h * 2);
+      const g = sharp.getContext("2d");
+      g.scale(2, 2);
+      paint(g);
+      const levels = [{ c: sharp, pad: 0 }];
+      if (!sharpOnly) BLUR.slice(1).forEach((b) => {
+        // Blur by casting the sprite's shadow from off-canvas: works in every browser.
+        const res = b < 5 ? 1 : 0.5, pad = Math.ceil(b * 2.5);
+        const c = document.createElement("canvas");
+        c.width = Math.ceil((w + pad * 2) * res); c.height = Math.ceil((h + pad * 2) * res);
+        const g2 = c.getContext("2d"), off = c.width + 40;
+        g2.shadowColor = color; g2.shadowBlur = b * 2 * res; g2.shadowOffsetX = off;
+        g2.drawImage(sharp, pad * res - off, pad * res, w * res, h * res);
+        levels.push({ c, pad });
+      });
+      return { w, h, levels };
+    }
+    // Draws a sprite anchored at (ax, ay), blurred by B sprite px.
+    function draw(g, s, ax, ay, x, y, k, rot, a, B) {
+      if (a < 0.004 || k <= 0) return;
+      const n = s.levels.length - 1;
+      let i = 0;
+      while (i < n && BLUR[i + 1] <= B) i++;
+      const j = Math.min(i + 1, n), t = j === i ? 0 : clamp((B - BLUR[i]) / (BLUR[j] - BLUR[i]));
+      if (B > BLUR[n]) a *= BLUR[n] / B;
+      const c = Math.cos(rot) * k * dpr, sn = Math.sin(rot) * k * dpr;
+      g.setTransform(c, sn, -sn, c, x * dpr, y * dpr);
+      for (const [L, w] of j === i ? [[i, 1]] : [[i, 1 - t], [j, t]]) {
+        if (w * a < 0.004) continue;
+        const { c: img, pad } = s.levels[L];
+        g.globalAlpha = Math.min(1, a * w);
+        g.drawImage(img, -ax - pad, -ay - pad, s.w + pad * 2, s.h + pad * 2);
+      }
+    }
+
+    const DF = 15;  // debris font size, sprite px
+    const debris = DEBRIS.map((text) => {
+      const font = `400 ${DF}px "Instrument Sans"`;
+      measure.font = font;
+      const w = Math.ceil(measure.measureText(text).width) + 4, h = Math.round(DF * 1.5);
+      const spr = sprite(w, h, (g) => { g.font = font; g.fillStyle = "#aea596"; g.textBaseline = "middle"; g.fillText(text, 2, h / 2); }, "#aea596");
+      return { spr, busy: false, pts: null };
+    });
+    // Points on a sprite's letters, for turning it into dust.
+    function letterPoints(s, n) {
+      const c = s.levels[0].c, { data, width, height } = c.getContext("2d").getImageData(0, 0, c.width, c.height);
+      const pts = [];
+      for (let y = 0; y < height; y += 2) for (let x = 0; x < width; x += 2) {
+        if (data[(y * width + x) * 4 + 3] > 110) pts.push([x / 2 - s.w / 2, y / 2 - s.h / 2]);
+      }
+      for (let i = pts.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [pts[i], pts[j]] = [pts[j], pts[i]]; }
+      return pts.slice(0, n);
+    }
+
+    const VF = 24, LF = 11.5, LH = 21;  // fact value font, label font, label line (sprite px)
+    const facts = $$(".row", doc).filter((r) => SOURCES[r.dataset.k]).map((row) => ({ row, v: $(".v", row), src: SOURCES[row.dataset.k], key: "" }));
+    // A fact's value in the lines the page wraps it into, so it lands exactly on its text.
+    function lettering(F) {
+      const cs = getComputedStyle(F.v), size = parseFloat(cs.fontSize), lh = (parseFloat(cs.lineHeight) / size) * VF;
+      measure.font = `400 ${size}px Newsreader`;
+      const max = F.v.parentElement.clientWidth + 0.5, lines = [];
+      let line = "";
+      for (const word of F.v.textContent.split(" ")) {
+        const next = line ? `${line} ${word}` : word;
+        if (line && measure.measureText(next).width > max) { lines.push(line); line = word; } else line = next;
+      }
+      lines.push(line);
+      if (lines.join("|") === F.key) return;
+      F.key = lines.join("|");
+      const vfont = `400 ${VF}px Newsreader`, lfont = `600 ${LF}px "Instrument Sans"`, label = F.src.toUpperCase();
+      measure.font = vfont;
+      const vw = Math.max(...lines.map((l) => measure.measureText(l).width));
+      measure.font = lfont;
+      const lw = measure.measureText(label).width + label.length * 1.6;
+      const w = Math.ceil(Math.max(vw, lw)) + 6, h = Math.ceil(LH + lh * lines.length + 4);
+      const paint = (withLabel, color) => (g) => {
+        if (withLabel) {
+          g.font = lfont; g.fillStyle = "#6cc9ff"; g.textBaseline = "top";
+          if ("letterSpacing" in g) g.letterSpacing = "1.6px";
+          g.fillText(label, 2, 2);
+          if ("letterSpacing" in g) g.letterSpacing = "0px";
+        }
+        g.font = vfont; g.fillStyle = color; g.textBaseline = "middle";
+        lines.forEach((l, i) => g.fillText(l, 2, LH + lh * (i + 0.5)));
+      };
+      F.lit = sprite(w, h, paint(true, "#f8f5ef"), "#e6ecf2");
+      F.glow = sprite(w, h, paint(true, "#3fb4ff"), "#3fb4ff");
+      F.ink = sprite(w, h, paint(false, "#15181d"), "#15181d", true);
+      F.ax = 2; F.ay = LH + lh / 2;
+    }
+
+    // Soft discs for dust out of focus, lit and unlit.
+    const disc = (r, g, b) => {
+      const c = document.createElement("canvas");
+      c.width = c.height = 64;
+      const x = c.getContext("2d"), gr = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+      gr.addColorStop(0, `rgba(${r},${g},${b},1)`); gr.addColorStop(0.55, `rgba(${r},${g},${b},0.85)`);
+      gr.addColorStop(0.8, `rgba(${r},${g},${b},0.35)`); gr.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      x.fillStyle = gr; x.fillRect(0, 0, 64, 64);
       return c;
     };
-    const facts = FACTS.map((f) => ({ ...f, el: make("fact", f.src, f.text) }));
-    const debris = noise.map(([t, n]) => make("noise", t, n));
+    const DISC_W = disc(255, 230, 200), DISC_C = disc(150, 185, 220);
 
-    // Scatter, keeping clear of the headline and of each other.
-    const F = field.getBoundingClientRect();
-    const rectOf = (el, pad) => { const r = el.getBoundingClientRect(); return { l: r.left - F.left - pad, t: r.top - F.top - pad, r: r.right - F.left + pad, b: r.bottom - F.top + pad }; };
-    const keepOut = [rectOf(copy, 16), rectOf(doc, 8)];
-    const placed = [];
-    const hit = (a, b) => a.l < b.r && a.r > b.l && a.t < b.b && a.b > b.t;
-    // Chips may hang off the left and right edges, as if drifting in from outside.
-    const place = (el, depth) => {
-      const w = el.offsetWidth, h = el.offsetHeight;
-      let best = null;
-      for (let i = 0; i < 300; i++) {
-        const x = rand(-w * 0.3, F.width - w * 0.7), y = rand(72, Math.max(73, F.height - h - 12));
-        const box = { l: x - 12, t: y - 10, r: x + w + 12, b: y + h + 10 };
-        if (keepOut.some((k) => hit(box, k))) continue;
-        if (!best) best = { x, y };
-        if (!placed.some((p) => hit(box, p))) { best = { x, y }; placed.push(box); break; }
+    // Smoke: a tileable cloud, seen only where the light is.
+    const cloud = (() => {
+      const n = 128, c = document.createElement("canvas");
+      c.width = c.height = n;
+      const g = c.getContext("2d"), img = g.createImageData(n, n);
+      const octave = (cells) => {
+        const v = Array.from({ length: cells * cells }, () => Math.random());
+        return (x, y) => {
+          const fx = (x / n) * cells, fy = (y / n) * cells, x0 = Math.floor(fx), y0 = Math.floor(fy);
+          const tx = fx - x0, ty = fy - y0, sx = tx * tx * (3 - 2 * tx), sy = ty * ty * (3 - 2 * ty);
+          const at = (i, j) => v[((j % cells) * cells) + (i % cells)];
+          return lerp(lerp(at(x0, y0), at(x0 + 1, y0), sx), lerp(at(x0, y0 + 1), at(x0 + 1, y0 + 1), sx), sy);
+        };
+      };
+      const o = [[octave(4), 0.55], [octave(8), 0.3], [octave(16), 0.15]];
+      for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+        const v = o.reduce((a, [fn, w]) => a + fn(x, y) * w, 0), i = (y * n + x) * 4;
+        img.data[i] = 255; img.data[i + 1] = 228; img.data[i + 2] = 196; img.data[i + 3] = 255 * smooth(0.3, 0.8, v);
       }
-      if (!best) best = { x: rand(0, F.width - w), y: rand(F.height * 0.8, F.height - h) };
-      gsap.set(el, { x: best.x, y: best.y, scale: 0.8 + 0.28 * depth, opacity: 0, rotation: rand(-4, 4), filter: depth < 0.4 ? `blur(${(0.4 - depth) * 4}px)` : "none" });
-      gsap.to(el, { opacity: 0.35 + 0.65 * depth, duration: 1.2, delay: rand(0, 0.6) });
-      return gsap.to(el, { x: best.x + rand(-18, 18), y: best.y + rand(-12, 12), rotation: rand(-3, 3), duration: rand(4.5, 7.5), ease: "sine.inOut", yoyo: true, repeat: -1 });
+      g.putImageData(img, 0, 0);
+      return c;
+    })();
+    const smoke = document.createElement("canvas"), sm = smoke.getContext("2d");
+
+    // --- Layout and the light --------------------------------------------------
+    // World: x right, y down, z away from the camera. The page sits at z = f,
+    // where one world unit is one screen pixel; the camera orbits around it.
+    let W = 0, H = 0, dpr = 1, f = 1, VX = 0, VY = 0, small = false, fit = 1;
+    let page = null, copyBox = null, S = null;
+    const atmo = document.createElement("canvas"), shaft = document.createElement("canvas"), mask = document.createElement("canvas");
+    const rel = (el) => {
+      const s = section.getBoundingClientRect(), r = el.getBoundingClientRect();
+      return { l: r.left - s.left, t: r.top - s.top, r: r.right - s.left, b: r.bottom - s.top, w: r.width, h: r.height };
     };
-    if (small) {
-      facts.forEach((f, i) => {
-        const r = rowOf(f.k).getBoundingClientRect();
-        const left = i % 2 === 0, w = f.el.offsetWidth;
-        gsap.set(f.el, { x: left ? -w * 0.7 : F.width - w * 0.3, y: r.top - F.top + rand(-90, 40), rotation: rand(-4, 4), opacity: 0 });
-        f.drift = gsap.to(f.el, { y: "+=8", duration: 3, yoyo: true, repeat: -1, ease: "sine.inOut" });
+    // The shaft, in screen space at the page's depth: 0 to 1.
+    function shaftAt(x, y) {
+      const px = x - S.x0, py = y - S.y0;
+      const t = (px * S.dx + py * S.dy) / S.len, d = px * S.dy - py * S.dx;
+      const w = S.w0 + (S.w1 - S.w0) * t, e = (d * d) / (w * w);
+      return Math.exp(-e * e) * smooth(-0.2, 0.5, t) * (1 - smooth(0.95, 1.55, t));
+    }
+    // Rays: brighter and darker streaks fanning out from the source.
+    const raysAt = (x, y) => {
+      const a = Math.atan2(x - S.x0, y - S.y0) * 40;
+      const r = 0.45 * Math.sin(a * 0.71 + 1.1) + 0.3 * Math.sin(a * 1.93 + 4.2) + 0.25 * Math.sin(a * 4.37 + 2.6);
+      return 0.72 + 0.28 * r * Math.abs(r);
+    };
+    const poolAt = (x, y) => {
+      const dx = (x - page.cx) / (page.w * 0.95), dy = (y - page.cy) / (page.h * 0.8);
+      return Math.exp(-(dx * dx + dy * dy));
+    };
+    const copyAt = (x, y, feather) => {
+      const dx = Math.max(copyBox.l - x, 0, x - copyBox.r), dy = Math.max(copyBox.t - y, 0, y - copyBox.b);
+      return 1 - smooth(0, feather, Math.hypot(dx, dy));
+    };
+    function bake() {
+      const q = 0.25, w = Math.ceil(W * q), h = Math.ceil(H * q), R = Math.max(W, H);
+      [atmo, shaft, mask, smoke].forEach((c) => { c.width = w; c.height = h; });
+      const A = atmo.getContext("2d").createImageData(w, h), L = shaft.getContext("2d").createImageData(w, h), M = mask.getContext("2d").createImageData(w, h);
+      for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
+        const x = (i + 0.5) / q, y = (j + 0.5) / q, o = (j * w + i) * 4;
+        const dx = (x - page.cx) / R, dy = (y - page.cy) / R, haze = Math.exp(-(dx * dx + dy * dy) * 6);
+        const vx = x / W - 0.5, vy = y / H - 0.5, vig = 1 - Math.min(1, (vx * vx + vy * vy) * 1.5);
+        const k = (0.5 + 0.5 * vig) * (1 - 0.45 * copyAt(x, y, 160));
+        A.data[o] = (3 + 9 * haze) * k; A.data[o + 1] = (5 + 17 * haze) * k; A.data[o + 2] = (8 + 30 * haze) * k; A.data[o + 3] = 255;
+        const s = 0.2 * shaftAt(x, y) * raysAt(x, y) + 0.07 * poolAt(x, y);
+        L.data[o] = 255; L.data[o + 1] = 228; L.data[o + 2] = 196; L.data[o + 3] = Math.min(255, s * 255);
+        M.data[o + 3] = 200 * copyAt(x, y, 70);
+      }
+      atmo.getContext("2d").putImageData(A, 0, 0);
+      shaft.getContext("2d").putImageData(L, 0, 0);
+      mask.getContext("2d").putImageData(M, 0, 0);
+    }
+    // The page turns with the camera and floats a little; on short screens it's
+    // a little smaller, so the room around it stays.
+    const pose = () => {
+      paper.style.transform = `scale(${fit}) rotateY(${((small ? -3 : -7) + cam.x * 0.09).toFixed(2)}deg) rotateX(${(2.5 - cam.y * 0.08).toFixed(2)}deg) translate3d(0, ${(Math.sin(T * 0.42) * 4).toFixed(2)}px, 0)`;
+      paper.style.setProperty("--sheen", `${(cam.x * 0.5).toFixed(1)}%`);
+    };
+    function layout() {
+      W = section.clientWidth; H = section.clientHeight;
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      small = W < 640;
+      fit = small ? 1 : clamp((innerHeight - 190) / 620, 0.8, 1);
+      pose();
+      [back, front].forEach((c) => { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); });
+      page = rel(doc);
+      page.cx = (page.l + page.r) / 2; page.cy = (page.t + page.b) / 2;
+      copyBox = rel(copy);
+      VX = page.cx; VY = page.cy;
+      f = Math.max(W, H) * 0.95;
+      // The light falls from above, a little from the right.
+      const x0 = small ? W * 1.05 : page.cx + W * 0.14, y0 = small ? page.t - H * 0.55 : -H * 0.45;
+      const tx = page.cx, ty = page.t + page.h * 0.3, len = Math.hypot(tx - x0, ty - y0);
+      S = { x0, y0, dx: (tx - x0) / len, dy: (ty - y0) / len, len, w0: page.w * 0.14, w1: page.w * 0.62 };
+      bake();
+    }
+
+    // --- Dust ------------------------------------------------------------------
+    const ZN = 0.16, ZF = 5.5;
+    let dust = [];
+    function seed(m, far) {
+      const near = !far && Math.random() < 0.3;
+      m.z = (far ? lerp(0.8, 1, Math.random()) * ZF : near ? lerp(0.6, 1.7, Math.random()) : ZN + (ZF - ZN) * Math.pow(Math.random(), 0.8)) * f;
+      // A good share of it starts in the light, where it shows.
+      const inLight = Math.random() < 0.4;
+      for (let i = 0; i < 30; i++) {
+        m.x = (lerp(-0.1, 1.1, Math.random()) * W - VX) * m.z / f;
+        m.y = (lerp(-0.1, 1.1, Math.random()) * H - VY) * m.z / f;
+        if (!inLight || shaftAt(VX + m.x, VY + m.y) > 0.35) break;
+      }
+      m.vx = rand(-3, 3); m.vy = rand(-3, 2); m.vz = rand(-6, 4);
+      m.s = rand(0.6, 1.7); m.w = rand(0.4, 1.4); m.ph = rand(0, 6.3);
+      m.age = far ? 0 : 1;
+    }
+    const lightAt = (x, y, z) => {
+      const dz = (z - f) / (f * 0.45);
+      return Math.min(1, shaftAt(VX + x, VY + y) * raysAt(VX + x, VY + y) * 1.2 + 0.5 * poolAt(VX + x, VY + y) * Math.exp(-dz * dz));
+    };
+
+    // --- Debris: drifts up to the page's edge and turns to dust, or drifts past --
+    const flights = [], motes = [];
+    // Debris starts far off, clear of the headline.
+    const startPoint = () => (small ? [rand(-0.15, 1.15) * W, rand(copyBox.b, H + 80)] : [rand(copyBox.r + 60, W + 120), rand(-0.1, 1.1) * H]);
+    function edgePoint(s) {
+      const m = rand(12, 150), gap = page.l - copyBox.r;
+      const room = page.t - s.h - 110;  // above the page, below the nav
+      const sides = small ? ["l", "r", "b"] : ["r", "r", "b", "b"].concat(room > 20 ? ["t", "t"] : [], gap > s.w + 60 ? ["l"] : []);
+      const side = pick(sides);
+      if (side === "r") return [page.r + m + s.w / 2, rand(page.t + 20, page.b - 20)];
+      if (side === "l") return [page.l - Math.min(m, gap - s.w - 40) - s.w / 2, rand(page.t + 20, page.b - 20)];
+      const x = rand(page.l + s.w * 0.3, page.r - s.w * 0.3);
+      return side === "t" ? [x, page.t - Math.min(m, room) - s.h / 2] : [x, page.b + m + s.h / 2];
+    }
+    function passPoint() {
+      const r = Math.random();
+      if (small) return r < 0.5 ? [rand(-0.6, 1.6) * W, H + rand(150, 400)] : [r < 0.75 ? -rand(200, 500) : W + rand(200, 500), rand(0.4, 1.3) * H];
+      if (r < 0.5) return [W + rand(150, 500), rand(-0.3, 1.3) * H];
+      return [rand(0.62, 1.2) * W, r < 0.75 ? -rand(150, 400) : H + rand(150, 400)];
+    }
+    const toWorld = ([x, y], z) => [(x - VX) * z / f, (y - VY) * z / f];
+    const turning = () => flights.filter((fl) => fl.turn).length;
+    function launch(d, p0 = 0, turn = turning() < (small ? 2 : 4) && Math.random() < 0.6) {
+      const z0 = rand(3.2, 5.6) * f, z1 = turn ? rand(0.92, 1.4) * f : rand(0.24, 0.4) * f;
+      const [x0, y0] = toWorld(startPoint(), z0), [x1, y1] = toWorld(turn ? edgePoint(d.spr) : passPoint(), z1);
+      const fl = { d, turn, x0, y0, z0, x1, y1, z1, dur: turn ? rand(9, 13) : rand(12, 17), ph: rand(0, 6.3), r0: rand(-0.14, 0.14), r1: rand(-0.04, 0.04), state: "fly" };
+      fl.t = p0 * fl.dur;
+      d.busy = true;
+      moveFlight(fl);
+      flights.push(fl);
+    }
+    function moveFlight(fl) {
+      const p = clamp(fl.t / fl.dur), u = fl.turn ? easeOut(p) : p;
+      const settle = fl.turn ? 1 - smooth(0.75, 1, p) : 1;
+      fl.z = lerp(fl.z0, fl.z1, u);
+      fl.x = lerp(fl.x0, fl.x1, u) + Math.sin(T * 0.5 + fl.ph) * 10 * (fl.z / f) * settle;
+      fl.y = lerp(fl.y0, fl.y1, u) + Math.cos(T * 0.37 + fl.ph) * 7 * (fl.z / f) * settle;
+      fl.rot = lerp(fl.r0, fl.r1, u) + Math.sin(T * 0.3 + fl.ph) * 0.03 * settle;
+      const fog = clamp((ZF * f - fl.z) / (1.4 * f));
+      fl.a = 0.72 * fog * smooth(0, 0.12, p) * (fl.turn ? 1 : clamp((fl.z - fl.z1) / (0.2 * f)));
+    }
+    // The letters break up from the side nearest the page and drift away as dust.
+    function dissolve(fl) {
+      const s = fl.d.spr;
+      fl.d.pts = fl.d.pts || letterPoints(s, small ? 160 : 240);
+      const k = f / fl.z, sx = VX + (fl.x - cam.x) * k + cam.x, sy = VY + (fl.y - cam.y) * k + cam.y;
+      let ux = sx - page.cx, uy = sy - page.cy;
+      const ul = Math.hypot(ux, uy) || 1;
+      ux /= ul; uy /= ul;
+      const c = Math.cos(fl.rot), sn = Math.sin(fl.rot);
+      fl.dir = Math.atan2(uy, ux) - fl.rot;
+      const proj = fl.d.pts.map(([u, v]) => u * Math.cos(fl.dir) + v * Math.sin(fl.dir));
+      fl.pmin = Math.min(...proj); fl.pmax = Math.max(...proj);
+      fl.d.pts.forEach(([u, v], i) => {
+        const at = (proj[i] - fl.pmin) / (fl.pmax - fl.pmin || 1);
+        motes.push({
+          x: sx + (u * c - v * sn) * k, y: sy + (u * sn + v * c) * k,
+          vx: ux * rand(6, 26) + rand(-5, 5), vy: uy * rand(6, 26) + rand(-14, -1),
+          delay: at * 0.9 + rand(0, 0.12), age: 0, life: rand(1.8, 3.4), a: fl.a, s: rand(0.8, 1.5),
+        });
       });
-    } else facts.forEach((f) => { f.drift = place(f.el, rand(0.7, 1)); });
-    debris.forEach((el) => { el.drift = place(el, rand(0.1, 0.6)); });
+      fl.state = "dust";
+      fl.st = 0;
+    }
 
-    const land = (row) => {
-      row.classList.add("in", "lit");
-      setTimeout(() => row.classList.remove("lit"), 900);
-    };
+    // --- Facts: fly in from their source and become the page's text -------------
+    const landing = [];
+    // They come out of the dark above, below or beside the page, swing round
+    // its right edge and slide onto their row.
+    function fly(F) {
+      lettering(F);
+      const target = rel(F.v), x0 = Math.max(page.l + page.w * 0.3, copyBox.r + 60);
+      const bands = small ? [[W * 0.2, W + 60, page.b + 20, H + 120]] : [
+        [x0, W - 40, 70, page.t - 50], [x0, W - 40, page.b + 50, H - 30],
+      ].concat(W - page.r > 200 ? [[page.r + 80, W - 40, page.t, page.b]] : []).filter((b) => b[1] > b[0] && b[3] > b[2]);
+      const [l, r, t, b] = bands.length ? pick(bands) : [W * 0.6, W, 0, H * 0.2];
+      const s0 = [rand(l, r), rand(t, b)];
+      const z0 = rand(2.6, 3.6) * f;
+      const P0 = [...toWorld(s0, z0), z0];
+      const side = Math.min(page.r + 70 + rand(0, 50), W - 30);
+      const out = s0[1] < page.cy ? -1 : 1;
+      const s1 = [lerp(s0[0], side, 0.6) + 60, lerp(s0[1], target.t, 0.45) + out * 50];
+      const P1 = [...toWorld(s1, 1.8 * f), 1.8 * f];
+      landing.push({ F, P0, P1, side, t: 0, dur: small ? 2.2 : 2.6, hold: 0, done: false });
+    }
+    const bez = (a, b, c, d, t) => { const u = 1 - t; return u * u * u * a + 3 * u * u * t * b + 3 * u * t * t * c + t * t * t * d; };
 
-    const tl = gsap.timeline({ delay: small ? 0.8 : 2.2 });
-    debris.forEach((el, i) => tl.add(() => el.drift.kill(), 0).to(el, { opacity: 0, scale: 0.85, filter: "blur(6px)", duration: 1.4, ease: "power1.in" }, i * 0.12));
-    facts.forEach((f, i) => {
-      const t = 0.5 + i * 0.42;
-      tl.add(() => {
-        f.drift.kill();
-        const Fr = field.getBoundingClientRect();
-        const r = rowOf(f.k).querySelector("dd").getBoundingClientRect();
-        const tx = r.left - Fr.left - 10, ty = r.top - Fr.top + r.height / 2 - f.el.offsetHeight / 2;
-        gsap.to(f.el, { x: tx, duration: 1.15, ease: "power2.inOut" });
-        gsap.to(f.el, { y: ty, duration: 1.15, ease: "power3.in" });
-        gsap.to(f.el, { rotation: 0, scale: 0.92, opacity: 1, filter: "none", duration: 0.9 });
-        gsap.to(f.el, { opacity: 0, scale: 0.86, duration: 0.35, delay: 1.1, onStart: () => land(rowOf(f.k)), onComplete: () => f.el.remove() });
-      }, t);
+    // --- Time, camera and the loop ---------------------------------------------
+    let T = 0, last = 0, running = false;
+    const cam = { x: 0, y: 0 }, mouse = { x: 0, y: 0, sx: 0, sy: 0 };
+    addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse") return;
+      mouse.x = (e.clientX / innerWidth) * 2 - 1; mouse.y = (e.clientY / innerHeight) * 2 - 1;
+    }, { passive: true });
+    const queue = [];
+    const at = (t, fn) => queue.push({ t, fn });
+    function refresh() {
+      const list = facts.filter((F) => shown(F.row) && !landing.some((l) => l.F === F));
+      if (list.length) fly(pick(list));
+      at(T + rand(7, 11), refresh);
+    }
+
+    function step(dt) {
+      mouse.sx += (mouse.x - mouse.sx) * Math.min(1, dt * 2);
+      mouse.sy += (mouse.y - mouse.sy) * Math.min(1, dt * 2);
+      cam.x = Math.sin(T * 0.06) * 16 + mouse.sx * 34;
+      cam.y = Math.cos(T * 0.045) * 9 + mouse.sy * 18;
+      pose();
+
+      for (let i = queue.length - 1; i >= 0; i--) if (queue[i].t <= T) { const q = queue.splice(i, 1)[0]; q.fn(); }
+
+      for (const m of dust) {
+        m.x += (m.vx + Math.sin(m.y * 0.003 + T * 0.12 + m.ph) * 5) * dt;
+        m.y += (m.vy - 4) * dt;
+        m.z += (m.vz - 10) * dt;
+        m.age = Math.min(1, m.age + dt * 0.4);
+        const k = f / m.z, sx = VX + m.x * k, sy = VY + m.y * k;
+        if (m.z < ZN * f || sx < -0.2 * W || sx > 1.2 * W || sy < -0.2 * H || sy > 1.2 * H) seed(m, true);
+      }
+
+      for (let i = flights.length - 1; i >= 0; i--) {
+        const fl = flights[i];
+        if (fl.state === "fly") {
+          fl.t += dt;
+          moveFlight(fl);
+          if (fl.t >= fl.dur) { if (fl.turn) dissolve(fl); else { flights.splice(i, 1); fl.d.busy = false; } }
+        } else {
+          fl.st += dt;
+          if (fl.st > 1.4) { flights.splice(i, 1); fl.d.busy = false; }
+        }
+      }
+      const want = small ? 5 : 10;
+      if (flights.length < want && Math.random() < dt * 1.2) {
+        const idle = debris.filter((d) => !d.busy);
+        if (idle.length) launch(pick(idle));
+      }
+      for (let i = motes.length - 1; i >= 0; i--) {
+        const p = motes[i];
+        if (p.delay > 0) { p.delay -= dt; continue; }
+        p.age += dt;
+        if (p.age > p.life) { motes.splice(i, 1); continue; }
+        const damp = Math.exp(-dt * 0.7);
+        p.vx *= damp; p.vy = p.vy * damp - 3 * dt;
+        p.x += p.vx * dt; p.y += p.vy * dt;
+      }
+
+      for (let i = landing.length - 1; i >= 0; i--) {
+        const l = landing[i];
+        if (!l.done) {
+          l.t += dt;
+          if (l.t >= l.dur) {
+            l.done = true;
+            l.F.row.classList.add("in", "lit");
+            setTimeout(() => l.F.row.classList.remove("lit"), 900);
+          }
+        } else if ((l.hold += dt) > 0.5) landing.splice(i, 1);
+      }
+    }
+
+    function render() {
+      const Wd = back.width, Hd = back.height;
+      const intro = smooth(0, 3, T), zoff = f * 1.3 * (1 - easeOut(clamp(T / 5)));
+      bx.setTransform(1, 0, 0, 1, 0, 0);
+      bx.globalAlpha = 1; bx.globalCompositeOperation = "source-over";
+      bx.drawImage(atmo, 0, 0, Wd, Hd);
+      bx.globalCompositeOperation = "lighter";
+      bx.globalAlpha = intro * (0.72 + 0.12 * Math.sin(T * 0.31));
+      bx.drawImage(shaft, 0, 0, Wd, Hd);
+      // Smoke drifting through the light: two layers of cloud, multiplied, masked by the shaft
+      const pat = sm.createPattern(cloud, "repeat");
+      sm.globalCompositeOperation = "copy";
+      sm.setTransform(1.3, 0, 0, 1.3, -T * 2.2, T * 1.1);
+      sm.fillStyle = pat; sm.fillRect(T * 2.2 / 1.3 - 10, -T * 1.1 / 1.3 - 10, smoke.width / 1.3 + 20, smoke.height / 1.3 + 20);
+      sm.globalCompositeOperation = "destination-in";
+      sm.setTransform(0.8, 0, 0, 0.8, T * 1.6 + 40, -T * 0.9);
+      sm.fillRect(-T * 1.6 / 0.8 - 60, T * 0.9 / 0.8 - 10, smoke.width / 0.8 + 80, smoke.height / 0.8 + 20);
+      sm.setTransform(1, 0, 0, 1, 0, 0);
+      sm.drawImage(shaft, 0, 0);
+      bx.globalAlpha = intro;
+      bx.drawImage(smoke, 0, 0, Wd, Hd);
+      bx.globalCompositeOperation = "source-over";
+      fx.setTransform(1, 0, 0, 1, 0, 0);
+      fx.clearRect(0, 0, Wd, Hd);
+
+      // Dust, lit where it crosses the light
+      for (const m of dust) {
+        const z = m.z + zoff, k = f / z;
+        const sx = VX + (m.x - cam.x) * k + cam.x, sy = VY + (m.y - cam.y) * k + cam.y;
+        if (sx < -40 || sx > W + 40 || sy < -40 || sy > H + 40) continue;
+        const L = lightAt(m.x, m.y, m.z);
+        let a = intro * m.age * clamp((ZF * f - z) / (1.6 * f)) * (0.09 + 0.91 * L) * (0.6 + 0.4 * Math.sin(T * m.w + m.ph));
+        if (a < 0.01) continue;
+        const g = z < f ? fx : bx, size = m.s * k * (1 + 0.8 * L), blur = 4 * Math.abs(z - f) / z, r = Math.max(size, blur);
+        if (r < 1.2) {
+          const px = Math.max(size, 0.8);
+          g.globalAlpha = Math.min(1, a * Math.min(1, size / 0.8 + 0.25));
+          g.fillStyle = L > 0.3 ? "#ffe9cf" : "#a8c3dc";
+          g.fillRect(sx * dpr, sy * dpr, px * dpr, px * dpr);
+        } else {
+          g.globalAlpha = Math.min(1, a * Math.min(1, 1.7 / r));
+          g.drawImage(L > 0.3 ? DISC_W : DISC_C, (sx - r) * dpr, (sy - r) * dpr, r * 2 * dpr, r * 2 * dpr);
+        }
+      }
+
+      // Debris, far to near
+      flights.sort((a, b) => b.z - a.z);
+      for (const fl of flights) {
+        const s = fl.d.spr, k = f / fl.z;
+        const sx = VX + (fl.x - cam.x) * k + cam.x, sy = VY + (fl.y - cam.y) * k + cam.y;
+        const B = (10 * Math.abs(fl.z - f) / fl.z) / k;
+        const g = fl.state === "fly" && fl.z < f * 0.995 ? fx : bx;
+        if (fl.state === "fly") { draw(g, s, s.w / 2, s.h / 2, sx, sy, k, fl.rot, fl.a, B); continue; }
+        // What's left of the word, behind the edge that's turning to dust
+        const thr = lerp(fl.pmin, fl.pmax, clamp(fl.st / 0.95));
+        bx.save();
+        const c = Math.cos(fl.rot) * k * dpr, sn = Math.sin(fl.rot) * k * dpr;
+        bx.setTransform(c, sn, -sn, c, sx * dpr, sy * dpr);
+        bx.rotate(fl.dir);
+        bx.beginPath(); bx.rect(thr, -s.w * 2, s.w * 4, s.w * 4); bx.clip();
+        bx.rotate(-fl.dir);
+        draw(bx, s, s.w / 2, s.h / 2, sx, sy, k, fl.rot, fl.a * (1 - smooth(0.6, 1.1, fl.st)), 0);
+        bx.restore();
+      }
+      bx.setTransform(1, 0, 0, 1, 0, 0);
+      bx.fillStyle = "#d9d0c2";
+      for (const p of motes) {
+        if (p.delay > 0) continue;
+        const life = p.age / p.life;
+        bx.globalAlpha = p.a * 0.9 * (1 - life * life) * smooth(0, 0.08, p.age);
+        bx.fillRect(p.x * dpr, p.y * dpr, p.s * dpr, p.s * dpr);
+      }
+
+      // Nothing passes in front of the paper: dust there reads as holes in its text
+      const pg = rel(doc);
+      fx.setTransform(1, 0, 0, 1, 0, 0);
+      fx.clearRect(pg.l * dpr, pg.t * dpr, pg.w * dpr, pg.h * dpr);
+
+      // Facts: light over the dark, ink once they're on the paper
+      for (const l of landing) {
+        const F = l.F, sr = section.getBoundingClientRect(), tg = F.v.getClientRects()[0];
+        const tx = tg.left - sr.left, ty = tg.top - sr.top + tg.height / 2;
+        const P3 = [tx - VX, ty - VY, f], P2 = [l.side - VX, ty - VY + 6, 0.92 * f];
+        const p = l.done ? 1 : easeIO(clamp(l.t / l.dur));
+        const x = bez(l.P0[0], l.P1[0], P2[0], P3[0], p), y = bez(l.P0[1], l.P1[1], P2[1], P3[1], p), z = bez(l.P0[2], l.P1[2], P2[2], P3[2], p);
+        const kz = f / z, rowScale = (parseFloat(getComputedStyle(F.v).fontSize) * fit) / VF;
+        const k = kz * lerp(1, rowScale, smooth(0.55, 1, p));
+        const sx = VX + (x - cam.x) * kz + cam.x, sy = VY + (y - cam.y) * kz + cam.y;
+        const B = (10 * Math.abs(z - f) / z) / k, rot = (1 - p) * 0.06;
+        const a = smooth(0, 0.15, p) * (l.done ? 1 - l.hold / 0.5 : 1);
+        fx.save();
+        fx.setTransform(1, 0, 0, 1, 0, 0);
+        fx.beginPath(); fx.rect(0, 0, front.width, front.height); fx.rect(pg.l * dpr, pg.t * dpr, pg.w * dpr, pg.h * dpr);
+        fx.clip("evenodd");
+        fx.globalCompositeOperation = "lighter";
+        draw(fx, F.glow, F.ax, F.ay, sx, sy, k, rot, a * 0.5, Math.max(B, 7));
+        fx.globalCompositeOperation = "source-over";
+        draw(fx, F.lit, F.ax, F.ay, sx, sy, k, rot, a, B);
+        fx.restore();
+        fx.save();
+        fx.setTransform(1, 0, 0, 1, 0, 0);
+        fx.beginPath(); fx.rect(pg.l * dpr, pg.t * dpr, pg.w * dpr, pg.h * dpr); fx.clip();
+        draw(fx, F.ink, F.ax, F.ay, sx, sy, k, rot, a, 0);
+        fx.restore();
+      }
+
+      // Keep the headline clear of anything passing in front of it
+      fx.setTransform(1, 0, 0, 1, 0, 0);
+      fx.globalAlpha = 1;
+      fx.globalCompositeOperation = "destination-out";
+      fx.drawImage(mask, 0, 0, Wd, Hd);
+      fx.globalCompositeOperation = "source-over";
+    }
+
+    function frame(now) {
+      if (!running) return;
+      requestAnimationFrame(frame);
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      T += dt;
+      step(dt);
+      render();
+    }
+
+    layout();
+    dust = Array.from({ length: small ? 700 : 1500 }, () => { const m = {}; seed(m, false); return m; });
+    let resizeTimer = 0;
+    addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { layout(); if (!running) render(); }, 150); });
+
+    // Debris already in the air when the page opens; one is about to reach the page.
+    const first = debris.slice().sort(() => Math.random() - 0.5);
+    first.slice(0, small ? 5 : 10).forEach((d, i) => launch(d, i === 0 ? 0.82 : rand(0, 0.8), i === 0 ? true : undefined));
+
+    if (reduce) {
+      $$(".row", doc).forEach((r) => r.classList.add("in"));
+      finish();
+      T = 10;
+      render();
+      return;
+    }
+
+    const list = facts.filter((F) => shown(F.row));
+    list.forEach((F, i) => at(1.2 + i * 0.55, () => fly(F)));
+    const end = 1.2 + (list.length - 1) * 0.55 + (small ? 2.2 : 2.6);
+    at(end + 0.35, () => {
+      const log = $('.row[data-k="log"]', doc);
+      if (shown(log)) { log.classList.add("in", "lit"); setTimeout(() => log.classList.remove("lit"), 900); }
     });
-    tl.add(() => land(rowOf("log")), 0.5 + FACTS.length * 0.42 + 1.1);
-    tl.add(() => {
-      status.classList.add("done");
-      status.querySelector("span").textContent = "Checked · ready to sign";
-      debris.forEach((el) => el.remove());
-      gsap.to(doc, { y: -6, duration: 4, ease: "sine.inOut", yoyo: true, repeat: -1 });
-    }, "+=0.6");
+    at(end + 0.9, finish);
+    at(end + 7, refresh);
+
+    whileVisible(section, () => { running = true; last = performance.now(); requestAnimationFrame(frame); }, () => { running = false; });
   }
 
   // ---------------------------------------------------------------------------

@@ -3,14 +3,14 @@
 ## Homepage: raised, not settled
 The structure and promises are settled; from here the page is refined, not re-explored. Items marked (Claude) are Claude's.
 
-- `hero`: no wow factor. Its own round, the one open exploration. (owner)
+- `hero`: rebuilt 17 October as a page in a shaft of light, in a dark room of drifting dust: facts fly in from their sources and become the page's text, debris turns to dust at the page's edge. Waiting for the owner's reaction. Judgement calls to confirm: the source labels on the facts (HR, Legal, Vendor, PV team), a fact re-arriving every 7–11 seconds once the page is full, and only four rows on a phone. (owner)
 - `rules`: the broadcast version (EMA sends, Veria listens and adapts the PSMF) is better than the three cards, but the owner isn't fully happy with it yet. (owner)
 - `everywhere`: does the job but is visually heavy. Raised before page thumbnails replaced the redline card; look again. (owner)
 - `trust`: much better, maybe bolder still. The content isn't there yet (see "0 of 45" below). (owner)
 - `year`: unsure whether to stress signed versions. (owner)
 - `faq`: content is weak and a bit odd; the design is fine. Low priority. (owner)
 - `rules` and `trust`: the EU marks are our own drawings (blue disc, ring of twelve gold stars). There are no official logos for GDPR, the AI Act, Annex 11 or Part 11, and the EU and FDA emblems can't suggest endorsement. Check before launch. (Claude)
-- Phone fit: at 375×812 the hero runs past one screen; the year scroller has long empty stretches between cards. (Claude)
+- Phone fit: the year scroller has long empty stretches between cards. (Claude)
 - Before launch: the footer's Privacy policy, Terms, Legal notice and Subprocessors links go nowhere yet, and the "Book a demo" form doesn't send anywhere. (Claude)
 - The old drafts at `/v1/` to `/v7/` and `/drafts/` are still reachable by URL (search engines are kept out by `robots.txt`), with old claims on them. Keep or remove? Git keeps them either way. (Claude)
 
