@@ -22,6 +22,7 @@ Why this matters: the owner has corrected it twice. On 16 October 2026: "this is
 - Promise and direction are encouraged. Make a bigger, vaguer promise, then back it up nearby with how Veria delivers it or why it can be trusted to. Copy that only states today's facts reads as if our hands are tied.
 - Sell the value, not the machinery. One promise per page or section, said plainly.
 - The model section is `rules`: the promise, one line on how Veria delivers it, then a visual that shows it. Every screen should aim for that.
+- The PSMF is the output, never the actor. Copy never has it doing things ("keeps itself up to date", "stays up to date", "follows"). Describe it ("Your PSMF, always up to date"), or make the reader the one acting.
 - No tactical details up front (owner's rule of thumb). "One short email" or "hosted in Frankfurt" are mechanics, not promises. If they appear at all, they go deep in the page (trust, FAQ).
 - No today/next split. The page talks as if all of it works now. `PRODUCT.md`'s "Not built yet" is for fact-checking, not for the copy.
 - In visuals, each kind of thing looks like what it is: the regulator like the regulator, a PSMF draft like a PSMF, the app like the app. Different kinds of things never share one card design. Leave out meta info that changes nothing (document IDs, "draft of 4.3").
