@@ -77,6 +77,19 @@ PSMF, QPPV, MAH, revision (a round of questions), question, answer, draft, versi
 - Distributors: Medica Nord AS, Baltpharm UAB, and new: Nordvia AB (Sweden, Finland).
 - SOP codes like SOP-PV-003 (the MAH's own) and VP-SOP-029 (the vendor's).
 
+### The story the homepage tells
+One year of Halvorsen's PSMF, with a revision every four months. Keep new examples consistent with it.
+- **4.0** in force from 14 October 2025.
+- **4.1**, signed 9 February 2026: SOP-PV-011 went to version 5.0 (20 January, Annex E). The revision ran 1–9 February.
+- **4.2**, signed 2 June 2026: the vendor upgraded its safety database from 8.2 to 8.4 (14 April, Section 4, Annex D). A new deputy EU QPPV, Ingrid Solberg, waited for approval in the revision.
+- **4.3**, signed 8 October 2026 by Anna Weber and Oliver Bennett:
+  - Nordvia AB added as a distributor (signed 15 July; Section 2.3, Annex B).
+  - VP-SOP-031 withdrawn, replaced by VP-SOP-029 (Annex E, Section 5.3 wording).
+  - Annex F figures to September.
+  - CAPA-2026-014 (due 31 March) closed.
+- 12 November 2026: the inspectorate asks for the PSMF; 4.3 is sent the same morning.
+- Examples used once on the page and not part of the timeline: cases processed by Nordlys (not in-house), the logbook is Annex I (not "Annex J"), September totals 2 late + 47 on time = 49, a 15th product, the QPPV office moving from Hellerup to Copenhagen.
+
 ## Brand
 - Name **Veria**. Logo: an outlined V in a rounded square, stroke in the text colour.
   `<svg viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 9l7 15 7-15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`

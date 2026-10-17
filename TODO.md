@@ -1,25 +1,30 @@
 # To-dos
 
-## 1. What's in front of us: the site doesn't carry the vision
+## Homepage: open threads
+Raised, not decided. Talk each one through with the owner before changing anything.
 
-The biggest change ahead isn't visual and isn't copy as such. The site only states today's facts, as if they were the only possibility. It does a poor job of showing where the product is going and what it promises.
+- **Hero promise.** Is "Your PSMF, true every day." the line we'd say to a QPPV across a table? The competitor research's other strong candidate: "The PSMF changes when your company does."
+- **Who it's for.** The page never names its readers. A QPPV, an MAH's head of PV and a PV service provider each read it differently; only the FAQ hints at that.
+- **Where rule changes sit.** `rules` is a "coming soon" promise between screens about what works today. It might sit better next to "Made for EU rules" in `trust`.
+- **Phone fit.** On a 375×812 phone, `hero`, `how` and `catch` run slightly past one screen. The year scroller has long empty stretches between cards.
 
-- This isn't about adding a "vision" section. It's about how we talk about everything: every claim is pinned to how the product works right now.
-- The cause is caution, not focus: we avoid saying anything that doesn't exist yet, so we never say what Veria is for in the bigger sense.
-- That caution is understandable. The drafts were built from the real product repository, so they're grounded in reality (which is good), and they follow a rule not to invent facts. But they never had the overall vision or promise of the product, and never looked at competitors.
-- The pages should convey the direction, the promise, how it feels after using Veria, and the business results, not only what the system can do today.
+## Homepage: claims to fact-check
+On the page now. The owner confirms or corrects; then remove the item.
 
-### Trust deserves its own section
-Smaller point, but a clear example. "Hosted in Frankfurt" is a nice fact: it grounds the page in reality but goes nowhere. We need a real trust section that covers everything we do: compliance work we've been through, the controls, every reason to trust us. Not a list, and not just this one fact. Make it land.
+- `catch`: "The PSMF was one of the three most common areas of findings in EMA's 2024 pharmacovigilance inspections." Source: EMA, *Annual report of the Pharmacovigilance Inspectors' Working Group for 2024* (EMA/INS/PhV/122716/2025), section 3.2. It covers only 10 CHMP-requested inspections; check the wording.
+- `rules`: tagged "Coming soon". Check how far it actually is.
+- `trust`: "GDPR · Compliant".
+- `trust`: "Hosted in the EU" and "Frankfurt: where your PSMF lives". v1 noted that AI requests go to Anthropic's API, processed outside the EU. Never claim that data doesn't leave the EU.
+- `faq`: "What if someone doesn't answer? The version goes ahead. Their part stays as it was." PRODUCT.md only says unanswered questions don't block a version.
+- `faq`: "We keep PSMFs for several MAHs. Each one runs with its own owners, revisions and signers." Not in PRODUCT.md.
+- `faq`: "Does Veria replace our QPPV or PV provider? No. Whoever keeps your PSMF today keeps it in Veria." Positioning; confirm.
 
-### Competitor research (later, separate task)
-Look at competitors' websites. Not for feature comparisons, but for what they promise: the vision behind them, how they describe the feeling and the business results after using their product, how they communicate overall.
+## Done
+- The vision is on record (`PRODUCT.md`, "Vision and direction") and woven into the homepage's feature screens, not a separate section.
+- Trust is its own bold section on the homepage.
+- Competitor research: `COMPETITORS.md`.
 
-### Get the vision on record
-Talk it through with the owner to pull out the vision and promise, then use it to rework the pages.
-
-## 2. More pages (much later)
-
+## Later
 Eventually the site needs the pages you'd expect on a site like this: feature drill-downs and so on. Not a concern right now.
 
 ### Competitor comparison pages
