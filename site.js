@@ -315,7 +315,7 @@
     // The room and its light don't move, so they're drawn once, into a canvas
     // the browser just stretches; only the smoke is redrawn, at low resolution.
     function bake() {
-      const q = 0.25, w = Math.ceil(W * q), h = Math.ceil(H * q), R = Math.max(W, H);
+      const q = 0.25, w = Math.max(1, Math.ceil(W * q)), h = Math.max(1, Math.ceil(H * q)), R = Math.max(W, H);
       [shaft, smoke].forEach((c) => { c.width = w; c.height = h; });
       const room = new Float32Array(w * h * 3), L = shaft.getContext("2d").createImageData(w, h);
       for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
@@ -329,7 +329,7 @@
       }
       shaft.getContext("2d").putImageData(L, 0, 0);
       // Scaled up at half resolution, with a little noise so the dark gradients don't band.
-      const lw = Math.ceil(W / 2), lh = Math.ceil(H / 2), g = light.getContext("2d");
+      const lw = Math.max(1, Math.ceil(W / 2)), lh = Math.max(1, Math.ceil(H / 2)), g = light.getContext("2d");
       light.width = lw; light.height = lh;
       const img = g.createImageData(lw, lh), d = img.data, r = (w - 1) / Math.max(1, lw - 1), rr = (h - 1) / Math.max(1, lh - 1);
       for (let y = 0; y < lh; y++) {
