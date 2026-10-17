@@ -25,7 +25,7 @@ High-level facts and direction for writing copy and drawing diagrams.
 Plus: **import.** An existing PSMF (Word, with Excel annexes and PDFs) is read in, its parts are mapped into the standard structure (AI proposes, a person confirms), and the whole file is checked for problems: sections that contradict each other, references to annexes that don't exist, template leftovers, overdue CAPAs, tables months behind. Anything not carried over is listed. Nothing disappears silently.
 
 ## Vision and direction (from the owner)
-Promise and direction. Present the near-term parts as "coming soon".
+Promise and direction. On the page, all of it reads as working now, with no today/next split (owner, 17 October 2026).
 
 **The enemy is mistakes reaching the inspector.** Contradictions inside the document, facts missing from it, facts that are out of date: anything that slips through. A clean, ironed-out PSMF means you're not in trouble. Today professionals keep it clean by spending a lot of time on meaningless operational work.
 

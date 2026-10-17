@@ -496,6 +496,9 @@ h2 { font-size: clamp(2.1rem, 3.9vw, 3.5rem); text-wrap: balance; }
 .qform input:focus { outline: 2px solid var(--sky); outline-offset: 2px; }
 .qform .btn { height: 52px; }
 .foot { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 60px; padding-top: 22px; padding-bottom: 28px; border-top: 1px solid var(--night-line); font-size: 13px; color: var(--on-night-2); }
+.foot-links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.foot-links a { text-decoration: none; transition: color 0.2s; }
+.foot-links a:hover { color: var(--on-night); }
 @media (max-width: 520px) { .qform { flex-direction: column; } .qform input { flex: none; } }
 
 @media (prefers-reduced-motion: reduce) {

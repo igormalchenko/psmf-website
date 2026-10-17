@@ -21,6 +21,10 @@ Why this matters: the owner has corrected it twice. On 16 October 2026: "this is
 - Don't make up statistics. The owner fact-checks everything else.
 - Promise and direction are encouraged. Make a bigger, vaguer promise, then back it up nearby with how Veria delivers it or why it can be trusted to. Copy that only states today's facts reads as if our hands are tied.
 - Sell the value, not the machinery. One promise per page or section, said plainly.
+- The model section is `rules`: the promise, one line on how Veria delivers it, then a visual that shows it. Every screen should aim for that.
+- No tactical details up front (owner's rule of thumb). "One short email" or "hosted in Frankfurt" are mechanics, not promises. If they appear at all, they go deep in the page (trust, FAQ).
+- No today/next split. The page talks as if all of it works now. `PRODUCT.md`'s "Not built yet" is for fact-checking, not for the copy.
+- In visuals, each kind of thing looks like what it is: the regulator like the regulator, a PSMF draft like a PSMF, the app like the app. Different kinds of things never share one card design. Leave out meta info that changes nothing (document IDs, "draft of 4.3").
 - Nobody reads passages. Per section: a headline, at most one short line under it, and a visual (SVG, mockup, diagram) that does the explaining. Labels in visuals are a few words, not sentences. If it needs a paragraph, it needs a picture instead. v1–v6 are the reference for how little copy a section carries.
 - Each section fits in one real viewport: assume about 700px of height on a laptop (browser bars, bookmarks bar, dock, fixed nav). No section should need scrolling through to see it whole.
 - Copy: short, concrete, no marketing filler, nothing that reads as AI-written. No meta-commentary on the page itself.

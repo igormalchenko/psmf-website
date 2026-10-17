@@ -1,12 +1,28 @@
 # To-dos
 
 ## Homepage: raised, not settled
-The whole page is a working draft. These are things Claude noticed on 16 October 2026; the owner hasn't discussed them yet. They're not the agenda: bring one up only when it fits what the owner wants to talk about.
+The whole page is a working draft. Most of this is the owner's first scroll-through on 17 October 2026; items marked (Claude) are Claude's. Next step: settle the narrative (which sections, in what order, one promise each) before any section is rebuilt.
 
-- **Hero.** Does the promise hold up for a QPPV reading it cold? (Claude)
+### Narrative
+- **Structure.** The page may be missing sections, lacks cohesion and undersells the promise. Idea: move `stop` right below the hero, so the promise is sold before we explain how. (owner)
+- **"Any source" is the core idea.** Any data, from any source, arrives in the PSMF as a draft checked by AI. The page never says so. (owner)
+- **New section: AI, with you in charge.** Not how it works. Make the reader feel in control: you see everything it did, accept or reject it, revert it. The AI can't work without you, and reviewing it shouldn't feel like a chore. It answers the fear that AI does the job, or writes into the PSMF behind your back. Takes over the AI line at the bottom of `trust`. (owner)
 - **Who it's for.** The page never names its readers: a QPPV, an MAH's head of PV and a PV service provider each read it differently. (Claude)
-- **`rules`.** A "coming soon" promise sits between screens about what works today. (Claude)
-- **Phone fit.** On a 375×812 phone, `hero`, `how` and `catch` run slightly past one screen; the year scroller has long empty stretches between cards. (Claude)
+
+### By section
+- `hero`: the promise isn't clear at a glance; you need the sub-line to get it. Visually correct and explanatory, but no wow factor. (owner)
+- `how`: leans too much on files. The claim from the start is any source; a file is just one way in. Keep the stepper and the low text, but it's visually simplistic. "Then every four months, again" goes. (owner)
+- `people`: "People do their jobs. The PSMF follows." is one of the strongest promises we have. The today/next split goes, and so does "one short email". (owner)
+- `everywhere`: the least to fix. The captions changing under the map are too much text to follow. (owner)
+- `catch`: the EMA report quote is a great idea, maybe in the wrong place or format: too much copy on one screen. The mockup carries meta info that adds nothing ("PSMF-HAL-001 · draft of 4.3"). (owner)
+- `rules`: the standard for every screen. Headline and sub-line stay as they are. The visual uses the same card for EMA, the PSMF draft and the app; each should look like what it is (EMA in EU colours, the draft like a PSMF). (owner) The "Coming soon" tag would go under the no-split rule. (Claude)
+- `year`: loved, the page's wow factor. Trim the cards a little; they're heavy. The "projects" counter goes; unsure whether to stress signed versions. The feeling to keep: a calendar that knows every friend's birthday and helps you prepare the gifts. (owner)
+- `stop`: the list works. The black "What's still yours" card goes: heavy, and a weak punchline. Instead, one blunt, bold line on what the QPPV does now: review a PSMF that's essentially done. Reviewer, not secretary (meant, not said). (owner)
+- `trust`: bolder and visual, like a customer-logo wall made of marks people recognise: EU GMP Annex 11, FDA Part 11, AI Act, GDPR. The AI line moves to its own section. (owner) GDPR, the AI Act, Annex 11 and Part 11 have no official logos, and the FDA and EU emblems can't be used in a way that suggests endorsement, so these would be our own badges. Same for EMA in `rules`. (Claude)
+- `faq`: content is weak and a bit odd; the design is fine. Low priority. (owner)
+- `demo`: looks great. "We'll show you what we find" promises an audit, which puts us up against consultancies. Promise something only Veria does. (owner)
+- Nav: "Trust" as a menu item feels odd. (owner)
+- Phone fit: on a 375×812 phone, `hero`, `how` and `catch` run slightly past one screen; the year scroller has long empty stretches between cards. (Claude)
 
 ## Homepage: claims to fact-check
 On the page now. The owner confirms or corrects; then remove the item.
