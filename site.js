@@ -1,4 +1,4 @@
-// Veria v9: v8 rebuilt on the agreed page structure (see CLAUDE.md).
+// Veria homepage.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -50,8 +50,9 @@
     sources();
     ownersMap();
     rules();
-    catcher();
-    ai();
+    proof();
+    scanner();
+    gate();
     year();
     trust();
   });
@@ -228,23 +229,72 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 4. Sources: facts arrive from a contract system, the HR system, a
-  //    spreadsheet and a person; each is checked and lands in its place.
+  // 4. Sources: five kinds of source, one draft. Each fact travels its spoke,
+  //    is checked where it meets the draft, and fills its row.
   // ---------------------------------------------------------------------------
   function sources() {
-    const feed = $("#feed"), rows = $$(".fd", feed);
+    const hub = $("#hub"), svg = $("#hubLines"), srcs = $$(".hs", hub), doc = $(".hub-doc", hub), rows = $$(".hd-row", doc);
+    let spokes = [], tw = [];
+    function build() {
+      svg.innerHTML = "";
+      const H = hub.getBoundingClientRect(), D = doc.getBoundingClientRect();
+      svg.setAttribute("viewBox", `0 0 ${H.width} ${H.height}`);
+      const lines = svgEl("g", {}, svg);
+      spokes = srcs.map((s) => {
+        const i = +s.dataset.row, I = $(".ic", s).getBoundingClientRect(), R = $("dd", rows[i]).getBoundingClientRect();
+        let x0, y0, x1, y1, d;
+        if (I.bottom <= D.top) {
+          // On a phone the sources sit in a row above the draft.
+          x0 = I.left + I.width / 2 - H.left; y0 = I.bottom - H.top + 6;
+          x1 = clamp(x0, D.left - H.left + 14, D.right - H.left - 14); y1 = D.top - H.top;
+          const my = (y0 + y1) / 2;
+          d = `M${x0} ${y0}C${x0} ${my} ${x1} ${my} ${x1} ${y1}`;
+        } else {
+          const left = I.right <= D.left;
+          x0 = left ? I.right - H.left + 6 : I.left - H.left - 6; y0 = I.top + I.height / 2 - H.top;
+          x1 = left ? D.left - H.left : D.right - H.left; y1 = R.top + R.height / 2 - H.top;
+          const mx = (x0 + x1) / 2;
+          d = `M${x0} ${y0}C${mx} ${y0} ${mx} ${y1} ${x1} ${y1}`;
+        }
+        const path = svgEl("path", { d, class: "sp" }, lines);
+        const gd = svgEl("circle", { cx: x1, cy: y1, r: 4.5, class: "gd" }, svg);
+        return { s, i, path, gd };
+      });
+    }
+    build();
     const steps = [];
-    rows.forEach((r, i) => {
-      steps.push([0.2 + i * 0.45, () => r.classList.add("in")]);
-      steps.push([1.3 + i * 0.45, () => r.classList.add("ok")]);
+    srcs.forEach((_, k) => {
+      const t = 0.3 + k * 0.75;
+      steps.push([t, () => {
+        const sp = spokes[k];
+        sp.s.classList.add("on");
+        sp.path.classList.add("on");
+        if (reduce) return;
+        const len = sp.path.getTotalLength(), p0 = sp.path.getPointAtLength(0);
+        const c = svgEl("circle", { r: 4, class: "pulse", cx: p0.x, cy: p0.y }, svg);
+        const st = { t: 0 };
+        tw.push(gsap.to(st, { t: 1, duration: 0.8, ease: "power1.inOut",
+          onUpdate: () => { const pt = sp.path.getPointAtLength(st.t * len); c.setAttribute("cx", pt.x); c.setAttribute("cy", pt.y); },
+          onComplete: () => c.remove() }));
+      }]);
+      steps.push([t + 0.85, () => { spokes[k].gd.classList.add("ok"); rows[spokes[k].i].classList.add("in", "lit"); }]);
+      steps.push([t + 1.7, () => { const sp = spokes[k]; rows[sp.i].classList.remove("lit"); sp.s.classList.remove("on"); sp.path.classList.remove("on"); }]);
     });
-    sequence(feed, steps, () => rows.forEach((r) => r.classList.remove("in", "ok")), 0.3);
+    sequence(hub, steps, () => {
+      tw.forEach((t) => t.kill());
+      tw = [];
+      $$(".pulse", svg).forEach((c) => c.remove());
+      spokes.forEach((sp) => { sp.gd.classList.remove("ok"); sp.path.classList.remove("on"); sp.s.classList.remove("on"); });
+      rows.forEach((r) => r.classList.remove("in", "lit"));
+    }, 0.3);
+    let rw = hub.clientWidth;
+    addEventListener("resize", () => { if (hub.clientWidth !== rw) { rw = hub.clientWidth; build(); } });
   }
 
   // ---------------------------------------------------------------------------
   // 5. Change it once: owners → the parts of the PSMF their answers appear in
   //    (from Veria's template: about 90 questions, each with one owner), and
-  //    the sentence Veria redrafts.
+  //    the pages whose wording it rewrites.
   // ---------------------------------------------------------------------------
   function ownersMap() {
     const root = $("#map"), svg = $("#mapSvg");
@@ -262,13 +312,23 @@
       ["Vendors", 24, { 3: 2, 4: 1, 5: 2, 6: 1, 7: 3, 9: 1, 11: 1, 12: 1, 13: 13 }],
       ["Quality", 13, { 3: 1, 7: 5, 12: 1, 14: 6 }],
     ];
-    // Each example: where the fact lands, and the sentence Veria redrafts.
+    // Each example: who answers, and every place the fact lands.
     const EXAMPLES = [
-      { o: 6, ans: "VP-SOP-029 replaces 031", short: "VP-SOP-029", to: [12, 5], loc: "Section 5.3", text: ["Literature is searched weekly under ", "VP-SOP-031", "VP-SOP-029", "."] },
-      { o: 3, ans: "+1 product", to: [15, 0, 2], loc: "Section 2.1", text: ["It holds marketing authorisations for ", "14", "15", " medicinal products."] },
-      { o: 1, ans: "QPPV office: Copenhagen", short: "Copenhagen", to: [1, 2], loc: "Section 1.3", text: ["The EU QPPV works from the office in ", "Hellerup", "Copenhagen", "."] },
+      { o: 6, ans: "VP-SOP-029 replaces 031", short: "VP-SOP-029", to: [12, 5] },
+      { o: 3, ans: "+1 product", to: [15, 0, 2] },
+      { o: 1, ans: "QPPV office: Copenhagen", short: "Copenhagen", to: [1, 2] },
     ];
-    const prose = $("#prose"), prLoc = $("#prLoc"), prP = $("#prP");
+    // The pages whose wording gets rewritten; a line lights up on each.
+    const pages = $$("#ewPages .ewp");
+    const setPages = (ps) => pages.forEach((pg, k) => {
+      pg.classList.remove("on", "lit");
+      pg.classList.toggle("off", k >= ps.length);
+      if (k >= ps.length) return;
+      pg.dataset.p = ps[k];
+      $("span", pg).textContent = ps[k] === LOG ? "Logbook" : PLACES[ps[k]];
+      pg.classList.add("on");
+    });
+    const litPage = (p) => pages.forEach((pg) => { if (+pg.dataset.p === p) pg.classList.add("lit"); });
 
     let L = null, ex = 0, timer = 0, pinned = -1, running = false, tw = [];
     const g = {};
@@ -341,13 +401,8 @@
       const w = at.getComputedTextLength() + 22;
       ag.insertBefore(svgEl("rect", { x: L.mid - w / 2, y: ay - 13, width: w, height: 26, rx: 8 }), at);
       const logPath = svgEl("path", { d: `M${L.mid + w / 2} ${ay}C${L.px - 60} ${ay} ${L.px - 60} ${L.py[LOG]} ${L.px - 6} ${L.py[LOG]}`, class: "ln hi log", "stroke-width": 1.5, opacity: 0 }, g.extra);
-      const [pre, was, now, post] = e.text;
-      prose.classList.remove("red", "ok", "dim");
-      prLoc.textContent = e.loc;
-      prP.innerHTML = `${pre}<s>${was}</s> <ins>${now}</ins>${post}`;
-      if (reduce) { ag.setAttribute("opacity", 1); logPath.setAttribute("opacity", 1); e.to.concat(LOG).forEach(lightPlace); prose.classList.add("red", "ok"); return; }
-      T(gsap.delayedCall(1.7, () => prose.classList.add("red")));
-      T(gsap.delayedCall(3.1, () => prose.classList.add("ok")));
+      setPages(e.to.concat(LOG));
+      if (reduce) { ag.setAttribute("opacity", 1); logPath.setAttribute("opacity", 1); e.to.concat(LOG).forEach((p) => { lightPlace(p); litPage(p); }); return; }
       T(gsap.to(ag, { attr: { opacity: 1 }, duration: 0.5, delay: 0.3 }));
       paths.forEach((l, i) => {
         const p0 = l.el.getPointAtLength(0);
@@ -356,9 +411,9 @@
         const st = { t: 0 };
         T(gsap.to(st, { t: 1, duration: 1.3, delay: 0.25 + i * 0.12, ease: "power1.inOut",
           onUpdate: () => { const pt = l.el.getPointAtLength(st.t * len); c.setAttribute("cx", pt.x); c.setAttribute("cy", pt.y); },
-          onComplete: () => { lightPlace(l.p); T(gsap.to(c, { attr: { r: 0 }, duration: 0.3 })); } }));
+          onComplete: () => { lightPlace(l.p); litPage(l.p); T(gsap.to(c, { attr: { r: 0 }, duration: 0.3 })); } }));
       });
-      T(gsap.to(logPath, { attr: { opacity: 1 }, duration: 0.5, delay: 1.5, onComplete: () => lightPlace(LOG) }));
+      T(gsap.to(logPath, { attr: { opacity: 1 }, duration: 0.5, delay: 1.5, onComplete: () => { lightPlace(LOG); litPage(LOG); } }));
     }
     function pin(o) {
       pinned = o;
@@ -368,7 +423,7 @@
       const ps = Object.keys(OWNERS[o][2]).map(Number);
       L.lines.filter((l) => l.o === o).forEach((l) => l.el.classList.add("hi"));
       ps.forEach(lightPlace);
-      prose.classList.add("dim");
+      pages.forEach((pg) => pg.classList.remove("on", "lit"));
     }
     function unpin() {
       if (pinned < 0) return;
@@ -383,41 +438,53 @@
       if (!reduce) timer = setTimeout(cycle, 5600);
     }
     build();
+    setPages(EXAMPLES[0].to.concat(LOG));
     let rw = root.clientWidth;
     addEventListener("resize", () => { if (root.clientWidth !== rw) { rw = root.clientWidth; build(); if (running) { clearTimeout(timer); cycle(); } } });
     whileVisible(root, () => { running = true; cycle(); }, () => { running = false; clearTimeout(timer); killAll(); });
   }
 
   // ---------------------------------------------------------------------------
-  // 7. A scan runs down the page; problems are marked, then fixed, asked or
-  //    held. Signing stays locked until nothing is open.
+  // 7. The regulator's finding, on its own screen.
   // ---------------------------------------------------------------------------
-  function catcher() {
-    const paper = $("#catchPaper"), lines = $$(".cl", paper), scan = $(".scanline", paper), state = $(".scan-state em", paper);
-    const D = 2.4;
+  function proof() {
+    const b = $("#proof");
+    sequence(b, [[0.2, () => b.classList.add("in")]], () => b.classList.remove("in"));
+  }
+
+  // ---------------------------------------------------------------------------
+  // 8. The whole PSMF at a glance: a scan sweeps it, problems are pinned where
+  //    they sit and resolved one by one; then signing unlocks.
+  // ---------------------------------------------------------------------------
+  function scanner() {
+    const root = $("#scan"), spread = $(".spread", root), pages = $$(".pg", spread), beam = $(".beam", root), openN = $("#scanOpen");
+    const bad = pages.filter((p) => p.classList.contains("bad"));
+    const D = 2.2;
+    let tw = [];
     const steps = [[0, () => {
-      if (!reduce) gsap.fromTo(scan, { y: 30, opacity: 1 }, { y: paper.offsetHeight, duration: D, ease: "none", onComplete: () => gsap.to(scan, { opacity: 0, duration: 0.3 }) });
+      if (reduce) return;
+      tw.push(gsap.fromTo(beam, { x: 0, opacity: 1 }, { x: spread.offsetWidth + 80, duration: D, ease: "none", onComplete: () => gsap.to(beam, { opacity: 0, duration: 0.2 }) }));
     }]];
-    lines.forEach((l, i) => steps.push([D * ((l.offsetTop + l.offsetHeight * 0.6) / paper.offsetHeight), () => l.classList.add("marked")]));
-    lines.forEach((l, i) => steps.push([D + 0.9 + i * 0.55, () => l.classList.add("resolved")]));
-    const T0 = D + 0.9 + lines.length * 0.55 + 0.2;
-    steps.push([T0, () => { paper.classList.add("checked"); state.textContent = "Checked"; }]);
-    // The two open items get settled; only then does signing unlock.
-    const open = lines.filter((l) => l.querySelector(".flag i"));
-    const lockText = $(".lk .a", paper);
-    open.forEach((l, i) => steps.push([T0 + 1.2 + i * 0.9, () => {
-      l.classList.add("settled");
-      const left = open.length - i - 1;
-      if (left) lockText.textContent = `Signing locked · ${left} item${left === 1 ? "" : "s"} open`;
+    pages.forEach((p) => {
+      const t = D * ((p.offsetLeft + p.offsetWidth / 2) / spread.offsetWidth);
+      const isBad = bad.includes(p);
+      steps.push([t, () => { p.classList.add("seen"); if (isBad) p.classList.add("found"); }]);
+      steps.push([t + 0.45, () => p.classList.remove("seen")]);
+    });
+    const T0 = D + 0.8;
+    bad.forEach((p, i) => steps.push([T0 + i * 0.9, () => {
+      p.classList.add("fixed");
+      const left = bad.length - i - 1;
+      if (left) openN.textContent = left;
+      else root.classList.add("open");
     }]));
-    steps.push([T0 + 1.2 + open.length * 0.9 + 0.2, () => paper.classList.add("open")]);
-    steps.push([T0 + 1.2 + open.length * 0.9 + 1.4, () => paper.classList.add("signed")]);
-    sequence(paper, steps, () => {
-      lines.forEach((l) => l.classList.remove("marked", "resolved", "settled"));
-      paper.classList.remove("checked", "open", "signed");
-      state.textContent = "Checking";
-      lockText.textContent = "Signing locked · 2 items open";
-      gsap.set(scan, { opacity: 0 });
+    sequence(root, steps, () => {
+      tw.forEach((t) => t.kill());
+      tw = [];
+      gsap.set(beam, { x: 0, opacity: 0 });
+      pages.forEach((p) => p.classList.remove("seen", "found", "fixed"));
+      root.classList.remove("open");
+      openN.textContent = bad.length;
     });
   }
 
@@ -435,17 +502,57 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 8. AI suggests; you accept or reject each one, and can undo any of them.
+  // 9. AI suggests; every suggestion stops at you. What you accept reaches the
+  //    PSMF, what you reject doesn't, and an accepted one can be pulled back out.
   // ---------------------------------------------------------------------------
-  function ai() {
-    const win = $("#aiWin"), rows = $$(".sg", win);
-    const steps = [];
-    rows.forEach((r, i) => {
-      const t = 0.7 + i * 1.2, d = r.dataset.d;
-      steps.push([t, () => r.classList.add(`press-${d}`)]);
-      steps.push([t + 0.3, () => { r.classList.remove(`press-${d}`); r.classList.add("decided"); }]);
-    });
-    sequence(win, steps, () => rows.forEach((r) => r.classList.remove("decided", "press-yes", "press-no")));
+  function gate() {
+    const root = $("#gate"), toks = $$(".tok", root), mark = $("#gMark"), page = $("#gPage"), lines = $$("i", page);
+    const node = $(".g-node", root), bar = $(".g-bar", root);
+    const lands = [lines[1], null, lines[3]];
+    if (reduce) { lines[1].classList.add("lit"); return; }
+    let tl = null;
+    const reset = () => {
+      toks.forEach((t) => { t.classList.remove("yes", "no", "undo"); gsap.set(t, { opacity: 0 }); });
+      lines.forEach((l) => l.classList.remove("lit"));
+      mark.className = "g-mark";
+    };
+    const build = () => {
+      const R = root.getBoundingClientRect();
+      const cx = (el) => { const r = el.getBoundingClientRect(); return r.left + r.width / 2 - R.left; };
+      const N = node.getBoundingClientRect();
+      const y = N.top + N.height / 2 - R.top;
+      const ax = cx(node), gx = cx(bar), px = cx(page);
+      tl = gsap.timeline({ repeat: -1, repeatDelay: 1.4, onRepeat: reset });
+      toks.forEach((t, i) => {
+        const w = t.offsetWidth, top = y - t.offsetHeight / 2, d = t.dataset.d;
+        tl.set(t, { x: ax - w / 2, y: top, opacity: 0, scale: 0.9 }, i * 2.6)
+          .to(t, { opacity: 1, scale: 1, duration: 0.3 }, ">")
+          .to(t, { x: gx - 14 - w, duration: 0.9, ease: "power2.inOut" }, ">")
+          .call(() => { mark.className = `g-mark ${d}`; t.classList.add(d); }, null, "+=0.15");
+        if (d === "yes") {
+          tl.to(t, { x: px - w / 2, duration: 0.8, ease: "power2.in" }, "+=0.35")
+            .to(t, { opacity: 0, scale: 0.6, duration: 0.25 }, "-=0.2")
+            .call(() => { lands[i].classList.add("lit"); mark.className = "g-mark"; }, null, "-=0.1");
+        } else {
+          tl.to(t, { y: top + 46, opacity: 0, duration: 0.6, ease: "power2.in" }, "+=0.45")
+            .call(() => { mark.className = "g-mark"; }, null, "<");
+        }
+      });
+      // Undo: the last accepted change comes back out of the PSMF.
+      const u = toks[2], uw = u.offsetWidth, ut = y - u.offsetHeight / 2;
+      tl.call(() => { lines[3].classList.remove("lit"); u.classList.remove("yes"); u.classList.add("undo"); }, null, "+=0.8")
+        .set(u, { x: px - uw / 2, y: ut, opacity: 0, scale: 0.6 }, "<")
+        .to(u, { opacity: 1, scale: 1, duration: 0.3 }, ">")
+        .to(u, { x: gx + 14, duration: 0.8, ease: "power2.inOut" }, ">")
+        .call(() => { mark.className = "g-mark undo"; }, null, ">")
+        .to(u, { opacity: 0, duration: 0.4 }, "+=0.7")
+        .call(() => { mark.className = "g-mark"; }, null, ">");
+    };
+    let running = false;
+    const stop = () => { if (tl) tl.kill(); tl = null; reset(); };
+    whileVisible(root, () => { running = true; build(); }, () => { running = false; stop(); });
+    let rw = root.clientWidth;
+    addEventListener("resize", () => { if (root.clientWidth !== rw) { rw = root.clientWidth; if (running) { stop(); build(); } } });
   }
 
   // ---------------------------------------------------------------------------

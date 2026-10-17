@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="v9.css">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 
@@ -131,32 +131,30 @@
         <h2>Wherever a fact lives,<br>it reaches your draft.</h2>
         <p class="sub">Veria takes changes from the records your teams already keep, and checks each one on the way in.</p>
       </header>
-      <ul class="feed" id="feed">
-        <li class="fd">
-          <span class="fd-src sys" title="Contract repository"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5z"/><path d="M12 2.5v3h3M7.5 8.5h5M7.5 11.5h5M7.5 15c1-1.3 1.8-1.3 2.4 0s1.4 1.3 2.6-.5"/></svg></span>
-          <span class="fd-txt"><b>Nordvia AB, new distributor</b><span>Contract repository</span></span>
-          <span class="fd-st"><em>Checking</em><i>Annex B</i></span>
-        </li>
-        <li class="fd">
-          <span class="fd-src sys hr" title="HR system"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7.5" cy="7" r="2.6"/><path d="M2.8 16c.6-2.6 2.4-4 4.7-4s4.1 1.4 4.7 4"/><circle cx="13.8" cy="7.8" r="2.1"/><path d="M13.2 12.1c2 .1 3.4 1.3 4 3.6"/></svg></span>
-          <span class="fd-txt"><b>Ingrid Solberg, deputy EU QPPV</b><span>HR system</span></span>
-          <span class="fd-st"><em>Checking</em><i>Section 1</i></span>
-        </li>
-        <li class="fd">
-          <span class="fd-src file" title="Spreadsheet"><b>XLSX</b></span>
-          <span class="fd-txt"><b>Safety database 8.4</b><span>Nordlys's spreadsheet</span></span>
-          <span class="fd-st"><em>Checking</em><i>Annex D</i></span>
-        </li>
-        <li class="fd">
-          <span class="fd-src per" title="Maren Dahl, Legal">MD</span>
-          <span class="fd-txt"><b>Baltpharm UAB, no change</b><span>Maren Dahl, Legal</span></span>
-          <span class="fd-st"><em>Checking</em><i>Confirmed</i></span>
-        </li>
-      </ul>
+      <div class="hub" id="hub">
+        <svg class="hub-lines" id="hubLines" aria-hidden="true"></svg>
+        <ul class="hub-src" aria-label="Where the facts come from">
+          <li class="hs" data-row="0"><span class="ic sys"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7.5" cy="7" r="2.6"/><path d="M2.8 16c.6-2.6 2.4-4 4.7-4s4.1 1.4 4.7 4"/><circle cx="13.8" cy="7.8" r="2.1"/><path d="M13.2 12.1c2 .1 3.4 1.3 4 3.6"/></svg></span><span class="hl">HR system</span></li>
+          <li class="hs" data-row="1"><span class="ic sys"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5z"/><path d="M12 2.5v3h3M7.5 8.5h5M7.5 11.5h5M7.5 15c1-1.3 1.8-1.3 2.4 0s1.4 1.3 2.6-.5"/></svg></span><span class="hl">Contracts</span></li>
+          <li class="hs" data-row="2"><span class="ic file"><b>XLSX</b></span><span class="hl">Spreadsheet</span></li>
+          <li class="hs" data-row="3"><span class="ic sys"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5l6 2.2v4.6c0 3.8-2.6 6.6-6 8.2-3.4-1.6-6-4.4-6-8.2V4.7z"/><path d="M7.3 10l2 2 3.6-3.8"/></svg></span><span class="hl">Quality system</span></li>
+          <li class="hs" data-row="4"><span class="ic per">MD</span><span class="hl">Maren, Legal</span></li>
+        </ul>
+        <article class="hub-doc" aria-label="The draft, with one fact from each source">
+          <span class="hd-t">Pharmacovigilance System Master File</span>
+          <dl>
+            <div class="hd-row"><dt>UK QPPV</dt><dd><span>Oliver Bennett</span><i></i></dd></div>
+            <div class="hd-row"><dt>Distributors</dt><dd><span>+ Nordvia AB</span><i></i></dd></div>
+            <div class="hd-row"><dt>Safety database</dt><dd><span>Version 8.4</span><i></i></dd></div>
+            <div class="hd-row"><dt>SOP-PV-003</dt><dd><span>Version 3</span><i></i></dd></div>
+            <div class="hd-row"><dt>Medica Nord AS</dt><dd><span>No change</span><i></i></dd></div>
+          </dl>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- 5. Change it once: where it lands, and the sentence it rewrites -->
+  <!-- 5. Change it once: where it lands, and the pages it rewrites -->
   <section class="s alt" id="everywhere">
     <div class="wrap">
       <header class="s-head">
@@ -165,11 +163,12 @@
       </header>
       <div class="ew">
         <div class="map" id="map"><svg id="mapSvg" role="img" aria-label="Owners on the left, the parts of the PSMF on the right. Each owner's answers reach the sections and annexes that mention them."></svg></div>
-        <article class="prose" id="prose">
-          <div class="pr-h"><span id="prLoc">Section 5.3</span><em>Wording drafted</em></div>
-          <p class="pr-p" id="prP"></p>
-          <button type="button" class="accept" tabindex="-1"><span>Accept</span><span>Accepted</span></button>
-        </article>
+        <div class="ew-pages" id="ewPages" aria-hidden="true">
+          <div class="ewp"><div class="ewp-pg"><i></i><i></i><i class="hl"></i><i></i><i></i></div><span></span></div>
+          <div class="ewp"><div class="ewp-pg"><i></i><i class="hl"></i><i></i><i></i><i></i></div><span></span></div>
+          <div class="ewp"><div class="ewp-pg"><i></i><i></i><i></i><i class="hl"></i><i></i></div><span></span></div>
+          <div class="ewp"><div class="ewp-pg"><i></i><i></i><i></i><i></i><i class="hl"></i></div><span></span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -214,74 +213,51 @@
     </div>
   </section>
 
-  <!-- 7. Nothing slips through, and nothing open gets signed -->
-  <section class="s" id="catch">
+  <!-- 7. Why it matters, from the regulator -->
+  <section class="beat" id="proof">
+    <div class="wrap">
+      <p class="beat-q">In EMA's 2024 inspections, the PSMF was one of the <em>three most common</em> areas of findings.</p>
+      <p class="beat-src">EMA Pharmacovigilance Inspectors Working Group, annual report 2024</p>
+    </div>
+  </section>
+
+  <!-- 8. Nothing slips through, and nothing open gets signed -->
+  <section class="s alt" id="catch">
     <div class="wrap split">
       <header class="s-head">
         <h2>Find it before the inspector does.</h2>
         <p class="sub">Every change is checked, and nothing can be signed while anything is still open.</p>
-        <p class="stat"><b>Top 3</b><span>Where the PSMF ranks in EMA's 2024 inspection findings<small>EMA PhV Inspectors Working Group, annual report 2024</small></span></p>
       </header>
-      <div class="paper" id="catchPaper">
-        <div class="paper-top"><span class="scan-state"><i></i><em>Checking</em></span></div>
-        <div class="cl fix">
-          <span class="loc">2.2</span>
-          <p>Cases are processed <s>in-house</s><ins>by Nordlys</ins>.</p>
-          <span class="flag"><b>Contradicts Annex B</b><em>Fix drafted</em></span>
+      <div class="scan" id="scan" aria-label="The whole PSMF, sections 1 to 7 and annexes A to I. Three problems are found and resolved; then signing unlocks.">
+        <div class="spread">
+          <div class="pg" style="grid-area: 1 / 1"><i></i><i></i><i></i><i></i><span>1</span></div><div class="pg bad" style="grid-area: 1 / 2"><i></i><i></i><i></i><i></i><span>2</span><em class="pin"><b>Contradicts Annex B</b><u>Fix drafted</u></em></div><div class="pg" style="grid-area: 1 / 3"><i></i><i></i><i></i><i></i><span>3</span></div><div class="pg" style="grid-area: 1 / 4"><i></i><i></i><i></i><i></i><span>4</span></div><div class="pg" style="grid-area: 1 / 5"><i></i><i></i><i></i><i></i><span>5</span></div><div class="pg" style="grid-area: 1 / 6"><i></i><i></i><i></i><i></i><span>6</span></div><div class="pg" style="grid-area: 1 / 7"><i></i><i></i><i></i><i></i><span>7</span></div>
+          <div class="pg" style="grid-area: 2 / 1"><i></i><i></i><i></i><i></i><span>A</span></div><div class="pg" style="grid-area: 2 / 2"><i></i><i></i><i></i><i></i><span>B</span></div><div class="pg" style="grid-area: 2 / 3"><i></i><i></i><i></i><i></i><span>C</span></div><div class="pg" style="grid-area: 2 / 4"><i></i><i></i><i></i><i></i><span>D</span></div><div class="pg" style="grid-area: 2 / 5"><i></i><i></i><i></i><i></i><span>E</span></div><div class="pg bad" style="grid-area: 2 / 6"><i></i><i></i><i></i><i></i><span>F</span><em class="pin"><b>2 + 47 isn't 50</b><u>You decided</u></em></div><div class="pg bad" style="grid-area: 2 / 7"><i></i><i></i><i></i><i></i><span>G</span><em class="pin down"><b>CAPA past due</b><u>Quality closed it</u></em></div><div class="pg" style="grid-area: 2 / 8"><i></i><i></i><i></i><i></i><span>H</span></div><div class="pg" style="grid-area: 2 / 9"><i></i><i></i><i></i><i></i><span>I</span></div>
         </div>
-        <div class="cl held">
-          <span class="loc">F</span>
-          <p>September: 2 late, 47 on time, <s class="keep">50</s><ins>49</ins> total.</p>
-          <span class="flag"><b>2 + 47 is 49</b><em>Held for you</em><i>You decided</i></span>
-        </div>
-        <div class="cl ask">
-          <span class="loc">G</span>
-          <p>CAPA-2026-014, due 31 March: <s class="keep">open</s><ins>closed</ins>.</p>
-          <span class="flag"><b>Past due</b><em>Asked Quality</em><i>Quality closed it</i></span>
-        </div>
-        <div class="lock" id="lock">
-          <span class="lk"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"/><path class="shackle" d="M7 9V6.5a3 3 0 0 1 6 0V9"/></svg><b class="a">Signing locked · 2 items open</b><b class="b">Nothing open</b></span>
-          <span class="lk-btn"><span class="a">Sign version 4.3</span><span class="b">Signed by Anna Weber</span></span>
-        </div>
-        <i class="scanline"></i>
+        <i class="beam"></i>
+        <div class="scan-lock"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"/><path class="shackle" d="M7 9V6.5a3 3 0 0 1 6 0V9"/></svg><b class="a">Signing locked · <span id="scanOpen">3</span> open</b><b class="b">Nothing open · ready to sign</b></div>
       </div>
     </div>
   </section>
 
-  <!-- 8. AI, with you in charge -->
-  <section class="s alt" id="ai">
+  <!-- 9. AI, with you in charge -->
+  <section class="s" id="ai">
     <div class="wrap split">
       <header class="s-head">
         <h2>The last word<br>is always yours.</h2>
         <p class="sub">AI drafts and flags. You see every step, and can undo any of it.</p>
       </header>
-      <div class="app-win" id="aiWin">
-        <div class="app-bar"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M9 9l7 15 7-15" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Veria<span class="ai-tag"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M9 2.5l1.6 4.4 4.4 1.6-4.4 1.6L9 14.5l-1.6-4.4L3 8.5l4.4-1.6z"/><path d="M15.5 12.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg>Suggested by AI</span></div>
-        <ul class="sug">
-          <li class="sg" data-d="yes">
-            <span class="sg-loc">Annex E</span>
-            <p>SOP-PV-011 is now version 5.0.</p>
-            <span class="sg-act"><span class="b no">Reject</span><span class="b yes">Accept</span></span>
-            <span class="sg-done"><b>Accepted</b><u>Undo</u></span>
-          </li>
-          <li class="sg" data-d="no">
-            <span class="sg-loc">Annex B</span>
-            <p>Remove Denmark from Medica Nord AS.</p>
-            <span class="sg-act"><span class="b no">Reject</span><span class="b yes">Accept</span></span>
-            <span class="sg-done"><b>Rejected</b><u>Undo</u></span>
-          </li>
-          <li class="sg" data-d="yes">
-            <span class="sg-loc">Annex I</span>
-            <p>Logbook: SOP-PV-011 updated to 5.0.</p>
-            <span class="sg-act"><span class="b no">Reject</span><span class="b yes">Accept</span></span>
-            <span class="sg-done"><b>Accepted</b><u>Undo</u></span>
-          </li>
-        </ul>
+      <div class="gate" id="gate" aria-label="AI suggests changes. Each one stops with you: one accepted, one rejected, one accepted and then undone. Only what you accept reaches the PSMF.">
+        <div class="g-col g-ai"><span class="g-node"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M9 2.5l1.6 4.4 4.4 1.6-4.4 1.6L9 14.5l-1.6-4.4L3 8.5l4.4-1.6z"/><path d="M15.5 12.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><span class="g-l">AI suggests</span></div>
+        <div class="g-col g-you"><span class="g-bar"></span><span class="g-av"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7.2" r="3.2"/><path d="M3.8 17c.8-3.2 3.2-5 6.2-5s5.4 1.8 6.2 5"/></svg></span><span class="g-mark" id="gMark"></span><span class="g-l">You decide</span></div>
+        <div class="g-col g-doc"><div class="g-pg" id="gPage"><i></i><i class="t0"></i><i></i><i class="t2"></i><i></i><i></i></div><span class="g-l">Your PSMF</span></div>
+        <span class="tok" data-d="yes">SOP-PV-011 is now 5.0</span>
+        <span class="tok" data-d="no">Remove a distributor</span>
+        <span class="tok" data-d="yes">Logbook entry</span>
       </div>
     </div>
   </section>
 
-  <!-- 9. A year with Veria -->
+  <!-- 10. A year with Veria -->
   <section class="year" id="year">
     <div class="year-pin" id="yearPin">
       <div class="month-word" id="monthWord" aria-hidden="true">January</div>
@@ -297,7 +273,7 @@
     </div>
   </section>
 
-  <!-- 10. Trust, stated, with marks to scan -->
+  <!-- 11. Trust, stated, with marks to scan -->
   <section class="s dark trust" id="trust">
     <div class="wrap tr-grid">
       <h2 class="tr-h" id="trH"><span>Built in the EU.</span> <span>Hosted in the EU.</span> <span>Made for EU rules.</span> <span>Ready for any inspector.</span></h2>
@@ -318,7 +294,7 @@
     </div>
   </section>
 
-  <!-- 11. Questions -->
+  <!-- 12. Questions -->
   <section class="s" id="faq">
     <div class="wrap split faq-grid">
       <header class="s-head">
@@ -334,7 +310,7 @@
     </div>
   </section>
 
-  <!-- 12. Bring your PSMF -->
+  <!-- 13. Bring your PSMF -->
   <section class="close dark" id="demo">
     <div class="wrap close-in">
       <h2>Bring your PSMF.<br>Never update it by hand again.</h2>
@@ -358,6 +334,6 @@
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="v9.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

@@ -1,12 +1,8 @@
 # To-dos
 
 ## Homepage: raised, not settled
-The whole page is a working draft. On 17 October 2026 the owner agreed the outline (now in CLAUDE.md under "Page structure"), and every section was reworked on it in one pass. The owner's verdict: much better than before; the copy is fine for now. Items marked (Claude) are Claude's.
+On 17 October 2026 the owner agreed the outline (CLAUDE.md, "Page structure"), every section was reworked on it, and the version with its own visual for each feature replaced the root page. From here the page is refined, not re-explored. Items marked (Claude) are Claude's.
 
-- **`/v8/` to compare with the root page.** Built on 17 October 2026 from Claude's proposal of one visual verb per feature: `sources` converge (a hub of five source types around the draft), `everywhere` ripples (page thumbnails light up instead of the redline card), `catch` scans (the whole file as page thumbnails, problems pinned where they sit), `ai` is a gate (suggestions stop at you; one accepted, one rejected, one undone). The EMA finding is its own short beat before `catch`, and the EMA notice in `rules` is all blue. Waiting for the owner's look. (Claude)
-- **Feature screens look alike.** `everywhere`, `catch` and `ai` reuse the same redlined sentence, section numbers, chips and accept buttons (and `sources` the same rows), so different features read as one feature seen from different angles. Same design language, but each needs its own visual. (owner)
-- `catch`: the EMA report quote is a great idea in the wrong place. You can't read the feature and the proof at the same time, and the bigger "Top 3" made it worse. Move it out of `catch`. (owner)
-- `rules`: the EMA notice's bright blue band is hard on the eyes against the white card. The same blue in `trust` is fine. (owner)
 - `everywhere`: does the job but is visually heavy. Review later. (owner)
 - `trust`: much better, maybe bolder still. The content isn't there yet; "0/45 broken updates" doesn't explain itself. Later. (owner)
 - `hero`: no wow factor. Its own round; not now. (owner)
@@ -19,7 +15,7 @@ The whole page is a working draft. On 17 October 2026 the owner agreed the outli
 ## Homepage: claims to fact-check
 On the page now. The owner confirms or corrects; then remove the item.
 
-- `catch`: "Top 3: where the PSMF ranks in EMA's 2024 inspection findings." The report says the PSMF was one of the three most common areas of findings. Source: EMA, *Annual report of the Pharmacovigilance Inspectors' Working Group for 2024* (EMA/INS/PhV/122716/2025), section 3.2. It covers only 10 CHMP-requested inspections; check the wording.
+- `proof`: "In EMA's 2024 inspections, the PSMF was one of the three most common areas of findings." Source: EMA, *Annual report of the Pharmacovigilance Inspectors' Working Group for 2024* (EMA/INS/PhV/122716/2025), section 3.2. It covers only 10 CHMP-requested inspections; check the wording.
 - `trust`: "GDPR · Compliant".
 - `trust`: "AI Act · Human in charge". Says nothing about compliance on purpose; PRODUCT.md has AI Act compliance as coming.
 - `sources`: "Veria takes changes from the records your teams already keep", with a contract repository and an HR system as sources. Connectors aren't built yet (PRODUCT.md); shown as working under the no-split rule.
