@@ -1,12 +1,12 @@
 # To-dos
 
-## Homepage: open threads
-Raised, not decided. Talk each one through with the owner before changing anything.
+## Homepage: raised, not settled
+The whole page is a working draft. These are things Claude noticed on 16 October 2026; the owner hasn't discussed them yet. They're not the agenda: bring one up only when it fits what the owner wants to talk about.
 
-- **Hero promise.** Is "Your PSMF, true every day." the line we'd say to a QPPV across a table? The competitor research's other strong candidate: "The PSMF changes when your company does."
-- **Who it's for.** The page never names its readers. A QPPV, an MAH's head of PV and a PV service provider each read it differently; only the FAQ hints at that.
-- **Where rule changes sit.** `rules` is a "coming soon" promise between screens about what works today. It might sit better next to "Made for EU rules" in `trust`.
-- **Phone fit.** On a 375×812 phone, `hero`, `how` and `catch` run slightly past one screen. The year scroller has long empty stretches between cards.
+- **Hero.** Does the promise hold up for a QPPV reading it cold? (Claude)
+- **Who it's for.** The page never names its readers: a QPPV, an MAH's head of PV and a PV service provider each read it differently. (Claude)
+- **`rules`.** A "coming soon" promise sits between screens about what works today. (Claude)
+- **Phone fit.** On a 375×812 phone, `hero`, `how` and `catch` run slightly past one screen; the year scroller has long empty stretches between cards. (Claude)
 
 ## Homepage: claims to fact-check
 On the page now. The owner confirms or corrects; then remove the item.
