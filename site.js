@@ -489,16 +489,57 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 6. EMA publishes; the draft shows what it touches; you review.
+  // 6. EMA publishes a new template: gold waves cross the screen. Veria, listening
+  //    around your PSMF, catches them and the file reshapes: Section 7 rewritten,
+  //    a new column in Annex B, a new annex. Then it's in your draft.
   // ---------------------------------------------------------------------------
   function rules() {
-    const r = $("#rulesVis");
-    sequence(r, [
-      [0.2, () => r.classList.add("s1")],
-      [1.0, () => r.classList.add("s2")],
-      [1.7, () => r.classList.add("s3")],
-      [2.8, () => r.classList.add("s4")],
-    ], () => r.classList.remove("s1", "s2", "s3", "s4"));
+    const stage = $("#bcast"), svg = $("#waves"), mark = $(".ema-mark", stage), listener = $("#listener");
+    const emTag = $("#emTag"), lsTag = $("#lsTag");
+    const s7 = $(".fp.s7", stage), ab = $(".fp.ab", stage), nw = $(".fp.nw", stage);
+    const changed = [s7, ab, nw];
+    const reset = () => {
+      changed.forEach((p) => p.classList.remove("lift", "done", "in"));
+      [listener, emTag, lsTag].forEach((el) => el.classList.remove("hit", "on"));
+      mark.classList.remove("pulse");
+    };
+    if (reduce) {
+      changed.forEach((p) => p.classList.add("done", "in"));
+      listener.classList.add("hit");
+      emTag.classList.add("on");
+      lsTag.classList.add("on");
+      return;
+    }
+    let tl = null;
+    const build = () => {
+      const S = stage.getBoundingClientRect(), M = mark.getBoundingClientRect(), L = listener.getBoundingClientRect();
+      const cx = M.left + M.width / 2 - S.left, cy = M.top + M.height / 2 - S.top, r0 = M.width / 2;
+      const lx = L.left - S.left, ly = L.top - S.top, rx = L.right - S.left, ry = L.bottom - S.top;
+      const near = Math.hypot(Math.max(lx - cx, 0, cx - rx), Math.max(ly - cy, 0, cy - ry));
+      const far = Math.max(...[[lx, ly], [rx, ly], [lx, ry], [rx, ry]].map(([x, y]) => Math.hypot(x - cx, y - cy))) + 60;
+      svg.innerHTML = "";
+      svg.setAttribute("viewBox", `0 0 ${S.width} ${S.height}`);
+      const D = 3.2, t0 = 0.6, hit = t0 + (D * (near - r0)) / (far - r0);
+      tl = gsap.timeline({ repeat: -1, repeatDelay: 1.5, onRepeat: reset });
+      tl.call(() => { emTag.classList.add("on"); mark.classList.remove("pulse"); void mark.offsetWidth; mark.classList.add("pulse"); }, null, t0);
+      [0, 0.45, 0.9].forEach((d) => {
+        const c = svgEl("circle", { cx, cy, r: r0, class: "wv" }, svg);
+        tl.fromTo(c, { attr: { r: r0 } }, { attr: { r: far }, duration: D, ease: "none" }, t0 + d)
+          .fromTo(c, { opacity: 0.9 }, { opacity: 0, duration: D, ease: "power1.in", immediateRender: false }, t0 + d);
+      });
+      const lift = (p, at) => tl.call(() => p.classList.add("in", "lift", "done"), null, at).call(() => p.classList.remove("lift"), null, at + 0.7);
+      tl.call(() => listener.classList.add("hit"), null, hit);
+      lift(s7, hit + 0.5);
+      lift(ab, hit + 1.2);
+      lift(nw, hit + 1.9);
+      tl.call(() => lsTag.classList.add("on"), null, hit + 2.9);
+      tl.call(() => {}, null, hit + 7);
+    };
+    let running = false;
+    const stop = () => { if (tl) tl.kill(); tl = null; reset(); svg.innerHTML = ""; };
+    whileVisible(stage, () => { running = true; build(); }, () => { running = false; stop(); });
+    let rw = stage.clientWidth;
+    addEventListener("resize", () => { if (stage.clientWidth !== rw) { rw = stage.clientWidth; if (running) { stop(); build(); } } });
   }
 
   // ---------------------------------------------------------------------------

@@ -31,7 +31,7 @@ The homepage's structure and promises are settled (17 October 2026). From here w
 - Short, concrete, no marketing filler, nothing that reads as AI-written, no meta-commentary on the page itself.
 
 ## Visuals
-- Each feature section has its own visual idea, in one shared design language: `sources` converge, `everywhere` ripples, `rules` is a pipeline, `catch` scans, `ai` is a gate. Don't repeat a pattern across features (a redlined sentence, section-number labels, status chips, accept buttons): things that look 95% the same read as one feature.
+- Each feature section has its own visual idea, in one shared design language: `sources` converge, `everywhere` ripples, `rules` is a broadcast (the regulator sends, Veria listens and adapts), `catch` scans, `ai` is a gate. Don't repeat a pattern across features (a redlined sentence, section-number labels, status chips, accept buttons): things that look 95% the same read as one feature.
 - Each kind of thing looks like what it is, and the same everywhere: the regulator in EU blue and gold, a PSMF as a paper page, the Veria app as a white window with the logo. Different kinds of things never share a card design.
 - Leave out meta info that changes nothing (document IDs, "draft of 4.3").
 - Proof (a quote, a statistic) gets its own beat. It never competes with a feature's explanation on the same screen.

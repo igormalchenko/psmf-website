@@ -173,41 +173,31 @@
     </div>
   </section>
 
-  <!-- 6. Rule changes reach the draft -->
+  <!-- 6. Rule changes: the regulator broadcasts, Veria listens and adapts -->
   <section class="s dark" id="rules">
     <div class="wrap">
       <header class="s-head">
         <h2>Never miss a change in the rules.</h2>
         <p class="sub">When EMA publishes new PSMF guidance, it shows up in your draft that day. Not weeks later.</p>
       </header>
-      <div class="rules" id="rulesVis">
-        <div class="ru ema">
-          <div class="ema-band"><svg class="stars" viewBox="0 0 32 32" data-r="11" data-s="2.3" aria-hidden="true"></svg><span>European Medicines Agency</span></div>
-          <div class="ema-body">
-            <b>Revised guidance on the PSMF</b>
-            <span class="ru-s">Published today</span>
-          </div>
+      <div class="bcast" id="bcast" role="img" aria-label="The European Medicines Agency publishes a new PSMF template at 09:00. Veria, listening around your PSMF, hears it and adapts the file: Section 7 is rewritten, Annex B gets a new column and a new annex is added. At 09:02 it's in your draft.">
+        <svg class="waves" id="waves" aria-hidden="true"></svg>
+        <div class="emitter">
+          <span class="em-tag" id="emTag"><b>New PSMF template</b><i>09:00</i></span>
+          <span class="ema-mark"><svg class="stars" viewBox="0 0 64 64" data-r="24" data-s="3" aria-hidden="true"></svg><b>EMA</b></span>
+          <span class="em-l">European Medicines Agency</span>
         </div>
-        <svg class="ru-line" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5H100"/></svg>
-        <div class="ru draft">
-          <span class="dr-t">Pharmacovigilance System Master File</span>
-          <ul class="outline">
-            <li>Sections 1–6</li>
-            <li class="hit"><span>Section 7</span><em>One paragraph</em></li>
-            <li>Annex A</li>
-            <li class="hit"><span>Annex B</span><em>New column</em></li>
-            <li>Annex C–E</li>
-            <li class="hit"><span>Annex F</span><em>New layout</em></li>
-            <li>Annex G–I</li>
-          </ul>
-        </div>
-        <svg class="ru-line" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5H100"/></svg>
-        <div class="ru app">
-          <div class="app-bar"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M9 9l7 15 7-15" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Veria</div>
-          <div class="app-body">
-            <b>3 changes to review</b>
-            <span class="ru-btn">Open the redline</span>
+        <div class="listener" id="listener">
+          <span class="ls-k"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M9 9l7 15 7-15" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Veria<i></i><em>listening</em></span>
+          <div class="fan">
+            <div class="fp" style="--i: 0"><b class="fp-t"></b><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="fp" style="--i: 1"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="fp s7" style="--i: 2"><i></i><i></i><i class="rw"></i><i class="rw"></i><i class="rw"></i><i></i><i></i><em>Section 7 rewritten</em></div>
+            <div class="fp ab" style="--i: 3"><div class="tbl"><span class="th"><i class="nc"></i><i></i><i></i><i></i></span><span><i class="nc"></i><i></i><i></i><i></i></span><span><i class="nc"></i><i></i><i></i><i></i></span><span><i class="nc"></i><i></i><i></i><i></i></span><span><i class="nc"></i><i></i><i></i><i></i></span></div><em>Annex B: new column</em></div>
+            <div class="fp" style="--i: 4"><div class="tbl"><span class="th"><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span></div></div>
+            <div class="fp nw" style="--i: 5"><div class="tbl"><span class="th"><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span></div><em>New annex</em></div>
           </div>
+          <span class="ls-tag" id="lsTag"><b>In your draft</b><i>09:02</i></span>
         </div>
       </div>
     </div>

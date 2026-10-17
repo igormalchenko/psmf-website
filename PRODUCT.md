@@ -88,7 +88,7 @@ One year of Halvorsen's PSMF, with a revision every four months.
 - `hero`: the 4.3 rows (Anna Weber, Ingrid Solberg, the distributors, safety database 8.4, VP-SOP-029, Annex F to September, the logbook).
 - `sources`: UK QPPV Oliver Bennett (HR system), Nordvia AB (contracts), safety database 8.4 (a spreadsheet), SOP-PV-003 version 3 (the quality system), Medica Nord AS unchanged (Maren Dahl).
 - `everywhere`: VP-SOP-029 replacing 031; a 15th product; the QPPV office moving from Hellerup to Copenhagen.
-- `rules`: revised EMA guidance touching Section 7, Annex B and Annex F.
+- `rules`: EMA publishes a new PSMF template at 09:00; by 09:02 Section 7 is rewritten, Annex B has a new column and a new annex is added.
 - `catch`: Section 2 says cases are processed in-house, Annex B says Nordlys; September figures, 2 late + 47 on time isn't 50; CAPA-2026-014 past due.
 - `ai`: SOP-PV-011 to 5.0 (accepted), removing a distributor (rejected), the logbook entry (accepted, then undone).
 - `year`: the story above.

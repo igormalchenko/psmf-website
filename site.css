@@ -317,52 +317,76 @@ h2 { font-size: clamp(2.1rem, 3.9vw, 3.5rem); text-wrap: balance; }
   .ewp span { font-size: 11px; }
 }
 
-/* 6. Rules: the regulator, your PSMF and the app, each looking like itself */
-.rules { display: grid; grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1.1fr) 56px minmax(0, 1fr); align-items: center; }
-.ru { position: relative; color: var(--ink); }
+/* 6. Rules: the regulator broadcasts; Veria listens around your PSMF and adapts it */
 .stars polygon { fill: #ffcc00; }
-.ru.ema { overflow: hidden; border-radius: 8px; color: #fff; background: #0a2d7a; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08), 0 30px 60px -30px rgb(0 0 0 / 0.7); opacity: 0.3; transition: opacity 0.6s, box-shadow 0.6s; }
-.rules.s1 .ru.ema { opacity: 1; box-shadow: inset 0 0 0 1px rgb(255 204 0 / 0.3), 0 0 60px -20px rgb(255 204 0 / 0.25), 0 30px 60px -30px rgb(0 0 0 / 0.7); }
-.ema-band { display: flex; align-items: center; gap: 10px; padding: 14px 16px 12px; border-bottom: 1px solid rgb(255 255 255 / 0.1); color: rgb(255 255 255 / 0.85); font-size: 12.5px; font-weight: 600; }
-.ema-band .stars { flex: none; width: 30px; height: 30px; }
-.ema-body { padding: 14px 16px 18px; }
-.ema-body b { display: block; font: 400 22px/1.2 var(--serif); }
-.ru-s { display: inline-block; margin-top: 12px; font-size: 12.5px; font-weight: 600; color: #ffcc00; }
-.ru.draft { padding: 18px 18px 14px; border-radius: 3px; background: #fdfcf9; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.75), 0 12px 24px -12px rgb(0 0 0 / 0.5); }
-.dr-t { display: block; padding-bottom: 10px; border-bottom: 1px solid var(--line); font: 400 17px/1.15 var(--serif); }
-.outline { margin-top: 8px; display: grid; gap: 2px; }
-.outline li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; font-size: 12.5px; color: var(--mute); transition: all 0.5s; }
-.outline li em { font-style: normal; font-weight: 600; opacity: 0; transition: opacity 0.5s; }
-.rules.s3 .outline .hit { color: var(--ink); background: var(--blue-soft); box-shadow: inset 2px 0 0 var(--blue); }
-.rules.s3 .outline .hit em { opacity: 1; color: var(--blue); }
-.ru-line { width: 100%; height: 10px; overflow: visible; }
-.ru-line path { fill: none; stroke: var(--sky); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 0.8s; }
-.rules.s2 .ru-line:nth-of-type(1) path, .rules.s4 .ru-line:nth-of-type(2) path { stroke-dashoffset: 0; }
+#rules h2 { font-size: clamp(2.5rem, 5.2vw, 4.8rem); }
+#rules .sub { max-width: 34em; }
+.bcast { position: relative; display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); align-items: center; gap: 40px; min-height: clamp(300px, calc(100vh - 330px), 420px); }
+.waves { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.waves .wv { fill: none; stroke: #ffcc00; stroke-width: 1.5; opacity: 0; }
+.emitter { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.ema-mark { position: relative; display: grid; place-items: center; width: 136px; height: 136px; border-radius: 50%; background: #0a2d7a; box-shadow: 0 0 0 1px rgb(255 204 0 / 0.22), 0 0 90px -20px rgb(255 204 0 / 0.3); }
+.ema-mark .stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ema-mark b { position: relative; font-size: 19px; font-weight: 700; letter-spacing: 0.08em; color: #fff; }
+.ema-mark.pulse { animation: emit 1s ease-out; }
+@keyframes emit { 30% { transform: scale(1.06); box-shadow: 0 0 0 1px rgb(255 204 0 / 0.55), 0 0 120px -10px rgb(255 204 0 / 0.55); } }
+.em-l { font-size: 13px; font-weight: 600; color: var(--on-night-2); }
+.em-tag, .ls-tag { display: inline-flex; align-items: baseline; gap: 8px; padding: 6px 12px; border-radius: 8px; font-size: 13px; white-space: nowrap; opacity: 0; transform: translateY(6px); transition: opacity 0.5s, transform 0.5s; }
+.em-tag b, .ls-tag b { font-weight: 600; }
+.em-tag i, .ls-tag i { font-style: normal; font-variant-numeric: tabular-nums; }
+.em-tag { color: #fff; background: rgb(255 204 0 / 0.1); box-shadow: inset 0 0 0 1px rgb(255 204 0 / 0.35); }
+.em-tag i { color: #ffcc00; }
+.em-tag.on, .ls-tag.on { opacity: 1; transform: none; }
+.listener { position: relative; z-index: 1; justify-self: end; padding: 80px 28px 32px; border-radius: 22px; border: 1.5px dashed rgb(0 166 244 / 0.35); background: rgb(13 17 23 / 0.6); transition: border-color 0.4s, box-shadow 0.8s; }
+.listener.hit { border-style: solid; border-color: rgb(0 166 244 / 0.85); box-shadow: 0 0 0 6px rgb(0 166 244 / 0.08), 0 0 90px -20px rgb(0 166 244 / 0.55); }
+.ls-k { position: absolute; top: -13px; left: 20px; display: inline-flex; align-items: center; gap: 8px; padding: 3px 12px 3px 10px; border-radius: 999px; background: var(--night); font-size: 13px; font-weight: 700; color: var(--on-night); }
+.ls-k svg { width: 16px; height: 16px; color: var(--sky); }
+.ls-k i { width: 6px; height: 6px; margin-left: 4px; border-radius: 50%; background: var(--sky); animation: breathe 1.8s ease-in-out infinite; }
+.ls-k em { font-style: normal; font-weight: 500; color: var(--on-night-2); }
+.ls-tag { position: absolute; right: 22px; bottom: -15px; color: #fff; background: var(--night); box-shadow: inset 0 0 0 1px rgb(0 166 244 / 0.6); }
+.ls-tag i { color: var(--sky); }
 
-/* The Veria app: the same window wherever it appears */
-.app-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 13px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
-.app-bar > svg { flex: none; width: 18px; height: 18px; color: var(--blue); }
-.ru.app { overflow: hidden; border-radius: 14px; background: #fff; box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.7); opacity: 0.3; transition: opacity 0.6s; }
-.rules.s4 .ru.app { opacity: 1; }
-.app-body { padding: 16px 16px 18px; }
-.app-body b { display: block; font-size: 17px; font-weight: 600; }
-.ru-btn { display: inline-flex; margin-top: 12px; padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 600; color: #fff; background: var(--blue); }
+/* Your PSMF, fanned out: pages reshape when the rules change */
+.fan { --pw: 112px; --ph: 150px; --step: 62px; position: relative; width: calc(var(--step) * 5 + var(--pw)); height: var(--ph); }
+.fp { position: absolute; top: 0; left: calc(var(--i) * var(--step)); display: flex; flex-direction: column; gap: 7px; width: var(--pw); height: var(--ph); padding: 14px 12px; border-radius: 3px; background: #fdfcf9; box-shadow: -12px 0 24px -16px rgb(0 0 0 / 0.7), 0 30px 50px -30px rgb(0 0 0 / 0.8); transition: transform 0.6s cubic-bezier(0.3, 1.4, 0.6, 1), opacity 0.6s; }
+.fp > i { height: 5px; border-radius: 3px; background: rgb(21 24 29 / 0.12); transition: background 0.5s; }
+.fp > i:nth-of-type(3n) { width: 72%; }
+.fp-t { height: 10px; width: 70%; margin-bottom: 6px; border-radius: 3px; background: rgb(21 24 29 / 0.22); }
+.fp.lift { transform: translateY(-16px); }
+.fp.s7.done > i.rw { background: var(--blue); }
+.tbl { display: grid; gap: 4px; }
+.tbl > span { display: flex; gap: 3px; }
+.tbl i { flex: 1 1 0; height: 8px; border-radius: 2px; background: rgb(21 24 29 / 0.1); transition: flex-grow 0.7s, margin 0.7s, background 0.5s; }
+.tbl .th i { background: rgb(21 24 29 / 0.25); }
+.tbl i.nc { flex-grow: 0; margin-right: -3px; }
+.fp.ab.done .tbl i.nc { flex-grow: 1; margin-right: 0; background: var(--blue); }
+.fp.nw { opacity: 0; transform: translateY(-60px); }
+.fp.nw.in { opacity: 1; transform: none; }
+.fp.nw.in.lift { transform: translateY(-16px); }
+.fp em { position: absolute; z-index: 2; left: 50%; bottom: calc(100% + 12px); padding: 4px 9px; border-radius: 7px; font-size: 12px; font-style: normal; font-weight: 600; white-space: nowrap; color: var(--night); background: var(--sky); opacity: 0; transform: translate(-50%, 6px); transition: opacity 0.4s, transform 0.4s; }
+.fp em::after { content: ""; position: absolute; left: 50%; top: 100%; width: 8px; height: 8px; margin: -5px 0 0 -4px; transform: rotate(45deg); background: var(--sky); }
+.fp.s7 em { bottom: calc(100% + 44px); }
+.fp.s7 em::before { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 36px; background: rgb(0 166 244 / 0.5); }
+.fp.done em { opacity: 1; transform: translate(-50%, 0); }
 @media (max-width: 900px) {
-  .rules { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .ru-line { width: 10px; height: 22px; margin: 0 auto; transform: rotate(90deg); }
-  .ema-band { padding: 8px 12px; }
-  .ema-band .stars { width: 24px; height: 24px; }
-  .ema-body, .app-body { padding: 10px 12px 12px; }
-  .ema-body b { font-size: 18px; }
-  .ru-s { margin-top: 4px; }
-  .ru.draft { padding: 12px 12px 10px; }
-  .dr-t { padding-bottom: 6px; font-size: 15px; }
-  .outline li { padding: 3px 8px; font-size: 12px; }
-  .outline li:not(.hit) { display: none; }
-  .app-bar { padding: 7px 12px; }
-  .app-body { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .app-body b { font-size: 15px; }
-  .ru-btn { margin-top: 0; padding: 6px 12px; font-size: 12.5px; }
+  .bcast { grid-template-columns: minmax(0, 1fr); gap: 34px; min-height: 0; }
+  .emitter { gap: 10px; }
+  .ema-mark { width: 92px; height: 92px; }
+  .ema-mark b { font-size: 14px; }
+  .listener { justify-self: center; padding: 66px 14px 28px; }
+  .ls-k { left: 14px; font-size: 12px; }
+  .fan { --pw: 66px; --ph: 90px; --step: 46px; }
+  .fp { gap: 4px; padding: 8px 7px; }
+  .fp > i { height: 3px; }
+  .fp-t { height: 6px; margin-bottom: 3px; }
+  .tbl { gap: 3px; }
+  .tbl > span { gap: 2px; }
+  .tbl i { height: 5px; }
+  .fp em { padding: 3px 7px; font-size: 11px; }
+  .fp.s7 em, .fp.nw em { bottom: calc(100% + 38px); }
+  .fp.nw em::before { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; background: rgb(0 166 244 / 0.5); }
+  .fp.s7 em::before, .fp.nw em::before { height: 30px; }
+  .em-tag, .ls-tag { font-size: 12px; padding: 5px 10px; }
 }
 
 /* 7. Proof: the regulator's own finding, on its own */
