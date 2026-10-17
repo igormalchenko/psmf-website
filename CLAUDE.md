@@ -36,19 +36,21 @@ Why this matters: the owner has corrected it twice. On 16 October 2026: "this is
 ## The homepage
 - The root page (`index.html`, `v9.css`, `v9.js`) is the working draft. It was built as v9 on the page structure below. Earlier drafts are archived at `/v1/` to `/v8/` and listed at `/drafts/`.
 - Don't create new vN folders: git is the history. Make a snapshot folder only when the owner asks to compare two versions side by side.
-- Sections by id, which is how the owner refers to them: `hero`, `how`, `people`, `everywhere`, `catch`, `rules`, `year`, `stop`, `trust`, `faq`, `demo`. Each has a numbered block in `v9.css` and its own function in `v9.js`.
+- Sections by id, in page order, which is how the owner refers to them: `hero`, `stop`, `how`, `sources`, `everywhere`, `rules`, `catch`, `ai`, `year`, `trust`, `faq`, `demo`. Each has a numbered block in `v9.css` and its own function in `v9.js`.
 - The fictional story the page tells (versions, dates, which change went into which version) is in `PRODUCT.md` under the cast. Keep new examples consistent with it.
 - Checking in the desktop app's browser pane: when the pane is hidden, timers, animation frames and IntersectionObserver are throttled. To see an animated end state, pause `gsap.globalTimeline` and step it with `.time()`, or add the end-state classes by hand. After moving files, reload with a query string (`?fresh=1`) to skip the cache.
 
 ## Page structure (agreed for the landing page)
 Each screen answers a different question the reader has at that point. A promise is shown once.
 1. **Hero:** the core promise and one visual.
-2. **How it works:** one screen, the loop as numbered steps. Labels only, no examples.
-3. **What powers it:** 3–4 screens, one differentiator each, each with its own example. Where Veria is going is woven into these screens. Never a separate "vision" or "where we're going" section.
-4. **Life with Veria:** what changes for the reader (A year with Veria, What you stop doing).
-5. **Trust:** one bold screen. State it, don't ask for it: built in the EU, hosted in the EU, made for EU rules, ready for any inspector.
-6. **FAQ:** objections not answered anywhere else on the page, one line each.
-7. **CTA.**
+2. **What you stop doing:** right after the hero, so the promise is sold before the how. The chores struck off, then one blunt line on what's left for the reader.
+3. **How it works:** one screen, the loop as numbered steps. Labels only, no examples.
+4. **What powers it:** 4 screens, each one way the PSMF is kept up to date and right, so each backs up the hero: any source (`sources`), change once (`everywhere`), rule changes (`rules`), nothing slips through (`catch`). Each has its own example. Where Veria is going is woven into these screens. Never a separate "vision" or "where we're going" section.
+5. **AI, you're in charge:** its own screen. The reader sees, accepts, rejects and undoes what AI does; it can't work without them.
+6. **A year with Veria.**
+7. **Trust:** one bold screen. State it, don't ask for it: built in the EU, hosted in the EU, made for EU rules, ready for any inspector, with marks to scan.
+8. **FAQ:** objections not answered anywhere else on the page, one line each.
+9. **CTA:** a promise only Veria can make, not an audit.
 
 The summary names the steps; feature screens show depth. No example appears in both, and feature screens don't reuse each other's examples (same fictional cast, different facts).
 

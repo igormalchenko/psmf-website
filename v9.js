@@ -42,17 +42,37 @@
   }
 
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+    stars();
     nav();
     hero();
-    flow();
-    people();
-    ownersMap();
-    catcher();
-    rules();
-    year();
     chores();
+    flow();
+    sources();
+    ownersMap();
+    rules();
+    catcher();
+    ai();
+    year();
     trust();
   });
+
+  // ---------------------------------------------------------------------------
+  // A ring of twelve gold stars, for anything that stands for the EU.
+  // ---------------------------------------------------------------------------
+  function stars() {
+    $$("svg.stars").forEach((svg) => {
+      const c = svg.viewBox.baseVal.width / 2, R = +svg.dataset.r, s = +svg.dataset.s;
+      for (let i = 0; i < 12; i++) {
+        const a = (i / 12) * Math.PI * 2, x = c + R * Math.cos(a), y = c + R * Math.sin(a);
+        const pts = [];
+        for (let k = 0; k < 10; k++) {
+          const r = k % 2 ? s * 0.4 : s, b = -Math.PI / 2 + (k * Math.PI) / 5;
+          pts.push(`${(x + r * Math.cos(b)).toFixed(2)},${(y + r * Math.sin(b)).toFixed(2)}`);
+        }
+        svgEl("polygon", { points: pts.join(" ") }, svg);
+      }
+    });
+  }
 
   // ---------------------------------------------------------------------------
   // Nav: solid once scrolled, light text over dark sections.
@@ -175,11 +195,11 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 2. How it works: the four steps, one after another. Labels only.
+  // 3. How it works: the four steps, one after another. Labels only.
   // ---------------------------------------------------------------------------
   function flow() {
     const list = $("#flowSteps"), steps = $$(".st", list), bar = $("#flowBar"), rail = bar.parentElement;
-    const files = $$(".v-files .file", list), ask = $(".v-ask", list), place = $(".v-place", list), seal = $(".v-seal", list);
+    const items = $$(".v-src .it", list), check = $(".v-check", list), place = $(".v-place", list), seal = $(".v-seal", list);
     const lineW = () => rail.offsetWidth;
     const activate = (i) => steps.forEach((s, j) => { s.classList.toggle("on", j === i); s.classList.toggle("done", j < i); });
     const fill = (f) => gsap.to(bar, { width: lineW() * f, duration: 1.2, ease: "power2.inOut" });
@@ -187,10 +207,10 @@
       [0, () => {
         list.classList.add("run");
         activate(0);
-        if (!reduce) gsap.from(files, { y: -50, opacity: 0, duration: 0.8, stagger: 0.14, ease: "back.out(1.6)", clearProps: "opacity,y" });
+        if (!reduce) gsap.from(items, { y: -50, opacity: 0, duration: 0.8, stagger: 0.14, ease: "back.out(1.6)", clearProps: "opacity,y" });
       }],
       [1.3, () => fill(0.25)],
-      [1.7, () => { activate(1); ask.classList.add("sent"); }],
+      [1.7, () => { activate(1); check.classList.add("checked"); }],
       [3.0, () => fill(0.5)],
       [3.4, () => { activate(2); place.classList.add("placed"); }],
       [4.9, () => fill(0.75)],
@@ -199,7 +219,7 @@
     ], () => {
       list.classList.remove("run");
       steps.forEach((s) => s.classList.remove("on", "done"));
-      ask.classList.remove("sent");
+      check.classList.remove("checked");
       place.classList.remove("placed");
       seal.classList.remove("stamped");
       gsap.set(bar, { width: 0 });
@@ -208,44 +228,26 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 3. Today, the owner answers one email; next, the same fact arrives from the
-  //    system they keep. Same fact, same checks.
+  // 4. Sources: facts arrive from a contract system, the HR system, a
+  //    spreadsheet and a person; each is checked and lands in its place.
   // ---------------------------------------------------------------------------
-  function people() {
-    const pp = $("#pp"), tabs = $$(".seg button", pp);
-    let mode = "today", auto = true, timers = [];
-    const later = (ms, fn) => timers.push(setTimeout(fn, ms));
-    const stop = () => { timers.forEach(clearTimeout); timers = []; };
-    const set = (m) => {
-      mode = m;
-      pp.dataset.mode = m;
-      tabs.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.mode === m)));
-      pp.classList.remove("added", "done", "press");
-    };
-    const play = () => {
-      stop();
-      if (mode === "today") {
-        later(1000, () => pp.classList.add("press"));
-        later(1300, () => { pp.classList.remove("press"); pp.classList.add("added"); });
-        later(2500, () => pp.classList.add("done"));
-      } else {
-        later(800, () => pp.classList.add("added"));
-        later(1700, () => pp.classList.add("done"));
-      }
-      if (auto && !reduce) later(mode === "today" ? 6200 : 5600, () => { set(mode === "today" ? "next" : "today"); play(); });
-    };
-    tabs.forEach((b) => b.addEventListener("click", () => { auto = false; set(b.dataset.mode); play(); }));
-    if (reduce) { pp.classList.add("added", "done"); return; }
-    whileVisible(pp, () => { set(mode); play(); }, stop);
+  function sources() {
+    const feed = $("#feed"), rows = $$(".fd", feed);
+    const steps = [];
+    rows.forEach((r, i) => {
+      steps.push([0.2 + i * 0.45, () => r.classList.add("in")]);
+      steps.push([1.3 + i * 0.45, () => r.classList.add("ok")]);
+    });
+    sequence(feed, steps, () => rows.forEach((r) => r.classList.remove("in", "ok")), 0.3);
   }
 
   // ---------------------------------------------------------------------------
-  // 4. Change it once: owners → the parts of the PSMF their answers appear in
+  // 5. Change it once: owners → the parts of the PSMF their answers appear in
   //    (from Veria's template: about 90 questions, each with one owner), and
   //    the sentence Veria redrafts.
   // ---------------------------------------------------------------------------
   function ownersMap() {
-    const root = $("#map"), svg = $("#mapSvg"), cap = $("#mapCap");
+    const root = $("#map"), svg = $("#mapSvg");
     const PLACES = ["Cover", "Section 1", "Section 2", "Section 3", "Section 4", "Section 5", "Section 6", "Section 7",
       "Annex A", "Annex B", "Annex C", "Annex D", "Annex E", "Annex F", "Annex G", "Annex H", "Annex I"];
     const LOG = 16;
@@ -262,15 +264,11 @@
     ];
     // Each example: where the fact lands, and the sentence Veria redrafts.
     const EXAMPLES = [
-      { o: 6, ans: "VP-SOP-029 replaces 031", short: "VP-SOP-029", to: [12, 5], loc: "Section 5.3", text: ["Literature is searched weekly under ", "VP-SOP-031", "VP-SOP-029", "."],
-        cap: "<b>Your vendor</b> replaces a procedure. Annex E, the Section 5 wording and the logbook follow." },
-      { o: 3, ans: "+1 product", to: [15, 0, 2], loc: "Section 2.1", text: ["It holds marketing authorisations for ", "14", "15", " medicinal products."],
-        cap: "<b>Regulatory</b> adds a product. Annex H, the cover, the Section 2 wording and the logbook follow." },
-      { o: 1, ans: "QPPV office: Copenhagen", short: "Copenhagen", to: [1, 2], loc: "Section 1.3", text: ["The EU QPPV works from the office in ", "Hellerup", "Copenhagen", "."],
-        cap: "<b>The PSMF team</b> records a new QPPV office. Sections 1 and 2 and the logbook follow." },
+      { o: 6, ans: "VP-SOP-029 replaces 031", short: "VP-SOP-029", to: [12, 5], loc: "Section 5.3", text: ["Literature is searched weekly under ", "VP-SOP-031", "VP-SOP-029", "."] },
+      { o: 3, ans: "+1 product", to: [15, 0, 2], loc: "Section 2.1", text: ["It holds marketing authorisations for ", "14", "15", " medicinal products."] },
+      { o: 1, ans: "QPPV office: Copenhagen", short: "Copenhagen", to: [1, 2], loc: "Section 1.3", text: ["The EU QPPV works from the office in ", "Hellerup", "Copenhagen", "."] },
     ];
     const prose = $("#prose"), prLoc = $("#prLoc"), prP = $("#prP");
-    const list = (a) => (a.length < 2 ? a.join("") : `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}`);
 
     let L = null, ex = 0, timer = 0, pinned = -1, running = false, tw = [];
     const g = {};
@@ -329,7 +327,6 @@
     }
     const lightPlace = (p) => { L.places[p].dot.classList.add("hi"); L.places[p].t.classList.add("hi"); };
     const lightOwner = (o) => { L.owners[o].g.classList.add("hi"); L.owners[o].t.classList.add("hi"); };
-    const say = (html) => { cap.style.opacity = 0; setTimeout(() => { cap.innerHTML = html; cap.style.opacity = 1; }, 200); };
 
     function show(e) {
       clear();
@@ -344,7 +341,6 @@
       const w = at.getComputedTextLength() + 22;
       ag.insertBefore(svgEl("rect", { x: L.mid - w / 2, y: ay - 13, width: w, height: 26, rx: 8 }), at);
       const logPath = svgEl("path", { d: `M${L.mid + w / 2} ${ay}C${L.px - 60} ${ay} ${L.px - 60} ${L.py[LOG]} ${L.px - 6} ${L.py[LOG]}`, class: "ln hi log", "stroke-width": 1.5, opacity: 0 }, g.extra);
-      say(e.cap);
       const [pre, was, now, post] = e.text;
       prose.classList.remove("red", "ok", "dim");
       prLoc.textContent = e.loc;
@@ -373,8 +369,6 @@
       L.lines.filter((l) => l.o === o).forEach((l) => l.el.classList.add("hi"));
       ps.forEach(lightPlace);
       prose.classList.add("dim");
-      const [name, n] = OWNERS[o];
-      say(`<b>${name}</b> answers ${n} question${n === 1 ? "" : "s"}. They appear in ${list(ps.map((p) => PLACES[p]))}.`);
     }
     function unpin() {
       if (pinned < 0) return;
@@ -395,7 +389,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 5. A scan runs down the page; problems are marked, then fixed, asked or
+  // 7. A scan runs down the page; problems are marked, then fixed, asked or
   //    held. Signing stays locked until nothing is open.
   // ---------------------------------------------------------------------------
   function catcher() {
@@ -441,7 +435,21 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 7. A year with Veria: scroll through the months; three revisions, one every
+  // 8. AI suggests; you accept or reject each one, and can undo any of them.
+  // ---------------------------------------------------------------------------
+  function ai() {
+    const win = $("#aiWin"), rows = $$(".sg", win);
+    const steps = [];
+    rows.forEach((r, i) => {
+      const t = 0.7 + i * 1.2, d = r.dataset.d;
+      steps.push([t, () => r.classList.add(`press-${d}`)]);
+      steps.push([t + 0.3, () => { r.classList.remove(`press-${d}`); r.classList.add("decided"); }]);
+    });
+    sequence(win, steps, () => rows.forEach((r) => r.classList.remove("decided", "press-yes", "press-no")));
+  }
+
+  // ---------------------------------------------------------------------------
+  // 9. A year with Veria: scroll through the months; three revisions, one every
   //    four months, and nothing that turns into a project.
   // ---------------------------------------------------------------------------
   function year() {
@@ -453,15 +461,15 @@
     const SEASON = ["#e5ebf1", "#e7ecf0", "#ebf0e9", "#ecf2e3", "#edf3e0", "#f3f1de", "#f6efdb", "#f6ebd8", "#f3e6d5", "#f0e0cf", "#e8e3dc", "#e3e8ee", "#e5ebf1"];
     const REVISIONS = [[31, 39], [151, 152], [273, 280]];
     const EVENTS = [
-      { day: 19, date: "20 January", title: "Quality updates a procedure", text: "SOP-PV-011 goes to version 5.0. Annex E follows the same day.", chip: "Annex E · logbook" },
-      { day: 31, date: "1–9 February", title: "Revision one", text: "Every owner gets their questions on the 1st. Most tap No change.", chip: "Version 4.1 signed", g: true, sign: 39, hi: true },
-      { day: 103, date: "14 April", title: "The vendor upgrades its database", text: "One question to the vendor. Section 4 and Annex D follow." },
-      { day: 151, date: "1–2 June", title: "Revision two", text: "A new deputy QPPV waits for your approval. You sign the next morning.", chip: "Version 4.2 signed", g: true, sign: 152, hi: true },
-      { day: 195, date: "15 July", title: "A new distributor signs", text: "Legal answers one question. Section 2, Annex B and the logbook follow.", chip: "In the draft" },
-      { day: 231, date: "August", title: "You're away", text: "Nothing piles up while you are.", hi: true },
-      { day: 273, date: "1–8 October", title: "Revision three", text: "Six procedure updates from the vendor go in on their own.", chip: "Version 4.3 signed", g: true, sign: 280, hi: true },
-      { day: 315, date: "12 November", title: "The inspectorate asks for your PSMF.", text: "They give you seven days. You send 4.3 that morning.", chip: "Sent 09:14", punch: true },
-      { day: 350, date: "December", title: "Year end", text: "Three versions, each signed when it was right. Nothing to catch up on.", hi: true },
+      { day: 19, date: "20 January", title: "Quality updates a procedure", text: "SOP-PV-011 goes to 5.0.", chip: "Annex E · logbook" },
+      { day: 31, date: "1–9 February", title: "Revision one", text: "Owners confirm their part.", chip: "Version 4.1 signed", g: true, sign: 39, hi: true },
+      { day: 103, date: "14 April", title: "The vendor upgrades its database", text: "Section 4 and Annex D follow." },
+      { day: 151, date: "1–2 June", title: "Revision two", text: "A new deputy QPPV waits for you.", chip: "Version 4.2 signed", g: true, sign: 152, hi: true },
+      { day: 195, date: "15 July", title: "A new distributor signs", text: "Section 2, Annex B and the logbook follow.", chip: "In the draft" },
+      { day: 231, date: "August", title: "You're away", text: "Nothing piles up.", hi: true },
+      { day: 273, date: "1–8 October", title: "Revision three", text: "Six vendor procedures go in on their own.", chip: "Version 4.3 signed", g: true, sign: 280, hi: true },
+      { day: 315, date: "12 November", title: "The inspectorate asks for your PSMF.", text: "Seven days to respond. You send 4.3 that morning.", chip: "Sent 09:14", punch: true },
+      { day: 350, date: "December", title: "Year end", text: "Three versions. Nothing to catch up on.", hi: true },
     ];
     track.style.width = axis.style.width = `${365 * DW}px`;
     MONTH_START.slice(0, 12).forEach((d, i) => {
@@ -531,10 +539,10 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 8. The chores, struck off one by one; then what's still yours.
+  // 2. The chores, struck off one by one; then what's left.
   // ---------------------------------------------------------------------------
   function chores() {
-    const items = $$("#chores li"), left = $("#left");
+    const items = $$("#chores li"), punch = $("#punch");
     items.forEach((li) => {
       const s = svgEl("svg", { viewBox: "0 0 100 30", preserveAspectRatio: "none", "aria-hidden": "true" });
       const p = svgEl("path", { d: `M0 ${15 + rand(0, 4)} C 22 ${10 + rand(0, 8)}, 48 ${18 + rand(0, 6)}, 70 ${13 + rand(0, 4)} S 96 ${14 + rand(0, 6)}, 100 ${15 + rand(0, 3)}`, pathLength: 1 }, s);
@@ -544,15 +552,15 @@
     });
     const strike = (li) => { li.querySelector("path").style.transition = "stroke-dashoffset 0.55s ease"; li.querySelector("path").style.strokeDashoffset = 0; li.classList.add("done"); };
     const steps = items.map((li, i) => [0.25 + i * 0.4, () => strike(li)]);
-    steps.push([0.25 + items.length * 0.4 + 0.2, () => left.classList.add("in")]);
+    steps.push([0.25 + items.length * 0.4 + 0.3, () => punch.classList.add("in")]);
     sequence($("#chores"), steps, () => {
       items.forEach((li) => { const p = li.querySelector("path"); p.style.transition = "none"; p.style.strokeDashoffset = 1; li.classList.remove("done"); });
-      left.classList.remove("in");
+      punch.classList.remove("in");
     }, 0.5);
   }
 
   // ---------------------------------------------------------------------------
-  // 9. Trust: three claims, one after another, with their proof.
+  // 10. Trust: the claims, one after another, then the marks.
   // ---------------------------------------------------------------------------
   function trust() {
     const g = $("#ringDots");
@@ -560,7 +568,11 @@
       const a = (i / 12) * Math.PI * 2;
       svgEl("circle", { cx: 200 + 170 * Math.cos(a), cy: 200 + 170 * Math.sin(a), r: 3 }, g);
     }
-    const rows = $$(".tr-row");
-    sequence($("#tr"), rows.map((r, i) => [0.15 + i * 0.75, () => r.classList.add("in")]), () => rows.forEach((r) => r.classList.remove("in")), 0.3);
+    const h = $("#trH"), badges = $("#badges");
+    $$(".bd", badges).forEach((b, i) => { b.style.transitionDelay = `${i * 0.07}s`; });
+    sequence(h.parentElement, [
+      [0.1, () => h.classList.add("in")],
+      [0.9, () => badges.classList.add("in")],
+    ], () => { h.classList.remove("in"); badges.classList.remove("in"); }, 0.3);
   }
 })();
