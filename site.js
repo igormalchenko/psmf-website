@@ -99,7 +99,7 @@
   //    own text. File debris drifts up to the page and turns to dust at its edge.
   // ---------------------------------------------------------------------------
   function hero() {
-    const section = $("#hero"), back = $("#heroBack"), front = $("#heroFront");
+    const section = $("#hero"), back = $("#heroBack"), front = $("#heroFront"), light = $("#heroLight"), smoke = $("#heroSmoke");
     const paper = $("#heroPaper"), doc = $("#heroDoc"), status = $("#docStatus"), copy = $(".hero-copy");
     const bx = back.getContext("2d"), fx = front.getContext("2d");
     const shown = (el) => el.offsetParent !== null;
@@ -194,6 +194,7 @@
         if (line && measure.measureText(next).width > max) { lines.push(line); line = word; } else line = next;
       }
       lines.push(line);
+      F.size = size;
       if (lines.join("|") === F.key) return;
       F.key = lines.join("|");
       const vfont = `400 ${VF}px Newsreader`, lfont = `600 ${LF}px "Instrument Sans"`, label = F.src.toUpperCase();
@@ -252,14 +253,14 @@
       g.putImageData(img, 0, 0);
       return c;
     })();
-    const smoke = document.createElement("canvas"), sm = smoke.getContext("2d");
+    const sm = smoke.getContext("2d");
 
     // --- Layout and the light --------------------------------------------------
     // World: x right, y down, z away from the camera. The page sits at z = f,
     // where one world unit is one screen pixel; the camera orbits around it.
-    let W = 0, H = 0, dpr = 1, f = 1, VX = 0, VY = 0, small = false, fit = 1;
+    let W = 0, H = 0, dpr = 1, f = 1, VX = 0, VY = 0, small = false, fit = 1, lite = false;
     let page = null, copyBox = null, S = null;
-    const atmo = document.createElement("canvas"), shaft = document.createElement("canvas"), mask = document.createElement("canvas");
+    const shaft = document.createElement("canvas");
     const rel = (el) => {
       const s = section.getBoundingClientRect(), r = el.getBoundingClientRect();
       return { l: r.left - s.left, t: r.top - s.top, r: r.right - s.left, b: r.bottom - s.top, w: r.width, h: r.height };
@@ -285,33 +286,53 @@
       const dx = Math.max(copyBox.l - x, 0, x - copyBox.r), dy = Math.max(copyBox.t - y, 0, y - copyBox.b);
       return 1 - smooth(0, feather, Math.hypot(dx, dy));
     };
+    // The room and its light don't move, so they're drawn once, into a canvas
+    // the browser just stretches; only the smoke is redrawn, at low resolution.
     function bake() {
       const q = 0.25, w = Math.ceil(W * q), h = Math.ceil(H * q), R = Math.max(W, H);
-      [atmo, shaft, mask, smoke].forEach((c) => { c.width = w; c.height = h; });
-      const A = atmo.getContext("2d").createImageData(w, h), L = shaft.getContext("2d").createImageData(w, h), M = mask.getContext("2d").createImageData(w, h);
+      [shaft, smoke].forEach((c) => { c.width = w; c.height = h; });
+      const room = new Float32Array(w * h * 3), L = shaft.getContext("2d").createImageData(w, h);
       for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
-        const x = (i + 0.5) / q, y = (j + 0.5) / q, o = (j * w + i) * 4;
+        const x = (i + 0.5) / q, y = (j + 0.5) / q, o = j * w + i;
         const dx = (x - page.cx) / R, dy = (y - page.cy) / R, haze = Math.exp(-(dx * dx + dy * dy) * 6);
         const vx = x / W - 0.5, vy = y / H - 0.5, vig = 1 - Math.min(1, (vx * vx + vy * vy) * 1.5);
         const k = (0.5 + 0.5 * vig) * (1 - 0.45 * copyAt(x, y, 160));
-        A.data[o] = (3 + 9 * haze) * k; A.data[o + 1] = (5 + 17 * haze) * k; A.data[o + 2] = (8 + 30 * haze) * k; A.data[o + 3] = 255;
         const s = 0.2 * shaftAt(x, y) * raysAt(x, y) + 0.07 * poolAt(x, y);
-        L.data[o] = 255; L.data[o + 1] = 228; L.data[o + 2] = 196; L.data[o + 3] = Math.min(255, s * 255);
-        M.data[o + 3] = 200 * copyAt(x, y, 70);
+        room[o * 3] = (3 + 9 * haze) * k + 199 * s; room[o * 3 + 1] = (5 + 17 * haze) * k + 178 * s; room[o * 3 + 2] = (8 + 30 * haze) * k + 153 * s;
+        L.data[o * 4] = 255; L.data[o * 4 + 1] = 228; L.data[o * 4 + 2] = 196; L.data[o * 4 + 3] = Math.min(255, s * 255);
       }
-      atmo.getContext("2d").putImageData(A, 0, 0);
       shaft.getContext("2d").putImageData(L, 0, 0);
-      mask.getContext("2d").putImageData(M, 0, 0);
+      // Scaled up at half resolution, with a little noise so the dark gradients don't band.
+      const lw = Math.ceil(W / 2), lh = Math.ceil(H / 2), g = light.getContext("2d");
+      light.width = lw; light.height = lh;
+      const img = g.createImageData(lw, lh), d = img.data, r = (w - 1) / Math.max(1, lw - 1), rr = (h - 1) / Math.max(1, lh - 1);
+      for (let y = 0; y < lh; y++) {
+        const fy = y * rr, y0 = Math.floor(fy), y1 = Math.min(h - 1, y0 + 1), ty = fy - y0;
+        for (let x = 0; x < lw; x++) {
+          const fx = x * r, x0 = Math.floor(fx), x1 = Math.min(w - 1, x0 + 1), tx = fx - x0;
+          const p = (y0 * w + x0) * 3, q2 = (y0 * w + x1) * 3, u = (y1 * w + x0) * 3, v = (y1 * w + x1) * 3, o = (y * lw + x) * 4;
+          const n = Math.random() - Math.random();
+          for (let c = 0; c < 3; c++) {
+            const top = room[p + c] + (room[q2 + c] - room[p + c]) * tx, bot = room[u + c] + (room[v + c] - room[u + c]) * tx;
+            d[o + c] = top + (bot - top) * ty + n;
+          }
+          d[o + 3] = 255;
+        }
+      }
+      g.putImageData(img, 0, 0);
     }
     // The page turns with the camera and floats a little; on short screens it's
     // a little smaller, so the room around it stays.
+    let sheen = "";
     const pose = () => {
       paper.style.transform = `scale(${fit}) rotateY(${((small ? -3 : -7) + cam.x * 0.09).toFixed(2)}deg) rotateX(${(2.5 - cam.y * 0.08).toFixed(2)}deg) translate3d(0, ${(Math.sin(T * 0.42) * 4).toFixed(2)}px, 0)`;
-      paper.style.setProperty("--sheen", `${(cam.x * 0.5).toFixed(1)}%`);
+      // The sheen repaints the page, so it only moves in whole steps.
+      const s = `${Math.round(cam.x * 0.5)}%`;
+      if (s !== sheen) paper.style.setProperty("--sheen", (sheen = s));
     };
     function layout() {
       W = section.clientWidth; H = section.clientHeight;
-      dpr = Math.min(devicePixelRatio || 1, 2);
+      dpr = lite ? 1 : Math.min(devicePixelRatio || 1, 2);
       small = W < 640;
       fit = small ? 1 : clamp((innerHeight - 190) / 620, 0.8, 1);
       pose();
@@ -344,6 +365,7 @@
       m.vx = rand(-3, 3); m.vy = rand(-3, 2); m.vz = rand(-6, 4);
       m.s = rand(0.6, 1.7); m.w = rand(0.4, 1.4); m.ph = rand(0, 6.3);
       m.age = far ? 0 : 1;
+      m.L = undefined;
     }
     const lightAt = (x, y, z) => {
       const dz = (z - f) / (f * 0.45);
@@ -512,25 +534,23 @@
     function render() {
       const Wd = back.width, Hd = back.height;
       const intro = smooth(0, 3, T), zoff = f * 1.3 * (1 - easeOut(clamp(T / 5)));
-      bx.setTransform(1, 0, 0, 1, 0, 0);
-      bx.globalAlpha = 1; bx.globalCompositeOperation = "source-over";
-      bx.drawImage(atmo, 0, 0, Wd, Hd);
-      bx.globalCompositeOperation = "lighter";
-      bx.globalAlpha = intro * (0.72 + 0.12 * Math.sin(T * 0.31));
-      bx.drawImage(shaft, 0, 0, Wd, Hd);
+      frameNo++;
       // Smoke drifting through the light: two layers of cloud, multiplied, masked by the shaft
-      const pat = sm.createPattern(cloud, "repeat");
-      sm.globalCompositeOperation = "copy";
-      sm.setTransform(1.3, 0, 0, 1.3, -T * 2.2, T * 1.1);
-      sm.fillStyle = pat; sm.fillRect(T * 2.2 / 1.3 - 10, -T * 1.1 / 1.3 - 10, smoke.width / 1.3 + 20, smoke.height / 1.3 + 20);
-      sm.globalCompositeOperation = "destination-in";
-      sm.setTransform(0.8, 0, 0, 0.8, T * 1.6 + 40, -T * 0.9);
-      sm.fillRect(-T * 1.6 / 0.8 - 60, T * 0.9 / 0.8 - 10, smoke.width / 0.8 + 80, smoke.height / 0.8 + 20);
-      sm.setTransform(1, 0, 0, 1, 0, 0);
-      sm.drawImage(shaft, 0, 0);
-      bx.globalAlpha = intro;
-      bx.drawImage(smoke, 0, 0, Wd, Hd);
-      bx.globalCompositeOperation = "source-over";
+      if (!lite) {
+        sm.globalAlpha = 1;
+        sm.globalCompositeOperation = "copy";
+        sm.setTransform(1.3, 0, 0, 1.3, -T * 2.2, T * 1.1);
+        sm.fillStyle = sm.createPattern(cloud, "repeat");
+        sm.fillRect(T * 2.2 / 1.3 - 10, -T * 1.1 / 1.3 - 10, smoke.width / 1.3 + 20, smoke.height / 1.3 + 20);
+        sm.globalCompositeOperation = "destination-in";
+        sm.setTransform(0.8, 0, 0, 0.8, T * 1.6 + 40, -T * 0.9);
+        sm.fillRect(-T * 1.6 / 0.8 - 60, T * 0.9 / 0.8 - 10, smoke.width / 0.8 + 80, smoke.height / 0.8 + 20);
+        sm.setTransform(1, 0, 0, 1, 0, 0);
+        sm.drawImage(shaft, 0, 0);
+      }
+      bx.setTransform(1, 0, 0, 1, 0, 0);
+      bx.globalAlpha = 1;
+      bx.clearRect(0, 0, Wd, Hd);
       fx.setTransform(1, 0, 0, 1, 0, 0);
       fx.clearRect(0, 0, Wd, Hd);
 
@@ -539,10 +559,12 @@
         const z = m.z + zoff, k = f / z;
         const sx = VX + (m.x - cam.x) * k + cam.x, sy = VY + (m.y - cam.y) * k + cam.y;
         if (sx < -40 || sx > W + 40 || sy < -40 || sy > H + 40) continue;
-        const L = lightAt(m.x, m.y, m.z);
+        if (m.L === undefined || ((m.i + frameNo) & 7) === 0) m.L = lightAt(m.x, m.y, m.z);
+        const L = m.L, near = z < f;
         let a = intro * m.age * clamp((ZF * f - z) / (1.6 * f)) * (0.09 + 0.91 * L) * (0.6 + 0.4 * Math.sin(T * m.w + m.ph));
+        if (near) a *= 1 - 0.8 * copyAt(sx, sy, 70);  // keep the headline clear
         if (a < 0.01) continue;
-        const g = z < f ? fx : bx, size = m.s * k * (1 + 0.8 * L), blur = 4 * Math.abs(z - f) / z, r = Math.max(size, blur);
+        const g = near ? fx : bx, size = m.s * k * (1 + 0.8 * L), blur = 4 * Math.abs(z - f) / z, r = Math.max(size, blur);
         if (r < 1.2) {
           const px = Math.max(size, 0.8);
           g.globalAlpha = Math.min(1, a * Math.min(1, size / 0.8 + 0.25));
@@ -561,7 +583,7 @@
         const sx = VX + (fl.x - cam.x) * k + cam.x, sy = VY + (fl.y - cam.y) * k + cam.y;
         const B = (10 * Math.abs(fl.z - f) / fl.z) / k;
         const g = fl.state === "fly" && fl.z < f * 0.995 ? fx : bx;
-        if (fl.state === "fly") { draw(g, s, s.w / 2, s.h / 2, sx, sy, k, fl.rot, fl.a, B); continue; }
+        if (fl.state === "fly") { draw(g, s, s.w / 2, s.h / 2, sx, sy, k, fl.rot, g === fx ? fl.a * (1 - 0.8 * copyAt(sx, sy, 70)) : fl.a, B); continue; }
         // What's left of the word, behind the edge that's turning to dust
         const thr = lerp(fl.pmin, fl.pmax, clamp(fl.st / 0.95));
         bx.save();
@@ -594,7 +616,7 @@
         const P3 = [tx - VX, ty - VY, f], P2 = [l.side - VX, ty - VY + 6, 0.92 * f];
         const p = l.done ? 1 : easeIO(clamp(l.t / l.dur));
         const x = bez(l.P0[0], l.P1[0], P2[0], P3[0], p), y = bez(l.P0[1], l.P1[1], P2[1], P3[1], p), z = bez(l.P0[2], l.P1[2], P2[2], P3[2], p);
-        const kz = f / z, rowScale = (parseFloat(getComputedStyle(F.v).fontSize) * fit) / VF;
+        const kz = f / z, rowScale = (F.size * fit) / VF;
         const k = kz * lerp(1, rowScale, smooth(0.55, 1, p));
         const sx = VX + (x - cam.x) * kz + cam.x, sy = VY + (y - cam.y) * kz + cam.y;
         const B = (10 * Math.abs(z - f) / z) / k, rot = (1 - p) * 0.06;
@@ -614,27 +636,39 @@
         draw(fx, F.ink, F.ax, F.ay, sx, sy, k, rot, a, 0);
         fx.restore();
       }
-
-      // Keep the headline clear of anything passing in front of it
-      fx.setTransform(1, 0, 0, 1, 0, 0);
-      fx.globalAlpha = 1;
-      fx.globalCompositeOperation = "destination-out";
-      fx.drawImage(mask, 0, 0, Wd, Hd);
-      fx.globalCompositeOperation = "source-over";
     }
 
+    // At most 60 frames a second while something moves fast, 30 the rest of the
+    // time. If the machine can't keep up during the opening, the scene gets
+    // lighter: half the dust, no smoke, standard resolution.
+    let frameNo = 0, frames = 0, span = 0, busy = 0;
     function frame(now) {
       if (!running) return;
       requestAnimationFrame(frame);
-      const dt = Math.min(0.05, (now - last) / 1000);
+      const fast = T < 6 || landing.length > 0;
+      if (now - last < (fast ? 1000 / 60 : 1000 / 30) - 3) return;
+      const dt = Math.min(0.05, (now - last) / 1000), gap = Math.min(now - last, 250);
       last = now;
       T += dt;
+      const t0 = performance.now();
       step(dt);
       render();
+      if (lite || T < 1.5) return;
+      if (T < 6) { frames++; span += gap; busy += performance.now() - t0; }
+      else if (frames > 20) {
+        if (frames / (span / 1000) < 26 || busy / frames > 10) slim();
+        frames = 0;
+      }
+    }
+    function slim() {
+      lite = true;
+      dust = dust.filter((m) => m.i % 2 === 0);
+      smoke.style.display = "none";
+      layout();
     }
 
     layout();
-    dust = Array.from({ length: small ? 700 : 1500 }, () => { const m = {}; seed(m, false); return m; });
+    dust = Array.from({ length: small ? 700 : 1500 }, (_, i) => { const m = { i }; seed(m, false); return m; });
     let resizeTimer = 0;
     addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { layout(); if (!running) render(); }, 150); });
 
