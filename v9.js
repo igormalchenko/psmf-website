@@ -180,7 +180,7 @@
   function flow() {
     const list = $("#flowSteps"), steps = $$(".st", list), bar = $("#flowBar"), rail = bar.parentElement;
     const files = $$(".v-files .file", list), ask = $(".v-ask", list), place = $(".v-place", list), seal = $(".v-seal", list);
-    const lineW = () => rail.offsetWidth - rail.querySelector("span").offsetWidth - 14;
+    const lineW = () => rail.offsetWidth;
     const activate = (i) => steps.forEach((s, j) => { s.classList.toggle("on", j === i); s.classList.toggle("done", j < i); });
     const fill = (f) => gsap.to(bar, { width: lineW() * f, duration: 1.2, ease: "power2.inOut" });
     sequence(list, [
@@ -448,7 +448,7 @@
     const MONTH_START = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
     const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const section = $("#year"), pin = $("#yearPin"), track = $("#track"), axis = $("#axis"), word = $("#monthWord");
-    const tSigned = $("#tSigned"), tProjects = $("#tProjects");
+    const tSigned = $("#tSigned");
     const DW = 9;
     const SEASON = ["#e5ebf1", "#e7ecf0", "#ebf0e9", "#ecf2e3", "#edf3e0", "#f3f1de", "#f6efdb", "#f6ebd8", "#f3e6d5", "#f0e0cf", "#e8e3dc", "#e3e8ee", "#e5ebf1"];
     const REVISIONS = [[31, 39], [151, 152], [273, 280]];
@@ -513,7 +513,6 @@
         $("#tWord").textContent = s === 1 ? "version" : "versions";
         if (!reduce) gsap.fromTo(tSigned, { scale: 1.4 }, { scale: 1, duration: 0.6, ease: "back.out(3)" });
       }
-      tProjects.parentElement.style.color = REVISIONS.some(([a, b]) => d >= a - 2 && d <= b + 6) ? "var(--green)" : "";
     }
     const measure = () => {
       const r = section.getBoundingClientRect();
