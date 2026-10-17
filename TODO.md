@@ -12,7 +12,6 @@ The structure and promises are settled; from here the page is refined, not re-ex
 - `rules` and `trust`: the EU marks are our own drawings (blue disc, ring of twelve gold stars). There are no official logos for GDPR, the AI Act, Annex 11 or Part 11, and the EU and FDA emblems can't suggest endorsement. Check before launch. (Claude)
 - Phone fit: the year scroller has long empty stretches between cards. (Claude)
 - Before launch: the footer's Privacy policy, Terms, Legal notice and Subprocessors links go nowhere yet, and the "Book a demo" form doesn't send anywhere. (Claude)
-- The old drafts at `/v1/` to `/v7/` and `/drafts/` are still reachable by URL (search engines are kept out by `robots.txt`), with old claims on them. Keep or remove? Git keeps them either way. (Claude)
 
 ## Facts to confirm
 On the page or in `PRODUCT.md`. The owner confirms or corrects; then fix the page or the file and remove the item.

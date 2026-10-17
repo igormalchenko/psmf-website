@@ -69,5 +69,4 @@ The failed first attempt asked four generic questions ("what should they feel", 
 - The feature sections follow the four steps of `how`, in that order.
 - A promise is shown once. Where Veria is going is woven into the feature sections, never a separate "vision" section.
 - Examples come from the fictional cast and story in `PRODUCT.md`, which also lists what each section uses. Avoid repeating an example across feature sections.
-- Old drafts live at `/v1/` to `/v7/`, listed at `/drafts/`. They're no longer a reference; git has every other version.
 - Checking in the desktop app's browser pane: when the pane is hidden, timers, animation frames and IntersectionObserver are throttled. To see an animated end state, pause `gsap.globalTimeline` and step it with `.time()`, or add the end-state classes by hand. After changing CSS or JS, fetch it with `cache: 'reload'` and reload the page with a query string (`?fresh=1`).
