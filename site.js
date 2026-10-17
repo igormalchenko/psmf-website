@@ -125,24 +125,24 @@
     // --- Sprites: text pre-rendered sharp and at four blur levels -------------
     const BLUR = [0, 1.5, 3.5, 7, 13];
     const measure = document.createElement("canvas").getContext("2d");
-    function sprite(w, h, paint, color, sharpOnly) {
+    function sprite(w, h, paint, color, sharpOnly, res = 2) {
       const sharp = document.createElement("canvas");
-      sharp.width = Math.ceil(w * 2); sharp.height = Math.ceil(h * 2);
+      sharp.width = Math.ceil(w * res); sharp.height = Math.ceil(h * res);
       const g = sharp.getContext("2d");
-      g.scale(2, 2);
+      g.scale(res, res);
       paint(g);
       const levels = [{ c: sharp, pad: 0 }];
       if (!sharpOnly) BLUR.slice(1).forEach((b) => {
         // Blur by casting the sprite's shadow from off-canvas: works in every browser.
-        const res = b < 5 ? 1 : 0.5, pad = Math.ceil(b * 2.5);
+        const r = b < 5 ? 1 : 0.5, pad = Math.ceil(b * 2.5);
         const c = document.createElement("canvas");
-        c.width = Math.ceil((w + pad * 2) * res); c.height = Math.ceil((h + pad * 2) * res);
+        c.width = Math.ceil((w + pad * 2) * r); c.height = Math.ceil((h + pad * 2) * r);
         const g2 = c.getContext("2d"), off = c.width + 40;
-        g2.shadowColor = color; g2.shadowBlur = b * 2 * res; g2.shadowOffsetX = off;
-        g2.drawImage(sharp, pad * res - off, pad * res, w * res, h * res);
+        g2.shadowColor = color; g2.shadowBlur = b * 2 * r; g2.shadowOffsetX = off;
+        g2.drawImage(sharp, pad * r - off, pad * r, w * r, h * r);
         levels.push({ c, pad });
       });
-      return { w, h, levels };
+      return { w, h, levels, res };
     }
     // Draws a sprite anchored at (ax, ay), blurred by B sprite px.
     function draw(g, s, ax, ay, x, y, k, rot, a, B) {
@@ -175,18 +175,18 @@
       const c = s.levels[0].c, { data, width, height } = c.getContext("2d").getImageData(0, 0, c.width, c.height);
       const pts = [];
       for (let y = 0; y < height; y += 2) for (let x = 0; x < width; x += 2) {
-        if (data[(y * width + x) * 4 + 3] > 110) pts.push([x / 2 - s.w / 2, y / 2 - s.h / 2]);
+        if (data[(y * width + x) * 4 + 3] > 110) pts.push([x / s.res - s.w / 2, y / s.res - s.h / 2]);
       }
       for (let i = pts.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [pts[i], pts[j]] = [pts[j], pts[i]]; }
       return pts.slice(0, n);
     }
 
-    const VF = 24, LF = 11.5, LH = 21;  // fact value font, label font, label line (sprite px)
     const facts = $$(".row", doc).filter((r) => SOURCES[r.dataset.k]).map((row) => ({ row, v: $(".v", row), src: SOURCES[row.dataset.k], key: "" }));
-    // A fact's value in the lines the page wraps it into, so it lands exactly on its text.
+    // A fact is drawn at the page's own font size and wrapped into the page's
+    // own lines, so it lands exactly on its text. In the air it's shown 24px.
     function lettering(F) {
-      const cs = getComputedStyle(F.v), size = parseFloat(cs.fontSize), lh = (parseFloat(cs.lineHeight) / size) * VF;
-      measure.font = `400 ${size}px Newsreader`;
+      const cs = getComputedStyle(F.v), size = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight), font = `400 ${size}px Newsreader`;
+      measure.font = font;
       const max = F.v.parentElement.clientWidth + 0.5, lines = [];
       let line = "";
       for (const word of F.v.textContent.split(" ")) {
@@ -194,29 +194,40 @@
         if (line && measure.measureText(next).width > max) { lines.push(line); line = word; } else line = next;
       }
       lines.push(line);
-      F.size = size;
-      if (lines.join("|") === F.key) return;
-      F.key = lines.join("|");
-      const vfont = `400 ${VF}px Newsreader`, lfont = `600 ${LF}px "Instrument Sans"`, label = F.src.toUpperCase();
-      measure.font = vfont;
+      const key = `${size}|${lines.join("|")}`;
+      if (key === F.key) return;
+      F.key = key;
+      const m = measure.measureText(lines[0]);
+      // Where the page puts the baseline, as a share of the line's height
+      const mark = document.createElement("span");
+      mark.style.cssText = "display:inline-block;position:static;width:0;height:0;margin:0;vertical-align:baseline";
+      F.v.prepend(mark);
+      const box = F.v.getClientRects()[0];
+      F.base = (mark.getBoundingClientRect().top - box.top) / box.height;
+      mark.remove();
+      F.u = size / 24;
+      F.w0 = m.width;
+      F.asc = m.fontBoundingBoxAscent || size * 0.92;
+      F.desc = m.fontBoundingBoxDescent || size * 0.3;  // the sprite's room below the line
+      const LF = 11.5 * F.u, LH = 21 * F.u, lfont = `600 ${LF}px "Instrument Sans"`, label = F.src.toUpperCase();
       const vw = Math.max(...lines.map((l) => measure.measureText(l).width));
       measure.font = lfont;
-      const lw = measure.measureText(label).width + label.length * 1.6;
-      const w = Math.ceil(Math.max(vw, lw)) + 6, h = Math.ceil(LH + lh * lines.length + 4);
+      const lw = measure.measureText(label).width + label.length * 1.6 * F.u;
+      const w = Math.ceil(Math.max(vw, lw)) + 6, h = Math.ceil(LH + lh * (lines.length - 1) + F.asc + F.desc + 4);
       const paint = (withLabel, color) => (g) => {
         if (withLabel) {
           g.font = lfont; g.fillStyle = "#6cc9ff"; g.textBaseline = "top";
-          if ("letterSpacing" in g) g.letterSpacing = "1.6px";
+          if ("letterSpacing" in g) g.letterSpacing = `${1.6 * F.u}px`;
           g.fillText(label, 2, 2);
           if ("letterSpacing" in g) g.letterSpacing = "0px";
         }
-        g.font = vfont; g.fillStyle = color; g.textBaseline = "middle";
-        lines.forEach((l, i) => g.fillText(l, 2, LH + lh * (i + 0.5)));
+        g.font = font; g.fillStyle = color; g.textBaseline = "alphabetic";
+        lines.forEach((l, i) => g.fillText(l, 2, LH + F.asc + lh * i));
       };
-      F.lit = sprite(w, h, paint(true, "#f8f5ef"), "#e6ecf2");
+      F.lit = sprite(w, h, paint(true, "#f8f5ef"), "#e6ecf2", false, 4);
       F.glow = sprite(w, h, paint(true, "#3fb4ff"), "#3fb4ff");
-      F.ink = sprite(w, h, paint(false, "#15181d"), "#15181d", true);
-      F.ax = 2; F.ay = LH + lh / 2;
+      F.ink = sprite(w, h, paint(false, "#15181d"), "#15181d", true, 4);
+      F.ax = 2; F.ay = LH + F.asc;
     }
 
     // Soft discs for dust out of focus, lit and unlit.
@@ -611,13 +622,14 @@
 
       // Facts: light over the dark, ink once they're on the paper
       for (const l of landing) {
-        const F = l.F, sr = section.getBoundingClientRect(), tg = F.v.getClientRects()[0];
-        const tx = tg.left - sr.left, ty = tg.top - sr.top + tg.height / 2;
+        // The text's first line on the page, as drawn: tilt and scale included
+        const F = l.F, sr = section.getBoundingClientRect(), tg = F.v.getClientRects()[0], k0 = tg.width / F.w0;
+        const tx = tg.left - sr.left, ty = tg.top - sr.top + tg.height * F.base;
         const P3 = [tx - VX, ty - VY, f], P2 = [l.side - VX, ty - VY + 6, 0.92 * f];
         const p = l.done ? 1 : easeIO(clamp(l.t / l.dur));
         const x = bez(l.P0[0], l.P1[0], P2[0], P3[0], p), y = bez(l.P0[1], l.P1[1], P2[1], P3[1], p), z = bez(l.P0[2], l.P1[2], P2[2], P3[2], p);
-        const kz = f / z, rowScale = (F.size * fit) / VF;
-        const k = kz * lerp(1, rowScale, smooth(0.55, 1, p));
+        const kz = f / z, settle = smooth(0.55, 1, p);
+        const k = kz * lerp(1 / F.u, k0, settle);
         const sx = VX + (x - cam.x) * kz + cam.x, sy = VY + (y - cam.y) * kz + cam.y;
         const B = (10 * Math.abs(z - f) / z) / k, rot = (1 - p) * 0.06;
         const a = smooth(0, 0.15, p) * (l.done ? 1 - l.hold / 0.5 : 1);
@@ -626,7 +638,7 @@
         fx.beginPath(); fx.rect(0, 0, front.width, front.height); fx.rect(pg.l * dpr, pg.t * dpr, pg.w * dpr, pg.h * dpr);
         fx.clip("evenodd");
         fx.globalCompositeOperation = "lighter";
-        draw(fx, F.glow, F.ax, F.ay, sx, sy, k, rot, a * 0.5, Math.max(B, 7));
+        draw(fx, F.glow, F.ax, F.ay, sx, sy, k, rot, a * 0.5, Math.max(B, 7 * F.u));
         fx.globalCompositeOperation = "source-over";
         draw(fx, F.lit, F.ax, F.ay, sx, sy, k, rot, a, B);
         fx.restore();

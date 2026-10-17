@@ -46,7 +46,7 @@ The failed first attempt asked four generic questions ("what should they feel", 
 - Leave out meta info that changes nothing (document IDs, "draft of 4.3").
 - Proof (a quote, a statistic) gets its own beat. It never competes with a feature's explanation on the same screen.
 - Each section fits one real viewport: about 700px of height on a laptop. Check phone width (375px): no sideways scroll.
-- Taste: grainy backgrounds, slow "breathing" motion, utilitarian craft that feels expensive, visuals that explain instead of decorate. No walls of text, no frantic crypto-style motion, no generic SaaS tropes.
+- Taste: slow "breathing" motion, utilitarian craft that feels expensive, visuals that explain instead of decorate. No walls of text, no frantic crypto-style motion, no generic SaaS tropes.
 - Libraries from cdnjs or jsdelivr with pinned versions (GSAP is the usual choice). Respect `prefers-reduced-motion`.
 
 ## The homepage
