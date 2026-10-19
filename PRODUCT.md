@@ -54,7 +54,7 @@ Plus: **import.** An existing PSMF (Word, with Excel annexes and PDFs) is read i
 - **Where data lives.** Hosted in the EU, in Frankfurt. AI requests go to Anthropic's API and are processed outside the EU *(to confirm)*. Never claim that data doesn't leave the EU.
 - **Records.** Every change is recorded (who, when, old and new value). The PSMF can be shown as it was on any past date.
 - **Access.** By invitation only, with an email code for every sign-in. No passwords.
-- **The AI test run.** In a stored test run, 0 of 45 deliberately broken updates were applied without a person *(to confirm what it covers, and whether to keep it)*.
+- **EU Data Act.** Customers can leave on 2 months' notice and take all their data with them, free: every version, the audit trail, files, in machine-readable formats (the terms, section 15).
 - **The team.** In the EU. Almost a decade in pharmacovigilance, including years of QPPV work. Said impersonally and lightly ("people who've done the job"): no names, no "co-founder", no bios.
 
 ## Not built yet *(as of 15 October 2026; to confirm)*
