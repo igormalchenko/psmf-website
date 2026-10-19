@@ -18,7 +18,7 @@ Privacy policy, Terms, Data processing agreement and Subprocessors are drafts by
 
 - Hosting: the website is on GitHub Pages, but Vercel Web Analytics only runs on sites deployed to Vercel. Move the site to Vercel, or pick other analytics? The privacy policy names both hosts.
 - Demo booking: the privacy policy names Calendly and Google Calendar. Update it once the choice is made.
-- Contact: every page uses igor@coolstory.me. A veriapv.com address would look more trustworthy to buyers.
+- Contact: every page uses hello@coolstory.me. A veriapv.com address would look more trustworthy to buyers.
 - For the lawyer: the EU Data Act lets a customer leave on 2 months' notice to switch provider. The terms keep the current term's fees payable and non-refundable when they do. Is that a lawful early-termination fee, or an obstacle to switching the Act forbids?
 - For the lawyer: the liability exclusions (regulatory findings and fines, content the customer approved or signed, unavailability) and the cap at 12 months' fees. Polish law only forbids excluding liability for intentional damage, but check they hold.
 - Still Claude's defaults: invoices due in 14 days, price changes 60 days before renewal, complaints answered in 14 days, data deleted 30 days after the export window (backups 30 more), trial data deleted 30 days after the trial.
