@@ -28,6 +28,22 @@ Privacy policy, Terms, Data processing agreement and Subprocessors are drafts by
 - "Anthropic does not use it to train its models": true under Anthropic's commercial API terms. Confirm Veria uses the API on those terms.
 - VAT: Veria is VAT-exempt under Article 113. Buying services from abroad (Anthropic, Vercel) and selling to EU businesses usually needs VAT-UE registration even when exempt. Ask the accountant.
 
+## Compliance: what to claim next
+Raised by Claude on 19 October 2026, after the "Built in the EU…" section was split into rules met and how it's built.
+
+**Bigger moves that would pay off**
+- AI processed in the EU: run Anthropic's models through AWS Bedrock's EU region (AI-7 in the app's compliance register). Then no data leaves the EU and "Hosted in the EU" holds for everything, the strongest claim the page could make.
+- "Annex 22 ready": the draft allows AI only in non-critical uses with a qualified person responsible, which is how Veria works. Needs careful wording while the text isn't final.
+- "Ready for the new Annex 11" (likely in force in 2027): claim it once its Draft-tier items are built (session timeouts, lockout, sign-in logs).
+- "Validation pack included" (VAL-7): supplier questionnaire answers, UAT scripts, Annex 11 and Part 11 statements. It's what most often blocks a pharma purchase.
+- "Independently pen-tested" (OPS-14), once one is done.
+
+**Don't claim**
+- ISO 27001 or SOC 2 until certified; buyers check.
+- NIS2: it doesn't apply at Veria's size.
+- "Validated": the customer validates Veria. "Validation-ready" or "Validation pack included" are the honest versions.
+- "Annex 11 · EU GMP" and PRODUCT.md's "built in full compliance" claim more than the quality system and validation support today. Finish those before launch, or soften the label ("Built to it").
+
 ## Facts to confirm
 On the page or in `PRODUCT.md`. The owner confirms or corrects; then fix the page or the file and remove the item.
 

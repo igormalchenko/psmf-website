@@ -55,6 +55,7 @@ Plus: **import.** An existing PSMF (Word, with Excel annexes and PDFs) is read i
 - **Records.** Every change is recorded (who, when, old and new value). The PSMF can be shown as it was on any past date.
 - **Access.** By invitation only, with an email code for every sign-in. No passwords.
 - **EU Data Act.** Customers can leave on 2 months' notice and take all their data with them, free: every version, the audit trail, files, in machine-readable formats (the terms, section 15).
+- **Also shown in "Built in the EU…"** (owner, 19 October 2026: all true by launch). Rules: GVP Module II (the PSMF as it was on any past date), Regulation 520/2012 (logbook and archive), eIDAS (signatures in Veria are legally binding EU e-signatures), ALCOA+ by design. Built: AES-256 at rest and TLS in transit, every signed version sealed with SHA-256, two-factor signing (emailed code plus authenticator app), every release tested against its requirements, daily encrypted backups.
 - **The team.** In the EU. Almost a decade in pharmacovigilance, including years of QPPV work. Said impersonally and lightly ("people who've done the job"): no names, no "co-founder", no bios.
 
 ## Not built yet *(as of 15 October 2026; to confirm)*

@@ -1270,7 +1270,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 12. Trust: the claims, one after another, then the marks.
+  // 12. Trust: the claims, one after another, then the rules met and how it's built.
   // ---------------------------------------------------------------------------
   function trust() {
     const g = $("#ringDots");
@@ -1278,11 +1278,11 @@
       const a = (i / 12) * Math.PI * 2;
       svgEl("circle", { cx: 200 + 170 * Math.cos(a), cy: 200 + 170 * Math.sin(a), r: 3 }, g);
     }
-    const h = $("#trH"), badges = $("#badges");
-    $$(".bd", badges).forEach((b, i) => { b.style.transitionDelay = `${i * 0.07}s`; });
-    sequence(h.parentElement, [
+    const h = $("#trH"), marks = $$(".tr-marks");
+    marks.forEach((m) => $$(".bd, .spec-i", m).forEach((b, i) => { b.style.transitionDelay = `${i * 0.06}s`; }));
+    sequence(h.closest(".tr-grid"), [
       [0.1, () => h.classList.add("in")],
-      [0.9, () => badges.classList.add("in")],
-    ], () => { h.classList.remove("in"); badges.classList.remove("in"); }, 0.3);
+      [0.9, () => marks.forEach((m) => m.classList.add("in"))],
+    ], () => { h.classList.remove("in"); marks.forEach((m) => m.classList.remove("in")); }, 0.3);
   }
 })();
