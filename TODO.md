@@ -11,7 +11,19 @@ The structure and promises are settled; from here the page is refined, not re-ex
 - "Before you ask" (questions): content is weak and a bit odd; the design is fine. Low priority. (owner)
 - "Never miss a change in the rules" and "Built in the EU…": the EU marks are our own drawings (blue disc, ring of twelve gold stars). There are no official logos for GDPR, the AI Act, Annex 11 or Part 11, and the EU and FDA emblems can't suggest endorsement. Check before launch. (Claude)
 - Phone fit: "A year with Veria" has long empty stretches between cards. (Claude)
-- Before launch: the footer's Privacy policy, Terms, Legal notice and Subprocessors links go nowhere yet, and the "Book a demo" form doesn't send anywhere, and `robots.txt` blocks search engines from the whole site. (Claude)
+- Before launch: the "Book a demo" form doesn't send anywhere, and `robots.txt` blocks search engines from the whole site. (Claude)
+
+## Legal pages: drafted 19 October 2026, to check
+Privacy policy, Terms, Data processing agreement, Subprocessors and Legal notice are drafts by Claude, not reviewed by a lawyer. Have a Polish lawyer check them before launch, the terms and the DPA above all. (Claude)
+
+- Hosting: the website is on GitHub Pages, but Vercel Web Analytics only runs on sites deployed to Vercel. Move the site to Vercel, or pick other analytics? The privacy policy names both hosts.
+- Demo booking: the privacy policy names Calendly and Google Calendar. Update it once the choice is made.
+- Contact: every page uses igor@coolstory.me. A veriapv.com address would look more trustworthy to buyers.
+- Judgement calls to confirm: demo enquiries kept 2 years after last contact; sign-in records 12 months; 30 days to export after the contract ends, then deletion within 60 days (backups 30 more); breach notice within 48 hours; 30 days' notice before a new subprocessor or a change to the terms; contracts renew unless cancelled 30 days before the end; invoices due in 14 days; price changes announced 60 days before renewal; liability capped at 12 months' fees; support by email on Polish working days.
+- DPA security annex: user roles, each customer's data kept separate, MFA on admin access, encrypted backups and an incident process are listed as in place. Confirm each is true.
+- Subprocessors: Vercel is listed as processing in the EU and the US. Which region do the app's functions run in? Resend processes in the US; it may offer an EU sending region worth switching to. Anthropic is listed under standard contractual clauses only, since its Data Privacy Framework certification couldn't be confirmed. Supabase's contracting entity is Supabase Pte. Ltd. (Singapore), per its DPA.
+- "Anthropic does not use it to train its models": true under Anthropic's commercial API terms. Confirm Veria uses the API on those terms.
+- VAT: the legal notice says exempt under Article 113. Buying services from abroad (Anthropic, Vercel) and selling to EU businesses usually needs VAT-UE registration even when exempt. Ask the accountant.
 
 ## Facts to confirm
 On the page or in `PRODUCT.md`. The owner confirms or corrects; then fix the page or the file and remove the item.

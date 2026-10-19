@@ -652,3 +652,31 @@ li.nw b { color: var(--blue); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* 15. Legal pages: privacy, terms, DPA, subprocessors, legal notice */
+.legal-page .nav { background: rgb(241 239 233 / 0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.legal { max-width: 760px; padding-top: calc(var(--nav-h) + clamp(40px, 8vh, 88px)); padding-bottom: 96px; }
+.legal h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); }
+.legal-date { margin-top: 14px; font-size: 14px; color: var(--mute); }
+.legal-lead { margin-top: 28px; font-size: 1.1rem; color: var(--ink-2); text-wrap: pretty; }
+.legal h2 { margin-top: 52px; font-size: clamp(1.5rem, 2.4vw, 1.9rem); letter-spacing: -0.015em; line-height: 1.15; }
+.legal h3 { margin: 28px 0 0; font-size: 1.02rem; font-weight: 600; }
+.legal p, .legal ul, .legal ol, .legal dl { margin-top: 14px; }
+.legal p, .legal li { text-wrap: pretty; }
+.legal ul, .legal ol { padding-left: 1.3em; }
+.legal ul { list-style: disc; }
+.legal ol { list-style: decimal; }
+.legal li + li { margin-top: 6px; }
+.legal li::marker { color: var(--mute); }
+.legal a { color: var(--blue); text-underline-offset: 2px; }
+.legal-facts { display: grid; grid-template-columns: minmax(0, 11em) minmax(0, 1fr); gap: 10px 24px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+.legal-facts dt { color: var(--mute); }
+.legal-facts dd { overflow-wrap: anywhere; }
+@media (max-width: 560px) { .legal-facts { grid-template-columns: 1fr; gap: 2px; } .legal-facts dd + dt { margin-top: 12px; } }
+.legal-tbl { margin-top: 18px; overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+.legal-tbl table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 15px; }
+.legal-tbl th, .legal-tbl td { padding: 13px 16px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); }
+.legal-tbl thead th { border-top: 0; font-size: 13px; font-weight: 600; color: var(--mute); }
+.legal-foot { padding-top: 1px; }
+.legal-foot .foot { margin-top: 0; padding-top: 26px; border-top: 0; }
+.foot-links a[aria-current] { color: var(--on-night); }
