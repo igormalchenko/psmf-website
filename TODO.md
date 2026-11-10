@@ -11,13 +11,12 @@ The structure and promises are settled; from here the page is refined, not re-ex
 - "Before you ask" (questions): content is weak and a bit odd; the design is fine. Low priority. (owner)
 - "Never miss a change in the rules" and "Built in the EU…": the EU marks are our own drawings (blue disc, ring of twelve gold stars). There are no official logos for GDPR, the AI Act, Annex 11 or Part 11, and the EU and FDA emblems can't suggest endorsement. Check before launch. (Claude)
 - Phone fit: "A year with Veria" has long empty stretches between cards. (Claude)
-- Before launch: the "Book a demo" form doesn't send anywhere, and `robots.txt` blocks search engines from the whole site. (Claude)
+- Before launch: `robots.txt` blocks search engines from the whole site. (Claude)
 
 ## Legal pages: drafted 19 October 2026, to check
 Privacy policy, Terms, Data processing agreement and Subprocessors are drafts by Claude, not reviewed by a lawyer. Have a Polish lawyer check them before launch, the terms and the DPA above all. (Claude)
 
 - Hosting: the website is on GitHub Pages, but Vercel Web Analytics only runs on sites deployed to Vercel. Move the site to Vercel, or pick other analytics? The privacy policy names both hosts.
-- Demo booking: the privacy policy names Calendly and Google Calendar. Update it once the choice is made.
 - Contact: every page uses hello@coolstory.me. A veriapv.com address would look more trustworthy to buyers.
 - For the lawyer: the EU Data Act lets a customer leave on 2 months' notice to switch provider. The terms keep the current term's fees payable and non-refundable when they do. Is that a lawful early-termination fee, or an obstacle to switching the Act forbids?
 - For the lawyer and the accountant: a contract is formed by paying a quote or pro forma invoice that links the terms and the DPA, and renews only when the next one is paid. Check the invoice wording, and what a VAT-exempt sole trader issues (pro forma, then invoice; KSeF).
